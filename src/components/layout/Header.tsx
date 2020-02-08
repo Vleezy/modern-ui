@@ -1,45 +1,42 @@
-import * as React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { useCollapseOnScroll } from 'hooks/useCollapseOnScroll';
-import ProfilePicture from 'components/shared/ProfilePicture';
-import isDayTime from 'utils/isDayTime';
-import HeaderDropDown from './HeaderDropDown';
-import { useAppState } from 'context/app.context';
+import * as React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { useCollapseOnScroll } from "hooks/useCollapseOnScroll";
+import ProfilePicture from "components/shared/ProfilePicture";
+import isDayTime from "utils/isDayTime";
+import HeaderDropDown from "./HeaderDropDown";
+import { useAppState } from "context/app.context";
 
-interface HeaderProps {
+interface IHeaderProps {
   collapsed?: boolean;
   toggleSidebar: (visible: boolean) => void;
   isHomepage: boolean;
   setTab: (tab: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  collapsed = true,
-  toggleSidebar,
-  isHomepage,
-  setTab
-}) => {
+const Header = (props: IHeaderProps) => {
+  const { collapsed = true, toggleSidebar, isHomepage, setTab } = props;
+
   const headerBackgroundDay = {
     backgroundImage:
-      'linear-gradient(to bottom, rgba(256, 256, 256, 0.1), rgba(256, 256, 256, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)'
+      "linear-gradient(to bottom, rgba(256, 256, 256, 0.1), rgba(256, 256, 256, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
   };
 
   const headerBackgroundNight = {
     backgroundImage:
-      'linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)'
+      "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
   };
 
   const subPages = [
-    { url: '/me/news', name: 'News' },
-    { url: '/me/friends', name: 'Friends' },
-    { url: '/me/badges', name: 'Badges' }
+    { url: "/me/news", name: "News" },
+    { url: "/me/friends", name: "Friends" },
+    { url: "/me/badges", name: "Badges" }
   ];
 
   const subTwoPages = [
-    { url: '/me', name: 'Home', icon: 'fas fa-home', active: true },
-    { url: '/profile/:id', name: 'My Profile', icon: 'fas fa-user' },
-    { url: '#', name: 'Community', icon: 'fas fa-users' },
-    { url: '#', name: 'Help', icon: 'fas fa-question-mark' }
+    { url: "/me", name: "Home", icon: "fas fa-home", active: true },
+    { url: "/profile/:id", name: "My Profile", icon: "fas fa-user" },
+    { url: "#", name: "Community", icon: "fas fa-users" },
+    { url: "#", name: "Help", icon: "fas fa-question-circle" }
   ];
 
   const isScrolled = useCollapseOnScroll();
@@ -89,9 +86,7 @@ const Header: React.FC<HeaderProps> = ({
               </i>
             )}
           </button>
-          <h3 className="self-center text-white font-semibold">
-            {user?.username}
-          </h3>
+          <h3 className="self-center text-white font-semibold">{user?.username}</h3>
           <Link
             to="settings"
             className="text-lg text-white self-center w-8 h-8 p-2 flex justify-center"
@@ -102,7 +97,7 @@ const Header: React.FC<HeaderProps> = ({
         {isCollapsed || (
           <div className="mt-4 flex lg:hidden flex-wrap mx-3">
             <ProfilePicture
-              styles={'bg-gray-300 border border-gray-400'}
+              styles={"bg-gray-300 border border-gray-400"}
               figure={process.env.REACT_APP_HABBO_FIGURE}
             />
             <button
@@ -148,7 +143,7 @@ const Header: React.FC<HeaderProps> = ({
                   to={page.url}
                   key={page.name}
                   className={`${page.active &&
-                    'text-blue-500'} py-2 px-4 rounded hover:bg-gray-100`}
+                    "text-blue-500"} py-2 px-4 rounded hover:bg-gray-100`}
                 >
                   {page.icon && <i className={` ${page.icon} mr-2 `}></i>}
                   {page.name}
@@ -158,10 +153,7 @@ const Header: React.FC<HeaderProps> = ({
 
             {/* Show login button if guest */}
             <div className="flex">
-              <NavLink
-                to="#"
-                className="py-2 px-4 rounded hover:bg-gray-100 bg-fade"
-              >
+              <NavLink to="#" className="py-2 px-4 rounded hover:bg-gray-100 bg-fade">
                 Sign up
               </NavLink>
               <NavLink

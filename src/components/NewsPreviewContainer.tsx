@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { BackgroundImage } from "react-image-and-background-image-fade";
 
 const NewsPreviewContainer = () => {
   const articles = [
@@ -29,12 +28,6 @@ const NewsPreviewContainer = () => {
 
   const [currentArticle, setCurrentArticle] = useState(articles[0]);
 
-  let test = currentArticle.img;
-
-  useEffect(() => {
-    test = currentArticle.img;
-  }, [currentArticle]);
-
   return (
     <>
       {articles.map(article => {
@@ -44,7 +37,7 @@ const NewsPreviewContainer = () => {
           <div
             // src={`/assets/images/topstory/${article.img}`}
             className="w-full h-40 bg-gray-400 rounded-t flex flex-col justify-between p-2 bg-center"
-            style={{ backgroundImage: `url(/assets/images/topstory/${test})` }}
+            style={{ backgroundImage: `url(/assets/images/topstory/${currentArticle.img})` }}
           >
             <div>
               <h3 className="text-white text-lg font-semibold">{currentArticle.title}</h3>
@@ -52,17 +45,17 @@ const NewsPreviewContainer = () => {
             </div>
             <div className="flex justify-between">
               <div className="flex self-center">
-                {articles.map(article => (
+                {articles.map(art => (
                   <div
-                    key={article.id}
+                    key={art.id}
                     className={`article-container__indicator bg-white h-2 w-2 rounded-sm self-end mr-px
-                    ${article.id === currentArticle.id ? "" : "opacity-25"}`}
+                    ${art.id === currentArticle.id ? "" : "opacity-25"}`}
                   ></div>
                 ))}
               </div>
               <Link
                 to={`community/news/${currentArticle.id}`}
-                className="p-1 bg-fade text-xs text-white hover:bg-fadedwhite-200 rounded"
+                className="py-1 px-2 bg-fade text-xs text-white hover:bg-fadedwhite-200 rounded"
               >
                 Read Article
               </Link>

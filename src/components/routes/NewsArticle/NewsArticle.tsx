@@ -1,8 +1,61 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import MainLayout from "components/layout/MainLayout";
+import NewsComment from "components/NewsComment";
 
 const NewsArticle = withRouter(({ history }) => {
+  const comments = [
+    {
+      id: 1,
+      user: { username: "Chuckie", look: process.env.REACT_APP_HABBO_FIGURE },
+      comment: "This article is great!!"
+    },
+    {
+      id: 2,
+      user: { username: "Chuckie", look: process.env.REACT_APP_HABBO_FIGURE },
+      comment:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi corrupti minus velit sunt tempora libero? Illum nesciunt iusto itaque incidunt ipsam pariatur repellat at consequuntur numquam! Sunt quasi similique dicta nobis officiis, dolorum reiciendis explicabo sint sed placeat animi aut deleniti eos beatae id quam error nam, repellendus aliquam odio!",
+      replies: [
+        {
+          user: {
+            username: "SomeDude",
+            look:
+              "ch-805-85.hd-195-1.hr-3172-45.lg-285-1338.sh-300-110.ha-3156-110.he-3069-105-81.ea-.ca-.cc-3007-90-90.wa-"
+          },
+          comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, dolorum?"
+        },
+        {
+          user: {
+            username: "SomeDude",
+            look:
+              "ch-805-85.hd-195-1.hr-3172-45.lg-285-1338.sh-300-110.ha-3156-110.he-3069-105-81.ea-.ca-.cc-3007-90-90.wa-"
+          },
+          comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, dolorum?"
+        }
+      ]
+    },
+    {
+      id: 3,
+      user: { username: "Chuckie", look: process.env.REACT_APP_HABBO_FIGURE },
+      comment: "This article is great!!"
+    },
+    {
+      id: 4,
+      user: { username: "Chuckie", look: process.env.REACT_APP_HABBO_FIGURE },
+      comment: "This article is great!!"
+    },
+    {
+      id: 5,
+      user: { username: "Chuckie", look: process.env.REACT_APP_HABBO_FIGURE },
+      comment: "This article is great!!"
+    },
+    {
+      id: 6,
+      user: { username: "Chuckie", look: process.env.REACT_APP_HABBO_FIGURE },
+      comment: "This article is great!!"
+    }
+  ];
+
   return (
     <MainLayout>
       <div
@@ -82,6 +135,20 @@ const NewsArticle = withRouter(({ history }) => {
           optio? Facilis porro repellat veritatis.
           <br />
           <br />
+        </div>
+      </div>
+      <div className="hidden lg:block">
+        <textarea
+          className="w-full rounded border border-gray-400 text-xs p-1"
+          placeholder="Write some comment..."
+        ></textarea>
+        <h4 className="text-gray-500 my-1 self-center text-xs font-semibold self-center">
+          Comments ({comments.length})
+        </h4>
+        <div className="bg-white border border-gray-400 rounded">
+          {comments.map(comment => (
+            <NewsComment comment={comment} />
+          ))}
         </div>
       </div>
       <div className="mt-2">

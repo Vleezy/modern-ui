@@ -2,11 +2,12 @@ import React, { useState, Fragment } from "react";
 import UserHovercard from "./UserHovercard";
 import { CSSTransition } from "react-transition-group";
 
-interface UserHovercardContainerProps {
+interface IUserHovercardContainerProps {
   children: React.ReactNode;
 }
 
-const UserHovercardContainer: React.FC<UserHovercardContainerProps> = ({ children }) => {
+const UserHovercardContainer = (props: IUserHovercardContainerProps) => {
+  const { children } = props;
   const [hovered, setHovered] = useState(false);
 
   let timeout: any;
