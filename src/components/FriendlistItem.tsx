@@ -11,7 +11,7 @@ interface IFriendListItemProps {
 const FriendlistItem = (props: IFriendListItemProps) => {
   const { user } = props;
   return (
-    <div className="w-full dark:bg-black border-b z-0 border-gray-200 flex p-1">
+    <div className="w-full dark:bg-gray-700 border-b z-0 border-gray-200 flex p-1">
       <UserHovercard>
         <Link to="#">
           <ProfilePicture

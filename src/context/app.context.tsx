@@ -56,12 +56,14 @@ export const AppProvider = (props: IAppProviderProps) => {
 
   const [state, dispatch] = React.useReducer(appReducer, {
     user: undefined,
-    currentHomeTab: "NEWS"
+    currentHomeTab: "FRIENDS"
   });
 
   return (
     <AppStateContext.Provider value={customState ?? state}>
-      <AppDispatchContext.Provider value={dispatch}>{children}</AppDispatchContext.Provider>
+      <AppDispatchContext.Provider value={dispatch}>
+        {children}
+      </AppDispatchContext.Provider>
     </AppStateContext.Provider>
   );
 };
@@ -69,7 +71,8 @@ export const AppProvider = (props: IAppProviderProps) => {
 export const useAppState = () => {
   const context = React.useContext(AppStateContext);
 
-  if (context === undefined) throw new Error("useAppState must be used within a AppProvider.");
+  if (context === undefined)
+    throw new Error("useAppState must be used within a AppProvider.");
 
   return context;
 };

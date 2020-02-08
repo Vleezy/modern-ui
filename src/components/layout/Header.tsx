@@ -159,7 +159,7 @@ const Header = (props: IHeaderProps) => {
                   to={page.url}
                   key={page.name}
                   className={`${page.active &&
-                    "text-blue-500"} py-2 px-4 rounded hover:bg-gray-100`}
+                    "text-blue-500"} py-2 px-4 rounded hover:bg-fadedblack-100`}
                 >
                   {page.icon && <i className={` ${page.icon} mr-2 `}></i>}
                   {page.name}
