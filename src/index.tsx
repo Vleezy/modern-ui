@@ -13,6 +13,9 @@ import { AppProvider } from "context/app.context";
  */
 import "./assets/styles/index.css";
 
+if (localStorage.getItem("theme") === "dark")
+  document.documentElement.classList.add("mode-dark");
+
 render(
   <AppProvider>
     <App />

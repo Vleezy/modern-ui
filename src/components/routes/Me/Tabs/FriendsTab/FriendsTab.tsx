@@ -29,8 +29,8 @@ const FriendsTab = () => {
               key={"friend" + index}
               user={{
                 username: "Friend",
-                look: process.env.REACT_APP_HABBO_FIGURE,
-                isOnline: true
+                look: process.env.REACT_APP_HABBO_FIGURE || "",
+                online: false
               }}
             />
           );

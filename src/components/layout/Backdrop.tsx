@@ -1,10 +1,15 @@
 import React from "react";
-import { BackdropProps } from "common/types";
 
-const Backdrop: React.FC<BackdropProps> = ({ toggleSidebar }) => {
+interface IBackdropProps {
+  callback?: (bool: boolean) => void;
+}
+
+const Backdrop = (props: IBackdropProps) => {
+  const { callback } = props;
+
   return (
     <div
-      onClick={() => toggleSidebar(false)}
+      onClick={() => callback && callback(false)}
       className="w-full z-40 fixed top-0 left-0 h-screen"
       style={{
         // ...backdropStyle,

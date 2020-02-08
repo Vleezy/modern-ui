@@ -434,12 +434,12 @@ module.exports = {
     alignSelf: ["responsive"],
     appearance: ["responsive"],
     backgroundAttachment: ["responsive"],
-    backgroundColor: ["responsive", "hover", "focus"],
+    backgroundColor: ["responsive", "hover", "focus", "dark", "dark-hover"],
     backgroundPosition: ["responsive"],
     backgroundRepeat: ["responsive"],
     backgroundSize: ["responsive"],
     borderCollapse: ["responsive"],
-    borderColor: ["responsive", "hover", "focus"],
+    borderColor: ["responsive", "hover", "focus", "dark", "dark-hover"],
     borderRadius: ["responsive"],
     borderStyle: ["responsive"],
     borderWidth: ["responsive"],
@@ -496,5 +496,5 @@ module.exports = {
     zIndex: ["responsive"]
   },
   corePlugins: {},
-  plugins: []
+  plugins: [require("tailwindcss-dark-mode")()]
 };

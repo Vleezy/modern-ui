@@ -54,7 +54,7 @@ const Header = (props: IHeaderProps) => {
   return (
     <div className="w-full sticky top-0 z-10">
       <div
-        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none"
+        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none dark:border-gray-700"
         style={isDayTime() ? headerBackgroundDay : headerBackgroundNight}
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
@@ -92,7 +92,9 @@ const Header = (props: IHeaderProps) => {
               </i>
             )}
           </button>
-          <h3 className="self-center text-white font-semibold">{user?.username}</h3>
+          <h3 className="self-center text-white font-semibold">
+            {user?.username}
+          </h3>
           <Link
             to="settings"
             className="text-lg text-white self-center w-8 h-8 p-2 flex justify-center"
@@ -148,7 +150,7 @@ const Header = (props: IHeaderProps) => {
       </div>
 
       {/* Subnav (:lg screens) */}
-      <div className="bg-white w-full rounded-b border-b border-r border-l border-gray-400 py-1 hidden lg:block">
+      <div className="bg-white w-full rounded-b border-b border-r border-l border-gray-400 py-1 hidden lg:block dark:bg-gray-800 dark:border-gray-700">
         <div className="max-w-4xl mx-auto">
           <nav className="w-full flex text-xs font-semibold text-gray-500">
             <div className="flex flex-1">
@@ -167,7 +169,10 @@ const Header = (props: IHeaderProps) => {
 
             {/* Show login button if guest */}
             <div className="flex">
-              <NavLink to="#" className="py-2 px-4 rounded hover:bg-gray-100 bg-fade">
+              <NavLink
+                to="#"
+                className="py-2 px-4 rounded hover:bg-gray-100 bg-fade"
+              >
                 Sign up
               </NavLink>
               <NavLink

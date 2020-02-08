@@ -6,7 +6,7 @@ import BottomNavigation from "components/layout/BottomNavigation";
 
 interface MainLayoutProps {
   sidebarVisible: boolean;
-  setSidebarVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setSidebarVisible: (visible: boolean) => void;
   headerVisible: boolean;
   isHomepage: boolean;
   children?: React.ReactNode;
@@ -23,14 +23,21 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 }) => {
   return (
     <div id="main-layout">
-      <Sidebar sidebarVisible={sidebarVisible} toggleSidebar={setSidebarVisible} />
+      <Sidebar
+        sidebarVisible={sidebarVisible}
+        toggleSidebar={setSidebarVisible}
+      />
       {sidebarVisible ? (
         <>
-          <Backdrop toggleSidebar={setSidebarVisible} />
+          <Backdrop callback={() => setSidebarVisible(false)} />
         </>
       ) : null}
       {headerVisible && (
-        <Header toggleSidebar={setSidebarVisible} isHomepage={isHomepage} setTab={setTab} />
+        <Header
+          toggleSidebar={setSidebarVisible}
+          isHomepage={isHomepage}
+          setTab={setTab}
+        />
       )}
       <div className="max-w-4xl mx-auto">
         <div className="hidden lg:flex w-full p-1 justify-between mt-2 lg:mt-0 rounded">

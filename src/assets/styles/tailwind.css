@@ -2,6 +2,19 @@
 
 @tailwind components;
 
+.toggle__dot {
+  top: -0.25rem;
+  left: -0.25rem;
+  transition: all 0.2s ease-in-out;
+}
+
+input:checked ~ .toggle__line {
+  @apply bg-blue-500;
+}
+
+input:checked ~ .toggle__dot {
+  transform: translateX(100%);
+}
 .header {
   transition: 1s;
 }
@@ -80,7 +93,6 @@
 .bg-fade {
   transition: 0.1s;
 }
-
 @tailwind utilities;
 
 @import "~@fortawesome/fontawesome-free/css/all.css";

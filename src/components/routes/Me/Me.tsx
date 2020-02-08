@@ -25,7 +25,7 @@ const Me = () => {
   return (
     <MainLayout isHomepage={true}>
       <div className="hidden lg:flex">
-        <div className="bg-gray-100 rounded w-2/3 flex justify-between border border-gray-400 p-1 flex flex-col mr-2 self-start">
+        <div className="bg-gray-100  rounded w-2/3 flex justify-between border border-gray-400 p-1 flex flex-col mr-2 self-start dark:bg-gray-800 dark:border-gray-700">
           <div
             className="bg-center w-full h-32 rounded-t"
             style={{ backgroundImage: `url(/assets/images/view_ca_wide.png)` }}
@@ -47,7 +47,7 @@ const Me = () => {
             <div className="bg-blue-400">Test</div>
           </div>
         </div>
-        <div className="bg-gray-100 border border-gray-400 rounded w-1/3 p-1 self-start">
+        <div className="bg-gray-100 border border-gray-400 rounded w-1/3 p-1 self-start dark:bg-gray-800 dark:border-gray-700">
           <NewsPreviewContainer />
         </div>
       </div>

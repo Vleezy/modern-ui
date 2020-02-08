@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import isDayTime from "utils/isDayTime";
@@ -37,10 +37,36 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
       "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
   };
 
+  const [darkTheme, setDarkTheme] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
+
+  const toggleDarkTheme = () => {
+    let newTheme;
+    if (darkTheme) {
+      newTheme = "light";
+      document.documentElement.classList.remove("mode-dark");
+    } else {
+      newTheme = "dark";
+      document.documentElement.classList.add("mode-dark");
+    }
+    localStorage.setItem("theme", newTheme);
+    setDarkTheme(!darkTheme);
+    console.log(newTheme);
+  };
+
   return (
-    <CSSTransition in={sidebarVisible} timeout={200} classNames="sidebar" unmountOnExit>
+    <CSSTransition
+      in={sidebarVisible}
+      timeout={200}
+      classNames="sidebar"
+      unmountOnExit
+    >
       <div className="z-50 h-screen fixed overflow-x-hidden lg:hidden">
-        <div className="h-full bg-white flex flex-col" id="sidebar__content">
+        <div
+          className="h-full bg-white flex flex-col dark:bg-gray-800"
+          id="sidebar__content"
+        >
           <div
             className="w-full flex shadow flex-col bg-blue-800 relative p-2 border-r border-blue-700"
             style={isDayTime() ? headerBackgroundDay : headerBackgroundNight}
@@ -83,12 +109,18 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
             </div>
           </div>
           <div className="h-full pb-auto border-r flex flex-col border-gray-500">
-            <Link to="#" className="block w-full p-3 rounded text-gray-600 text-sm">
+            <Link
+              to="#"
+              className="block w-full p-3 rounded text-gray-600 text-sm"
+            >
               <i className="fas fa-cog w-5 text-gray-500" />
               <span className="ml-1">Account Settings</span>
             </Link>
 
-            <Link to="#" className="block w-full p-3 text-gray-600 text-sm flex">
+            <Link
+              to="#"
+              className="block w-full p-3 text-gray-600 text-sm flex"
+            >
               <div className="flex-1">
                 <i className="fas fa-inbox text-gray-500 w-5 relative"></i>
                 <span className="ml-1">Minimail</span>
@@ -101,13 +133,22 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
             </Link>
 
             <div className="h-px w-full bg-gray-300 my-1" />
-            <label htmlFor="toogleA" className="flex items-center cursor-pointer">
+            <label
+              htmlFor="toogleA"
+              className="flex items-center cursor-pointer"
+            >
               <div className="w-full p-3 text-gray-600 text-sm">
                 <i className="fas fa-moon text-gray-500 w-5" />
                 <span className="ml-1">Dark mode</span>
                 <div className="inline-block float-right">
                   <div className="relative">
-                    <input id="toogleA" type="checkbox" className="hidden" />
+                    <input
+                      id="toogleA"
+                      type="checkbox"
+                      className="hidden"
+                      onChange={() => toggleDarkTheme()}
+                      checked={darkTheme}
+                    />
                     <div className="toggle__line w-10 h-5 bg-gray-400 rounded-full " />
                     <div className="toggle__dot absolute w-5 h-5 bg-white rounded-full shadow inset-y-0 left-0" />
                   </div>

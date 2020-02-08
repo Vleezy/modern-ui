@@ -3,7 +3,12 @@ import * as React from "react";
 /**
  * Dependencies
  */
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import { useAppDispatch } from "context/app.context";
 import * as AppActions from "../context/app.actions";
 
@@ -14,6 +19,7 @@ import Login from "./routes/Login";
 import Me from "./routes/Me";
 import PageNotFound from "./routes/PageNotFound";
 import NewsArticle from "./routes/NewsArticle";
+import Modal from "./layout/Modal";
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +30,7 @@ export const App: React.FC = () => {
 
   return (
     <Router>
+      <Modal />
       <Switch>
         <Redirect exact path="/" to="/me" />
 

@@ -6,7 +6,8 @@ const NewsPreviewContainer = () => {
     {
       id: 1,
       title: "Article 1",
-      desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae, eveniet.",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae, eveniet.",
       img: "pirates_topstory_300x187_05.gif",
       date: "29/01/2020"
     },
@@ -36,12 +37,18 @@ const NewsPreviewContainer = () => {
         return (
           <div
             // src={`/assets/images/topstory/${article.img}`}
-            className="w-full h-40 bg-gray-400 rounded-t flex flex-col justify-between p-2 bg-center"
-            style={{ backgroundImage: `url(/assets/images/topstory/${currentArticle.img})` }}
+            className="w-full h-40 bg-gray-400 rounded-t flex flex-col justify-between p-2 bg-center dark:bg-gray-800"
+            style={{
+              backgroundImage: `url(/assets/images/topstory/${currentArticle.img})`
+            }}
           >
             <div>
-              <h3 className="text-white text-lg font-semibold">{currentArticle.title}</h3>
-              <p className="text-white text-xs leading-snug">{currentArticle.desc}</p>
+              <h3 className="text-white text-lg font-semibold">
+                {currentArticle.title}
+              </h3>
+              <p className="text-white text-xs leading-snug">
+                {currentArticle.desc}
+              </p>
             </div>
             <div className="flex justify-between">
               <div className="flex self-center">
@@ -69,7 +76,7 @@ const NewsPreviewContainer = () => {
             key={article.id}
             to={`/community/news/${article.id}`}
             onMouseEnter={() => setCurrentArticle(articles[article.id - 1])}
-            className="bg-fade p-1 block hover:bg-gray-200 rounded flex justify-between"
+            className="bg-fade p-1 block hover:bg-gray-200 rounded flex justify-between dark-hover:bg-gray-900"
           >
             <div className="flex flex-col ">
               <span

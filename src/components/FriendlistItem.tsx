@@ -1,16 +1,21 @@
 import React from "react";
-import { FriendlistItemProps } from "common/types";
 import ProfilePicture from "./shared/ProfilePicture";
 import UserHovercard from "./shared/UserHovercard";
 import { Link } from "react-router-dom";
+import { IUser } from "models/user/IUser";
 
-const FriendlistItem: React.FC<FriendlistItemProps> = ({ user }) => {
+interface IFriendListItemProps {
+  user: IUser;
+}
+
+const FriendlistItem = (props: IFriendListItemProps) => {
+  const { user } = props;
   return (
-    <div className="w-full border-b z-0 border-gray-200 flex p-1">
+    <div className="w-full dark:bg-black border-b z-0 border-gray-200 flex p-1">
       <UserHovercard>
         <Link to="#">
           <ProfilePicture
-            figure={process.env.REACT_APP_HABBO_FIGURE}
+            figure={user?.look}
             styles="bg-gray-300 flex-none relative z-0 rounded self-center w-12 h-12 bg-no-repeat bg-center"
             online={true}
           />
@@ -24,11 +29,14 @@ const FriendlistItem: React.FC<FriendlistItemProps> = ({ user }) => {
           >
             Friend
           </Link>
-          <span className="ml-1 text-xs text-gray-500 self-center">Online for 2 hours</span>
+          <span className="ml-1 text-xs text-gray-500 self-center">
+            Online for 2 hours
+          </span>
         </span>
         <div className="w-full flex">
           <span className="text-xs text-gray-600 leading-tight">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, aliquam voluptatem?
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum,
+            aliquam voluptatem?
           </span>
         </div>
       </div>

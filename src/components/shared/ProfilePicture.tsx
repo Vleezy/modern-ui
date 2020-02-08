@@ -32,8 +32,8 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ figure, styles, online 
   return (
     <div
       id="profile-pic"
-      className={`${styles && styles} rounded shadow-inner w-12 h-12 flex-shrink-0 relative`}
-      style={isBanned ? habboFigure : habboFigureBanned}
+      className={`${styles && styles} rounded shadow-inner w-12 h-12 flex-shrink-0`}
+      style={isBanned ? habboFigureBanned : habboFigure}
     >
       {/* Render online indicator if set in props */}
       {typeof online !== "undefined" && onlineIndicator}
