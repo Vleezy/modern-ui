@@ -13,6 +13,12 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ figure, styles, online 
     backgroundPositionX: "-9px"
   };
 
+  const habboFigureBanned = {
+    backgroundImage: `url(/assets/images/isbanned_small.png)`,
+    backgroundPositionY: "-14px",
+    backgroundPositionX: "-9px"
+  };
+
   const onlineIndicator = (
     <div
       className={`absolute h-3 w-3 ${
@@ -21,11 +27,13 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ figure, styles, online 
     />
   );
 
+  const isBanned = false;
+
   return (
     <div
       id="profile-pic"
-      className={`${styles && styles} rounded shadow-inner w-12 h-12 flex-shrink-0`}
-      style={habboFigure}
+      className={`${styles && styles} rounded shadow-inner w-12 h-12 flex-shrink-0 relative`}
+      style={isBanned ? habboFigure : habboFigureBanned}
     >
       {/* Render online indicator if set in props */}
       {typeof online !== "undefined" && onlineIndicator}

@@ -69,7 +69,6 @@ export const AppProvider = (props: IAppProviderProps) => {
 export const useAppState = () => {
   const context = React.useContext(AppStateContext);
 
-  // Throw error if used outside the User provider
   if (context === undefined) throw new Error("useAppState must be used within a AppProvider.");
 
   return context;
