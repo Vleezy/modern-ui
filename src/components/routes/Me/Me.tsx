@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainLayout from "components/layout/MainLayout";
 import { Switch, Route } from "react-router-dom";
 import NewsTab from "./Tabs/NewsTab";
 
 import FriendsTab from "./Tabs/FriendsTab";
 import NewsPreviewContainer from "components/NewsPreviewContainer";
+import { useAppState } from "context/app.context";
 
-const Me: React.FC = () => {
+const Me = () => {
+  const { currentHomeTab } = useAppState();
+  const renderTab = (currentTab: string) => {
+    switch (currentTab) {
+      case "NEWS":
+        return <NewsTab />;
+
+      case "FRIENDS":
+        return <FriendsTab />;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <MainLayout isHomepage={true}>
       <div className="hidden lg:flex">
@@ -36,11 +51,7 @@ const Me: React.FC = () => {
           <NewsPreviewContainer />
         </div>
       </div>
-      <Switch>
-        <Route path="/me/news" component={NewsTab} />
-        <Route path="/me/friends" component={FriendsTab} />
-        {/* <Route path="/me/badges" component={BadgesTab} /> */}
-      </Switch>
+      {renderTab(currentHomeTab || "NEWS")}
     </MainLayout>
   );
 };

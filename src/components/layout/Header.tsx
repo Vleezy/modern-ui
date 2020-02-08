@@ -4,7 +4,8 @@ import { useCollapseOnScroll } from "hooks/useCollapseOnScroll";
 import ProfilePicture from "components/shared/ProfilePicture";
 import isDayTime from "utils/isDayTime";
 import HeaderDropDown from "./HeaderDropDown";
-import { useAppState } from "context/app.context";
+import { useAppState, useAppDispatch } from "context/app.context";
+import { setHomeTab } from "context/app.actions";
 
 interface IHeaderProps {
   collapsed?: boolean;
@@ -26,10 +27,10 @@ const Header = (props: IHeaderProps) => {
       "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
   };
 
-  const subPages = [
-    { url: "/me/news", name: "News" },
-    { url: "/me/friends", name: "Friends" },
-    { url: "/me/badges", name: "Badges" }
+  const homeTabs = [
+    { url: "/me/news", name: "News", key: "NEWS" },
+    { url: "/me/friends", name: "Friends", key: "FRIENDS" },
+    { url: "/me/badges", name: "Badges", key: "BADGES" }
   ];
 
   const subTwoPages = [
@@ -43,7 +44,12 @@ const Header = (props: IHeaderProps) => {
 
   const isCollapsed = !isHomepage || isScrolled;
 
-  const { user } = useAppState();
+  const { user, currentHomeTab } = useAppState();
+  const dispatch = useAppDispatch();
+
+  const handleTabClick = (tabKey: string) => {
+    dispatch(setHomeTab(tabKey));
+  };
 
   return (
     <div className="w-full sticky top-0 z-10">
@@ -116,19 +122,27 @@ const Header = (props: IHeaderProps) => {
         {/* Tabs */}
         <div
           className={`${isCollapsed &&
-            `hidden`} font-semibold mt-8 lg:hidden flex mb-0 justify-between text-white`}
+            `hidden`} mt-8 lg:hidden flex mb-0 justify-between text-white`}
         >
           {isHomepage &&
-            subPages.map(page => (
-              <NavLink
-                key={page.name}
-                to={page.url}
-                exact
-                activeClassName="border-white"
-                className="text-center flex-1 border-b-2 border-transparent"
+            homeTabs.map(page => (
+              <button
+                onClick={() => handleTabClick(page.key)}
+                className={`font-semibold text-center flex-1 border-b-2 border-transparent focus:outline-none ${currentHomeTab ===
+                  page.key && "border-white"}`}
               >
                 {page.name}
-              </NavLink>
+              </button>
+              // <NavLink
+              //   key={page.name}
+              //   to={page.url}
+              //   exact
+              //   activeClassName="border-white"
+              //   onClick={() => setTab(page.key)}
+              //   className="text-center flex-1 border-b-2 border-transparent"
+              // >
+              //   {page.name}
+              // </NavLink>
             ))}
         </div>
       </div>

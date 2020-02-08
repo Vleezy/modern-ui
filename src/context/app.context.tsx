@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { IUser } from 'models/user/IUser';
+import * as React from "react";
+import { IUser } from "models/user/IUser";
 
 /**
  * Types to be dispatched
  */
-type Types = 'setUser';
+type Types = "setUser" | "setHomeTab";
 
 /**
  * Action type
@@ -19,6 +19,7 @@ export type Action = {
  */
 type State = Partial<{
   user: IUser;
+  currentHomeTab: string;
 }>;
 
 type Dispatch = (action: Action) => void;
@@ -34,8 +35,11 @@ const AppDispatchContext = React.createContext<Dispatch | undefined>(undefined);
  */
 const appReducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'setUser':
+    case "setUser":
       return { ...state, user: action.value };
+
+    case "setHomeTab":
+      return { ...state, currentHomeTab: action.value };
 
     default:
       throw new Error(`Action ${action.type} not found.`);
@@ -51,14 +55,13 @@ export const AppProvider = (props: IAppProviderProps) => {
   const { children, customState } = props;
 
   const [state, dispatch] = React.useReducer(appReducer, {
-    user: undefined
+    user: undefined,
+    currentHomeTab: "NEWS"
   });
 
   return (
     <AppStateContext.Provider value={customState ?? state}>
-      <AppDispatchContext.Provider value={dispatch}>
-        {children}
-      </AppDispatchContext.Provider>
+      <AppDispatchContext.Provider value={dispatch}>{children}</AppDispatchContext.Provider>
     </AppStateContext.Provider>
   );
 };
@@ -67,8 +70,7 @@ export const useAppState = () => {
   const context = React.useContext(AppStateContext);
 
   // Throw error if used outside the User provider
-  if (context === undefined)
-    throw new Error('useAppState must be used within a AppProvider.');
+  if (context === undefined) throw new Error("useAppState must be used within a AppProvider.");
 
   return context;
 };
@@ -77,7 +79,7 @@ export const useAppDispatch = () => {
   const context = React.useContext(AppDispatchContext);
 
   if (context === undefined) {
-    throw new Error('useAppDispatch must be used within a AppProvider.');
+    throw new Error("useAppDispatch must be used within a AppProvider.");
   }
 
   return context;
