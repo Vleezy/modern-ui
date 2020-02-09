@@ -611,8 +611,7 @@ video {
 }
 
 .notification__snackbar {
-    background-color: blue;
-    font-weight: bold;
+    transition: 0.22s ease-in-out;
   }
 
 .toggle__dot {

@@ -4,10 +4,10 @@
 
 .notification {
   &__snackbar {
-    background-color: blue;
-    font-weight: bold;
+    transition: 0.22s ease-in-out;
   }
 }
+
 .toggle__dot {
   top: -0.25rem;
   left: -0.25rem;

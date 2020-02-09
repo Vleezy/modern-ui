@@ -52,12 +52,8 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
   const { addToast } = useToasts();
 
   const submitToast = () => {
-    addToast("Error message!", { appearance: "error" });
+    addToast("Error message!");
   };
-
-  useEffect(() => {
-    addToast("Error message!", { appearance: "error" });
-  }, []);
 
   return (
     <CSSTransition
@@ -68,7 +64,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
     >
       <div className="z-50 h-screen fixed overflow-x-hidden lg:hidden">
         <div
-          className="h-full bg-white flex flex-col dark:bg-gray-800"
+          className="h-full bg-white flex flex-col dark:bg-gray-800 bg-fade"
           id="sidebar__content"
         >
           <div
