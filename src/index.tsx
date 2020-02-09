@@ -1,3 +1,6 @@
+/**
+ * Dependencies
+ */
 import * as React from "react";
 import { render } from "react-dom";
 import * as serviceWorker from "./serviceWorker";
@@ -7,18 +10,22 @@ import * as serviceWorker from "./serviceWorker";
  */
 import { App } from "./components/App";
 import { AppProvider } from "context/app.context";
+import { ToastProvider } from "react-toast-notifications";
 
 /**
  * Styles
  */
 import "./assets/styles/index.css";
+import Snackbar from "components/layout/Notifications/Snackbar";
 
-if (localStorage.getItem("theme") === "dark")
+if (window.localStorage.getItem("dark-theme") === "true")
   document.documentElement.classList.add("mode-dark");
 
 render(
   <AppProvider>
-    <App />
+    <ToastProvider components={{ Toast: Snackbar }} placement="bottom-center">
+      <App />
+    </ToastProvider>
   </AppProvider>,
   document.getElementById("root")
 );

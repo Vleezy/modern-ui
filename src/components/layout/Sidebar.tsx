@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import isDayTime from "utils/isDayTime";
+import { useLocalStorage } from "hooks/useLocalStorage";
+import { useToasts } from "react-toast-notifications";
+import { useEffect } from "react";
 
 interface SidebarProps {
   toggleSidebar: (visible: boolean) => void;
@@ -37,23 +40,24 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
       "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
   };
 
-  const [darkTheme, setDarkTheme] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
+  // Toggle between dark/light mode
+  const [darkTheme, setDarkTheme] = useLocalStorage("dark-theme", null);
   const toggleDarkTheme = () => {
-    let newTheme;
-    if (darkTheme) {
-      newTheme = "light";
-      document.documentElement.classList.remove("mode-dark");
-    } else {
-      newTheme = "dark";
-      document.documentElement.classList.add("mode-dark");
-    }
-    localStorage.setItem("theme", newTheme);
     setDarkTheme(!darkTheme);
-    console.log(newTheme);
+    darkTheme
+      ? document.documentElement.classList.remove("mode-dark")
+      : document.documentElement.classList.add("mode-dark");
   };
+
+  const { addToast } = useToasts();
+
+  const submitToast = () => {
+    addToast("Error message!", { appearance: "error" });
+  };
+
+  useEffect(() => {
+    addToast("Error message!", { appearance: "error" });
+  }, []);
 
   return (
     <CSSTransition
@@ -108,7 +112,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
               ))}
             </div>
           </div>
-          <div className="h-full pb-auto border-r flex flex-col border-gray-500">
+          <div className="h-full pb-auto border-r flex flex-col border-gray-500 dark:border-gray-700">
             <Link
               to="#"
               className="block w-full p-3 rounded text-gray-600 text-sm"
@@ -132,7 +136,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
               </div>
             </Link>
 
-            <div className="h-px w-full bg-gray-300 my-1" />
+            <div className="h-px w-full bg-gray-300 my-1 dark:bg-gray-700" />
             <label
               htmlFor="toogleA"
               className="flex items-center cursor-pointer"
@@ -156,9 +160,12 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
               </div>
             </label>
 
-            <div className="h-px w-full bg-gray-300 my-1 flex mt-auto" />
+            <div className="h-px w-full bg-gray-300 my-1 flex mt-auto dark:bg-gray-700" />
             <div className="flex p-2">
-              <button className="block p-2 text-red-500 flex-1 rounded bg-gray-100 text-sm  ">
+              <button
+                className="block p-2 text-red-500 flex-1 rounded bg-gray-100 text-sm dark:bg-gray-700"
+                onClick={() => submitToast()}
+              >
                 <i className="fas fa-sign-out-alt w-5" />
                 <span>Log out</span>
               </button>

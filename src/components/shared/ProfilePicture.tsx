@@ -6,7 +6,11 @@ interface ProfilePictureProps {
   online?: boolean;
 }
 
-const ProfilePicture: React.FC<ProfilePictureProps> = ({ figure, styles, online }) => {
+const ProfilePicture: React.FC<ProfilePictureProps> = ({
+  figure,
+  styles,
+  online
+}) => {
   const habboFigure = {
     backgroundImage: `url("https://www.habbo.nl/habbo-imaging/avatarimage?figure=${figure}")`,
     backgroundPositionY: "-14px",
@@ -23,7 +27,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ figure, styles, online 
     <div
       className={`absolute h-3 w-3 ${
         online ? "bg-green-500" : "bg-gray-500"
-      } rounded right-0 border-2 border-gray-100 -m-px`}
+      } rounded right-0 border-2 border-gray-100 -m-px dark:border-gray-800`}
     />
   );
 
@@ -32,7 +36,8 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ figure, styles, online 
   return (
     <div
       id="profile-pic"
-      className={`${styles && styles} rounded shadow-inner w-12 h-12 flex-shrink-0`}
+      className={`${styles &&
+        styles} rounded shadow-inner w-12 h-12 flex-shrink-0`}
       style={isBanned ? habboFigureBanned : habboFigure}
     >
       {/* Render online indicator if set in props */}

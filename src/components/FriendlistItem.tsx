@@ -11,12 +11,12 @@ interface IFriendListItemProps {
 const FriendlistItem = (props: IFriendListItemProps) => {
   const { user } = props;
   return (
-    <div className="w-full dark:bg-gray-700 border-b z-0 border-gray-200 flex p-1">
+    <div className="w-full border-b z-0 border-gray-200 flex p-1 dark:border-gray-700">
       <UserHovercard>
         <Link to="#">
           <ProfilePicture
             figure={user?.look}
-            styles="bg-gray-300 flex-none relative z-0 rounded self-center w-12 h-12 bg-no-repeat bg-center"
+            styles="bg-gray-300 flex-none relative z-0 rounded self-center w-12 h-12 bg-no-repeat bg-center dark:bg-gray-700"
             online={true}
           />
         </Link>
