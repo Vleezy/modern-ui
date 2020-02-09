@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build:styles": "npx tailwind build src/assets/styles/tailwind.css -o src/assets/styles/index.css",
+    "build:styles": "postcss -o src/assets/styles/index.css src/assets/styles/index.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
