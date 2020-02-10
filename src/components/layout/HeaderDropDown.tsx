@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppState } from "context/app.context";
 import { useLocalStorage } from "hooks/useLocalStorage";
 import { useDarkMode } from "hooks/useDarkMode";
+import Switch from "components/shared/Switch";
 
 const HeaderDropDown = () => {
   const [visible, setVisible] = useState(false);
@@ -70,19 +71,10 @@ const HeaderDropDown = () => {
                   <div className="w-full text-gray-500 text-xs">
                     <i className="fas fa-moon" />
                     <span className="ml-1">Dark mode</span>
-                    <div className="inline-block float-right">
-                      <div className="relative">
-                        <input
-                          id="toogleA"
-                          type="checkbox"
-                          className="hidden"
-                          checked={darkMode}
-                          onChange={() => setDarkMode(!darkMode)}
-                        />
-                        <div className="toggle__line w-8 h-4 bg-gray-400 rounded-full " />
-                        <div className="toggle__dot absolute w-4 h-4 bg-white rounded-full shadow inset-y-0 left-0" />
-                      </div>
-                    </div>
+                    <Switch
+                      onChange={setDarkMode(!darkMode)}
+                      checked={darkMode}
+                    />
                   </div>
                 </label>
               </div>

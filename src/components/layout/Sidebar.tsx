@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import isDayTime from "utils/isDayTime";
 import { useToasts } from "react-toast-notifications";
 import { useDarkMode } from "hooks/useDarkMode";
+import Switch from "components/shared/Switch";
 
 interface SidebarProps {
   toggleSidebar: (visible: boolean) => void;
@@ -132,19 +133,10 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
               <div className="w-full p-3 text-gray-600 text-sm">
                 <i className="fas fa-moon text-gray-500 w-5" />
                 <span className="ml-1">Dark mode</span>
-                <div className="inline-block float-right">
-                  <div className="relative">
-                    <input
-                      id="toogleA"
-                      type="checkbox"
-                      className="hidden"
-                      onChange={() => setDarkTheme(!darkTheme)}
-                      checked={darkTheme}
-                    />
-                    <div className="toggle__line w-10 h-5 bg-gray-400 rounded-full " />
-                    <div className="toggle__dot absolute w-5 h-5 bg-white rounded-full shadow inset-y-0 left-0" />
-                  </div>
-                </div>
+                <Switch
+                  onChange={() => setDarkTheme(!darkTheme)}
+                  checked={darkTheme}
+                />
               </div>
             </label>
 
