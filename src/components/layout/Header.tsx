@@ -33,11 +33,11 @@ const Header = (props: IHeaderProps) => {
     { url: "/me/badges", name: "Badges", key: "BADGES" }
   ];
 
-  const subTwoPages = [
-    { url: "/me", name: "Home", icon: "fas fa-home", active: true },
+  const subPages = [
+    { url: "/me", name: "Home", icon: "fas fa-home" },
     { url: "/profile/:id", name: "My Profile", icon: "fas fa-user" },
-    { url: "#", name: "Community", icon: "fas fa-users" },
-    { url: "#", name: "Help", icon: "fas fa-question-circle" }
+    { url: "/community", name: "Community", icon: "fas fa-users" },
+    { url: "help", name: "Help", icon: "fas fa-question-circle" }
   ];
 
   const isScrolled = useCollapseOnScroll();
@@ -129,22 +129,13 @@ const Header = (props: IHeaderProps) => {
           {isHomepage &&
             homeTabs.map(page => (
               <button
+                key={page.key}
                 onClick={() => handleTabClick(page.key)}
                 className={`font-semibold text-center flex-1 border-b-2 border-transparent focus:outline-none ${currentHomeTab ===
                   page.key && "border-white"}`}
               >
                 {page.name}
               </button>
-              // <NavLink
-              //   key={page.name}
-              //   to={page.url}
-              //   exact
-              //   activeClassName="border-white"
-              //   onClick={() => setTab(page.key)}
-              //   className="text-center flex-1 border-b-2 border-transparent"
-              // >
-              //   {page.name}
-              // </NavLink>
             ))}
         </div>
       </div>
@@ -154,12 +145,13 @@ const Header = (props: IHeaderProps) => {
         <div className="max-w-4xl mx-auto">
           <nav className="w-full flex text-xs font-semibold text-gray-500">
             <div className="flex flex-1">
-              {subTwoPages.map(page => (
+              {subPages.map(page => (
                 <NavLink
+                  exact
                   to={page.url}
                   key={page.name}
-                  className={`${page.active &&
-                    "text-blue-500"} py-2 px-4 rounded hover:bg-fadedblack-100`}
+                  activeClassName="text-blue-500"
+                  className="py-2 px-4 rounded hover:bg-gray-200 dark-hover:bg-gray-700"
                 >
                   {page.icon && <i className={` ${page.icon} mr-2 `}></i>}
                   {page.name}

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppState } from "context/app.context";
+import { useLocalStorage } from "hooks/useLocalStorage";
+import { useDarkMode } from "hooks/useDarkMode";
 
 const HeaderDropDown = () => {
   const [visible, setVisible] = useState(false);
@@ -12,13 +14,23 @@ const HeaderDropDown = () => {
     backgroundPositionY: "-4px",
     backgroundPositionX: "1px"
   };
+
+  const tabs = [
+    { name: "Inbox", icon: "fas fa-inbox" },
+    { name: "Logout", icon: "fas fa-sign-out-alt" }
+  ];
+
+  const [darkMode, setDarkMode] = useDarkMode();
+
   return (
     <div
-      className="hover:bg-fadedwhite-100 cursor-pointer rounded relative  inline-block w-32 "
+      className="hover:bg-fadedwhite-100  rounded relative inline-block w-32"
       onMouseEnter={() => setVisible(!visible)}
       onMouseLeave={() => setVisible(!visible)}
     >
-      <div className={`w-full relative flex border-gray-400 z-50`}>
+      <div
+        className={`w-full relative flex border-gray-400 z-50 cursor-pointer`}
+      >
         <button className="flex p-1 w-full justify-between">
           <div
             className="h-8 w-8 bg-center flex-shrink-0 bg-no-repeat rounded bg-gray-200"
@@ -29,25 +41,61 @@ const HeaderDropDown = () => {
               {user?.username}
             </span>
             <div
-              className={`${visible ? "h-2" : "h-0"} overflow-hidden flex justify-center bg-fade`}
+              className={`${
+                visible ? "h-2" : "h-0"
+              } overflow-hidden flex justify-center bg-fade`}
             >
-              <i className={`fas fa-caret-down self-center text-xs text-fadedwhite-500 mr-2`}></i>
+              <i
+                className={`fas fa-caret-down self-center text-xs text-fadedwhite-500 mr-2`}
+              ></i>
             </div>
           </div>
         </button>
       </div>
       {visible && (
-        <div className="absolute w-full">
-          <div className="mt-2 p-1 flex shadow-lg flex-col bg-white w-full rounded-sm">
-            <Link className="p-1 text-xs text-gray-500 rounded hover:bg-gray-200" to="#">
-              Inbox
-            </Link>
-            <Link className="p-1 text-xs text-gray-500 rounded hover:bg-gray-200" to="#">
-              Settings
-            </Link>
-            <Link className="p-1 text-xs text-gray-500 rounded hover:bg-gray-200" to="#">
-              Log out
-            </Link>
+        <div className="absolute w-40 right-0">
+          <div className="mt-2 px-1 flex shadow-lg flex-col bg-white w-full rounded border border-gray-400 dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex flex-col border-b border-gray-200 p-1">
+              <span className="text-xs text-gray-500">Logged in as</span>
+              <span className="text-xs font-semibold text-gray-700 dark:text-gray-200">
+                {user?.username}
+              </span>
+            </div>
+            <div className="flex flex-col py-1">
+              <div>
+                <label
+                  htmlFor="toogleA"
+                  className="flex items-center cursor-pointer"
+                >
+                  <div className="w-full text-gray-500 text-xs">
+                    <i className="fas fa-moon" />
+                    <span className="ml-1">Dark mode</span>
+                    <div className="inline-block float-right">
+                      <div className="relative">
+                        <input
+                          id="toogleA"
+                          type="checkbox"
+                          className="hidden"
+                          checked={darkMode}
+                          onChange={() => setDarkMode(!darkMode)}
+                        />
+                        <div className="toggle__line w-8 h-4 bg-gray-400 rounded-full " />
+                        <div className="toggle__dot absolute w-4 h-4 bg-white rounded-full shadow inset-y-0 left-0" />
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              {tabs.map(tab => (
+                <Link
+                  className="p-1 text-xs text-gray-500 rounded hover:bg-gray-200"
+                  to="#"
+                >
+                  {tab.icon && <i className={tab.icon}></i>}
+                  <span className="ml-1">{tab.name}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       )}

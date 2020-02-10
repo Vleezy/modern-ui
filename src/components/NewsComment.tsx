@@ -16,9 +16,12 @@ const NewsComment = (props: INewsCommentProps) => {
   const { comment } = props;
 
   return (
-    <div className="hidden lg:flex border-b border-gray-100 p-1">
+    <div className="hidden lg:flex border-b border-gray-100 p-1 dark:border-gray-700">
       <UserHoverCard>
-        <ProfilePicture figure={comment.user.look} styles="bg-gray-200 cursor-pointer" />
+        <ProfilePicture
+          figure={comment.user.look}
+          styles="bg-gray-200 cursor-pointer"
+        />
       </UserHoverCard>
       <div className="flex flex-1 flex-col ml-2">
         <div className=" flex flex-col">
@@ -49,11 +52,14 @@ const NewsComment = (props: INewsCommentProps) => {
 
         {/* Render replies */}
         {comment.replies && (
-          <div className="bg-gray-100 p-1 rounded">
+          <div className="bg-gray-100 p-1 rounded dark:bg-gray-700">
             {comment.replies.map((reply: any) => (
               <div className="flex">
                 <UserHoverCard>
-                  <ProfilePicture figure={reply.user.look} styles="bg-gray-200 cursor-pointer" />
+                  <ProfilePicture
+                    figure={reply.user.look}
+                    styles="bg-gray-200 cursor-pointer"
+                  />
                 </UserHoverCard>
                 <div className="flex flex-1 flex-col ml-2">
                   <div className=" flex flex-col">

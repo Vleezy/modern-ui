@@ -37,11 +37,17 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
     <div
       id="profile-pic"
       className={`${styles &&
-        styles} rounded shadow-inner w-12 h-12 flex-shrink-0`}
+        styles} rounded shadow-inner w-12 h-12 flex-shrink-0 relative`}
       style={isBanned ? habboFigureBanned : habboFigure}
     >
       {/* Render online indicator if set in props */}
       {typeof online !== "undefined" && onlineIndicator}
+      {/* <div
+        className="absolute bottom-0 right-0 -mr-1 -mb-1 bg-no-repeat h-4 w-4 bg-center"
+        style={{
+          backgroundImage: `url(/assets/images/relationship/heart.png)`
+        }}
+      /> */}
     </div>
   );
 };

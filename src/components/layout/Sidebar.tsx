@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import isDayTime from "utils/isDayTime";
-import { useLocalStorage } from "hooks/useLocalStorage";
 import { useToasts } from "react-toast-notifications";
-import { useEffect } from "react";
+import { useDarkMode } from "hooks/useDarkMode";
 
 interface SidebarProps {
   toggleSidebar: (visible: boolean) => void;
@@ -40,14 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
       "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
   };
 
-  // Toggle between dark/light mode
-  const [darkTheme, setDarkTheme] = useLocalStorage("dark-theme", null);
-  const toggleDarkTheme = () => {
-    setDarkTheme(!darkTheme);
-    darkTheme
-      ? document.documentElement.classList.remove("mode-dark")
-      : document.documentElement.classList.add("mode-dark");
-  };
+  const [darkTheme, setDarkTheme] = useDarkMode();
 
   const { addToast } = useToasts();
 
@@ -146,7 +138,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
                       id="toogleA"
                       type="checkbox"
                       className="hidden"
-                      onChange={() => toggleDarkTheme()}
+                      onChange={() => setDarkTheme(!darkTheme)}
                       checked={darkTheme}
                     />
                     <div className="toggle__line w-10 h-5 bg-gray-400 rounded-full " />

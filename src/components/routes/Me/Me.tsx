@@ -27,9 +27,15 @@ const Me = () => {
       <div className="hidden lg:flex">
         <div className="bg-gray-100  rounded w-2/3 flex justify-between border border-gray-400 p-1 flex flex-col mr-2 self-start dark:bg-gray-800 dark:border-gray-700">
           <div
-            className="bg-center w-full h-32 rounded-t"
+            className="bg-center w-full h-32 rounded-t flex justify-end"
             style={{ backgroundImage: `url(/assets/images/view_ca_wide.png)` }}
-          ></div>
+          >
+            <div className="h-full flex flex-col justify-center">
+              <button className="self-center flex px-4 py-2 bg-green-600 mr-2 border border-green-500 rounded">
+                Enter hotel _>
+              </button>
+            </div>
+          </div>
           <div className="relative h-10 rounded-b-sm flex">
             <div
               className="absolute bg-no-repeat bg-bottom -mt-24 ml-2"

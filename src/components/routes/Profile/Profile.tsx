@@ -1,7 +1,11 @@
 import React from "react";
+import { RouteComponentProps, withRouter, Link } from "react-router-dom";
+import MainLayout from "components/layout/MainLayout";
 
-const Profile = () => {
-  return <div></div>;
+type TParams = { id: string };
+
+const Profile = ({ match }: RouteComponentProps<TParams>) => {
+  return <MainLayout></MainLayout>;
 };
 
-export default Profile;
+export default withRouter(Profile);
