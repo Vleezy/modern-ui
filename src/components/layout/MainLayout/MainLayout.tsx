@@ -10,7 +10,6 @@ interface MainLayoutProps {
   headerVisible: boolean;
   isHomepage: boolean;
   children?: React.ReactNode;
-  setTab: (tab: string) => void;
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({
