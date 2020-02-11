@@ -8,23 +8,22 @@ import { useAppState, useAppDispatch } from "context/app.context";
 import { setHomeTab } from "context/app.actions";
 
 interface IHeaderProps {
-  collapsed?: boolean;
   toggleSidebar: (visible: boolean) => void;
   isHomepage: boolean;
-  setTab: (tab: string) => void;
 }
 
 const Header = (props: IHeaderProps) => {
-  const { collapsed = true, toggleSidebar, isHomepage, setTab } = props;
+  const { toggleSidebar, isHomepage } = props;
 
-  const headerBackgroundDay = {
-    backgroundImage:
-      "linear-gradient(to bottom, rgba(256, 256, 256, 0.1), rgba(256, 256, 256, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
-  };
-
-  const headerBackgroundNight = {
-    backgroundImage:
-      "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
+  const headerBackground = {
+    night: {
+      backgroundImage:
+        "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
+    },
+    day: {
+      backgroundImage:
+        "linear-gradient(to bottom, rgba(256, 256, 256, 0.1), rgba(256, 256, 256, 0.4)), url(/assets/images/profile_backgrounds/star_sky.gif)"
+    }
   };
 
   const homeTabs = [
@@ -55,7 +54,7 @@ const Header = (props: IHeaderProps) => {
     <div className="w-full sticky top-0 z-10">
       <div
         className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none dark:border-gray-700"
-        style={isDayTime() ? headerBackgroundDay : headerBackgroundNight}
+        style={isDayTime() ? headerBackground.day : headerBackground.night}
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
           <div className="w-full flex justify-between">

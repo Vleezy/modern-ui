@@ -62,7 +62,7 @@ const NewsArticle = withRouter(({ history }) => {
   return (
     <MainLayout>
       <div
-        className="w-full h-40 flex flex-col justify-between bg-center border-b-2 border-gray-400"
+        className="w-full h-40 flex flex-col justify-between bg-center border-b-2 dark:border-gray-800 border-gray-400"
         style={{
           backgroundImage: `url(/assets/images/news_images/lpromo_bawwalleeventfeb.png)`
         }}

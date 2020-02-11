@@ -9,13 +9,16 @@ const NewsTab = () => {
         <h4 className="text-gray-500 self-center text-xs font-semibold self-center">
           Featured news
         </h4>
-        <Link to="/news" className="text-gray-500 self-center text-xs self-center font-semibold">
+        <Link
+          to="/news"
+          className="text-gray-500 self-center text-xs self-center font-semibold"
+        >
           All articles »
         </Link>
       </div>
 
       <div className="pl-2">
-        <div className="p-1 pb-2 rounded bg-gray-300 overflow-x-auto w-full flex">
+        <div className="p-1 pb-2 rounded bg-gray-300 overflow-x-auto w-full flex dark:bg-gray-800">
           {[...Array(4)].map((article, index) => (
             <NewsPreviewItem />
           ))}

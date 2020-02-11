@@ -21,7 +21,7 @@ const HeaderDropDown = () => {
     { name: "Logout", icon: "fas fa-sign-out-alt" }
   ];
 
-  const [darkMode, setDarkMode] = useDarkMode();
+  const [darkTheme, setDarkTheme] = useDarkMode();
 
   return (
     <div
@@ -72,8 +72,8 @@ const HeaderDropDown = () => {
                     <i className="fas fa-moon" />
                     <span className="ml-1">Dark mode</span>
                     <Switch
-                      onChange={setDarkMode(!darkMode)}
-                      checked={darkMode}
+                      onChange={() => setDarkTheme(!darkTheme)}
+                      checked={darkTheme}
                     />
                   </div>
                 </label>

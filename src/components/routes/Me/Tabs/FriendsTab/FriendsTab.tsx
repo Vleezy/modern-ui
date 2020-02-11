@@ -2,7 +2,7 @@ import React from "react";
 import FriendlistItem from "components/FriendlistItem";
 
 const FriendsTab = () => {
-  const onlineFriends = 5;
+  const onlineFriends = 16;
   const offlineFriends = 20;
   return (
     <div className="p-2">

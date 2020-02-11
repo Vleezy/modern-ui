@@ -18,8 +18,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   setSidebarVisible,
   headerVisible,
   isHomepage,
-  children,
-  setTab
+  children
 }) => {
   return (
     <div id="main-layout">
@@ -33,11 +32,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         </>
       ) : null}
       {headerVisible && (
-        <Header
-          toggleSidebar={setSidebarVisible}
-          isHomepage={isHomepage}
-          setTab={setTab}
-        />
+        <Header toggleSidebar={setSidebarVisible} isHomepage={isHomepage} />
       )}
       <div className="max-w-4xl mx-auto">
         <div className="hidden lg:flex w-full p-1 justify-between mt-2 lg:mt-0 rounded">
