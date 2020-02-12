@@ -1,7 +1,14 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
+import { useAppState } from "context/app.context";
 
 const BottomNavigation = () => {
+  const { user } = useAppState();
+  const pages = [
+    { url: "/me", icon: "fas fa-home" },
+    { url: `/profile/${user?.username || ""}`, icon: "fas fa-user" },
+    { url: "/community", icon: "fas fa-users" }
+  ];
   return (
     <Fragment>
       <div className="lg:hidden w-full z-30 fixed bottom-0 flex flex-col ">
@@ -9,28 +16,15 @@ const BottomNavigation = () => {
           Test alert!
         </div> */}
         <nav className="w-full flex justify-between text-lg text-gray-500 border-gray-400 bg-gray-100 border-t dark:bg-gray-800 dark:border-gray-700">
-          <NavLink
-            to="/me"
-            activeClassName="text-blue-500"
-            className="flex-1 text-center py-2"
-          >
-            <i className="fas fa-home" />
-          </NavLink>
-          <NavLink
-            to="/profile"
-            exact
-            activeClassName="text-blue-500"
-            className="flex-1 text-center py-2"
-          >
-            <i className="fas fa-user"></i>
-          </NavLink>
-          <NavLink
-            to="/community"
-            activeClassName="text-blue-500"
-            className="flex-1 text-center py-2"
-          >
-            <i className="fas fa-users" />
-          </NavLink>
+          {pages.map(page => (
+            <NavLink
+              to={page.url}
+              activeClassName="text-blue-500"
+              className="flex-1 text-center py-2"
+            >
+              <i className={page.icon} />
+            </NavLink>
+          ))}
         </nav>
       </div>
     </Fragment>
