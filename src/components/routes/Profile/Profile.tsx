@@ -1,10 +1,17 @@
 import React from "react";
-import { RouteComponentProps, withRouter, Link } from "react-router-dom";
+import {
+  RouteComponentProps,
+  withRouter,
+  Link,
+  useParams
+} from "react-router-dom";
 import MainLayout from "components/layout/MainLayout";
 
 type TParams = { id: string };
 
 const Profile = ({ match }: RouteComponentProps<TParams>) => {
+  const router = useParams();
+  console.log(router);
   return <MainLayout></MainLayout>;
 };
 

@@ -15,6 +15,13 @@ interface IHeaderProps {
 const Header = (props: IHeaderProps) => {
   const { toggleSidebar, isHomepage } = props;
 
+  const { user, currentHomeTab } = useAppState();
+  const dispatch = useAppDispatch();
+
+  const handleTabClick = (tabKey: string) => {
+    dispatch(setHomeTab(tabKey));
+  };
+
   const headerBackground = {
     night: {
       backgroundImage:
@@ -34,7 +41,11 @@ const Header = (props: IHeaderProps) => {
 
   const subPages = [
     { url: "/me", name: "Home", icon: "fas fa-home" },
-    { url: "/profile/:id", name: "My Profile", icon: "fas fa-user" },
+    {
+      url: "/profile/" + user?.username || "",
+      name: "My Profile",
+      icon: "fas fa-user"
+    },
     { url: "/community", name: "Community", icon: "fas fa-users" },
     { url: "help", name: "Help", icon: "fas fa-question-circle" }
   ];
@@ -42,13 +53,6 @@ const Header = (props: IHeaderProps) => {
   const isScrolled = useCollapseOnScroll();
 
   const isCollapsed = !isHomepage || isScrolled;
-
-  const { user, currentHomeTab } = useAppState();
-  const dispatch = useAppDispatch();
-
-  const handleTabClick = (tabKey: string) => {
-    dispatch(setHomeTab(tabKey));
-  };
 
   return (
     <div className="w-full sticky top-0 z-10">
@@ -146,7 +150,6 @@ const Header = (props: IHeaderProps) => {
             <div className="flex flex-1">
               {subPages.map(page => (
                 <NavLink
-                  exact
                   to={page.url}
                   key={page.name}
                   activeClassName="text-blue-500"

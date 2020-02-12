@@ -60,7 +60,7 @@ const NewsArticle = withRouter(({ history }) => {
   ];
 
   return (
-    <MainLayout>
+    <MainLayout headerVisible={false}>
       <div
         className="w-full h-40 flex flex-col justify-between bg-center border-b-2 dark:border-gray-800 border-gray-400"
         style={{

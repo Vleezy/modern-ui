@@ -57,7 +57,9 @@ const Me = () => {
           <NewsPreviewContainer />
         </div>
       </div>
-      {renderTab(currentHomeTab || "NEWS")}
+      <div className="flex lg:hidden">
+        {renderTab(currentHomeTab || "NEWS")}
+      </div>
     </MainLayout>
   );
 };
