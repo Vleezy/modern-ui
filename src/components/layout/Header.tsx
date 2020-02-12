@@ -126,8 +126,9 @@ const Header = (props: IHeaderProps) => {
 
         {/* Tabs */}
         <div
-          className={`${isCollapsed &&
-            `hidden`} mt-8 lg:hidden flex mb-0 justify-between text-white`}
+          className={`${
+            isCollapsed ? `mt-0` : `mt-8`
+          }  lg:hidden flex mb-0 justify-between text-white`}
         >
           {isHomepage &&
             homeTabs.map(page => (
