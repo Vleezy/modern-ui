@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MainLayout from "components/layout/MainLayout";
-import { Switch, Route } from "react-router-dom";
 import NewsTab from "./Tabs/NewsTab";
 
 import FriendsTab from "./Tabs/FriendsTab";

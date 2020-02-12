@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NewsPreviewContainer = () => {
@@ -32,7 +32,7 @@ const NewsPreviewContainer = () => {
   return (
     <>
       {articles.map(article => {
-        if (article.id !== currentArticle.id) return;
+        if (article.id !== currentArticle.id) return false;
 
         return (
           <div

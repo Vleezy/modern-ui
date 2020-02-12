@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppState } from "context/app.context";
-import { useLocalStorage } from "hooks/useLocalStorage";
 import { useDarkMode } from "hooks/useDarkMode";
 import Switch from "components/shared/Switch";
 

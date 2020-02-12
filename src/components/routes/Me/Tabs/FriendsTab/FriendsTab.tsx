@@ -3,7 +3,6 @@ import FriendlistItem from "components/FriendlistItem";
 
 const FriendsTab = () => {
   const onlineFriends = 16;
-  const offlineFriends = 20;
   return (
     <div className="p-2">
       {/* Search friends */}
