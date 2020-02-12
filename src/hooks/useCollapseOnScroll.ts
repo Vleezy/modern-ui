@@ -4,7 +4,7 @@ export const useCollapseOnScroll = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const handleScroll = () => {
-    const top = window.pageXOffset | document.documentElement.scrollTop;
+    const top = window.pageXOffset || document.documentElement.scrollTop;
     setCollapsed(top !== 0);
   };
 
