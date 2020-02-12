@@ -37,6 +37,7 @@ const NewsPreviewContainer = () => {
         return (
           <div
             // src={`/assets/images/topstory/${article.img}`}
+            key={article.id}
             className="w-full h-40 bg-gray-400 rounded-t flex flex-col justify-between p-2 bg-center dark:bg-gray-800"
             style={{
               backgroundImage: `url(/assets/images/topstory/${currentArticle.img})`

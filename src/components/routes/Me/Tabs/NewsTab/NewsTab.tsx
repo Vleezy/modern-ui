@@ -19,8 +19,8 @@ const NewsTab = () => {
 
       <div className="pl-2">
         <div className="p-1 pb-2 rounded bg-gray-300 overflow-x-auto w-full flex dark:bg-gray-800">
-          {[...Array(4)].map((article, index) => (
-            <NewsPreviewItem />
+          {[...Array(4)].map((_, index) => (
+            <NewsPreviewItem key={index} />
           ))}
         </div>
       </div>

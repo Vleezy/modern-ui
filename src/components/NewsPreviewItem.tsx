@@ -48,9 +48,9 @@ const NewsPreviewItem = () => {
               </div>
             </div>
             <div>
-              <Link to="community/news/2" className="text-xs text-gray-500">
+              <span className="text-xs text-gray-500">
                 Read article &raquo;
-              </Link>
+              </span>
             </div>
           </div>
         </div>

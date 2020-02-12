@@ -18,6 +18,7 @@ const BottomNavigation = () => {
         <nav className="w-full flex justify-between text-lg text-gray-500 border-gray-400 bg-gray-100 border-t dark:bg-gray-800 dark:border-gray-700">
           {pages.map(page => (
             <NavLink
+              key={page.url}
               to={page.url}
               activeClassName="text-blue-500"
               className="flex-1 text-center py-2"
