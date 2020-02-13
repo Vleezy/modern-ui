@@ -56,7 +56,7 @@ export const AppProvider = (props: IAppProviderProps) => {
 
   const [state, dispatch] = React.useReducer(appReducer, {
     user: undefined,
-    currentHomeTab: "NEWS"
+    currentHomeTab: process.env.REACT_APP_DEFAULT_TAB
   });
 
   return (
