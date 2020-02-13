@@ -89,7 +89,7 @@ const FriendsTab = () => {
               </span>
               <span className="dark:text-gray-600 text-sm px-10 text-center">
                 You have no friends in your friendlist. Enter the hotel to meet
-                people!
+                new people!
               </span>
             </div>
           </div>
