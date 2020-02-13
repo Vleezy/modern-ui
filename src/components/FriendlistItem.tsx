@@ -17,7 +17,7 @@ const FriendlistItem = (props: IFriendListItemProps) => {
           <ProfilePicture
             figure={user?.look}
             styles="bg-gray-300 flex-none relative z-0 rounded self-center w-12 h-12 bg-no-repeat bg-center dark:bg-gray-700"
-            online={true}
+            online={user.online}
           />
         </Link>
       </UserHovercard>
@@ -29,7 +29,7 @@ const FriendlistItem = (props: IFriendListItemProps) => {
           >
             Friend
           </Link>
-          <span className="ml-1 text-xs text-gray-500 self-center">
+          <span className="ml-1 text-xs text-gray-500 self-center dark:text-gray-700">
             Online for 2 hours
           </span>
         </span>
