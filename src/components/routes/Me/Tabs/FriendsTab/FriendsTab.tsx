@@ -2,6 +2,54 @@ import React from "react";
 import FriendlistItem from "components/FriendlistItem";
 
 const FriendsTab = () => {
+  const friends: any[] = [];
+  const noFriendsStyles = {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.0), #1a202c)`
+  };
+  const friendsr = [
+    {
+      id: 1,
+      username: "Friend",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: true
+    },
+    {
+      id: 2,
+      username: "Friend",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: true
+    },
+    {
+      id: 3,
+      username: "Friend",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: true
+    },
+    {
+      id: 4,
+      username: "Friend",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: true
+    },
+    {
+      id: 5,
+      username: "Friend",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: true
+    },
+    {
+      id: 6,
+      username: "Friend",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: true
+    },
+    {
+      id: 7,
+      username: "Friend",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: true
+    }
+  ];
   const onlineFriends = 16;
   return (
     <div className="p-2">
@@ -18,23 +66,43 @@ const FriendsTab = () => {
       </div>
 
       {/* Online friends */}
-      <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
-        Online friends ({onlineFriends})
-      </h4>
-      <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700">
-        {[...Array(onlineFriends)].map((val, index) => {
-          return (
-            <FriendlistItem
-              key={"friend" + index}
-              user={{
-                username: "Friend",
-                look: process.env.REACT_APP_HABBO_FIGURE || "",
-                online: false
-              }}
-            />
-          );
-        })}
-      </div>
+      {friends.length ? (
+        friends.map((friend, idx) => (
+          <div>
+            <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
+              Online friends ({onlineFriends})
+            </h4>
+            <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700">
+              <FriendlistItem key={idx} user={friend} />
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className="flex flex-col mt-2 relative">
+          <div className=" absolute top-0 right-0 h-full w-full flex justify-center">
+            <div
+              className="flex flex-col justify-center"
+              style={noFriendsStyles}
+            >
+              <span className="text-2xl font-semibold dark:text-gray-500 text-center">
+                No friends!
+              </span>
+              <span className="dark:text-gray-600 text-sm px-10 text-center">
+                You have no friends in your friendlist. Enter the hotel to meet
+                people!
+              </span>
+            </div>
+          </div>
+          {[...Array(5)].map(() => (
+            <div className="w-full p-1 flex rounded mb-1">
+              <div className="h-12 w-12 rounded bg-fadedblack-300 flex-shrink-0"></div>
+              <div className="w-full flex flex-col pl-2">
+                <div className="w-full rounded-sm h-full bg-fadedblack-300"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
