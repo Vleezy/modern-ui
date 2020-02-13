@@ -1,12 +1,22 @@
 import React from "react";
+/**
+ * Dependencies
+ */
+import { orderBy, filter } from "lodash";
+
+/**
+ * Components
+ */
 import FriendlistItem from "components/FriendlistItem";
 
 const FriendsTab = () => {
-  const friends: any[] = [];
   const noFriendsStyles = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.0), #1a202c)`
   };
-  const friendsr = [
+
+  const friendi: any[] = [];
+
+  const friends = [
     {
       id: 1,
       username: "Friend",
@@ -23,7 +33,7 @@ const FriendsTab = () => {
       id: 3,
       username: "Friend",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: true
+      online: false
     },
     {
       id: 4,
@@ -35,13 +45,13 @@ const FriendsTab = () => {
       id: 5,
       username: "Friend",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: true
+      online: false
     },
     {
       id: 6,
       username: "Friend",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: true
+      online: false
     },
     {
       id: 7,
@@ -50,7 +60,6 @@ const FriendsTab = () => {
       online: true
     }
   ];
-  const onlineFriends = 16;
   return (
     <div className="p-2">
       {/* Search friends */}
@@ -67,16 +76,22 @@ const FriendsTab = () => {
 
       {/* Online friends */}
       {friends.length ? (
-        friends.map((friend, idx) => (
-          <div>
-            <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
-              Online friends ({onlineFriends})
-            </h4>
-            <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700">
+        <>
+          <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
+            Friends (
+            {
+              filter(friends, o => {
+                if (o.online) return o;
+              }).length
+            }{" "}
+            online)
+          </h4>
+          <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700">
+            {orderBy(friends, ["online"], "desc").map((friend, idx) => (
               <FriendlistItem key={idx} user={friend} />
-            </div>
+            ))}
           </div>
-        ))
+        </>
       ) : (
         <div className="flex flex-col mt-2 relative">
           <div className=" absolute top-0 right-0 h-full w-full flex justify-center">
@@ -93,8 +108,8 @@ const FriendsTab = () => {
               </span>
             </div>
           </div>
-          {[...Array(5)].map(() => (
-            <div className="w-full p-1 flex rounded mb-1">
+          {[...Array(5)].map((_, idx) => (
+            <div className="w-full p-1 flex rounded mb-1" key={idx}>
               <div className="h-12 w-12 rounded bg-fadedblack-300 flex-shrink-0"></div>
               <div className="w-full flex flex-col pl-2">
                 <div className="w-full rounded-sm h-full bg-fadedblack-300"></div>
