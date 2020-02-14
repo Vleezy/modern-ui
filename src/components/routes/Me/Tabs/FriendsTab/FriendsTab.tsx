@@ -4,7 +4,7 @@ import React, { useState } from "react";
  */
 import { orderBy, filter } from "lodash";
 import { useSpring, animated } from "react-spring";
-import OnOutsiceClick from "react-outclick";
+import OnOutsideClick from "react-outclick";
 
 /**
  * Components
@@ -73,7 +73,7 @@ const FriendsTab = () => {
   return (
     <div className="p-2">
       {/* Search friends */}
-      <OnOutsiceClick onOutsideClick={(ev: Event) => setSearchExpanded(false)}>
+      <OnOutsideClick onOutsideClick={(ev: Event) => setSearchExpanded(false)}>
         <div
           style={searchBarAnim}
           className="flex w-full flex-wrap bg-fadedblack-100 rounded text-sm dark:bg-gray-900"
@@ -110,7 +110,7 @@ const FriendsTab = () => {
             </div>
           </animated.div>
         </div>
-      </OnOutsiceClick>
+      </OnOutsideClick>
       {/* Online friends */}
       {friends.length ? (
         <>
