@@ -22,6 +22,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .env
-
-# css builds
-/src/assets/styles/index.css
