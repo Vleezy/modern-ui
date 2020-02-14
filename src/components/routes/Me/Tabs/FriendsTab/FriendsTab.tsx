@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 /**
  * Dependencies
  */
 import { orderBy, filter } from "lodash";
+import { useSpring, animated } from "react-spring";
 
 /**
  * Components
@@ -10,13 +11,9 @@ import { orderBy, filter } from "lodash";
 import FriendlistItem from "components/FriendlistItem";
 
 const FriendsTab = () => {
-  const noFriendsStyles = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.0), #1a202c)`
-  };
+  const friends: any[] = [];
 
-  const friendi: any[] = [];
-
-  const friends = [
+  const friendss = [
     {
       id: 1,
       username: "Friend",
@@ -60,18 +57,56 @@ const FriendsTab = () => {
       online: true
     }
   ];
+
+  const [searchExpanded, setSearchExpanded] = useState(false);
+
+  const searchExpandAnim = useSpring({
+    maxHeight: searchExpanded ? "100px" : "0px",
+    opacity: searchExpanded ? 1 : 0
+  });
+
+  const searchBarAnim = useSpring({
+    backgroundColor: searchExpanded ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0)"
+  });
+
   return (
     <div className="p-2">
       {/* Search friends */}
-      <div className="flex w-full bg-gray-300 rounded text-sm border border-gray-400 dark:bg-gray-800 dark:border-gray-700">
+      <div
+        style={searchBarAnim}
+        className="flex w-full flex-wrap bg-fadedblack-100 rounded text-sm dark:bg-gray-900"
+      >
         <div>
-          <i className="fas fa-search text-gray-500 self-center p-2 text-sm" />
+          <i className="fas fa-search text-gray-500 self-center p-2 text-sm dark:text-gray-600" />
         </div>
         <input
-          className="flex-1 bg-gray-300 py-1 px-1 pb-1 dark:bg-gray-800"
+          className="flex-1 py-1 px-1 pb-1 bg-transparent dark:text-gray-600 dark:placeholder-gray-600"
           type="text"
           placeholder="Search Habbos..."
+          onFocus={() => setSearchExpanded(true)}
+          onBlur={() => setSearchExpanded(false)}
         />
+        <animated.div
+          style={searchExpandAnim}
+          className="flex w-full overflow-hidden"
+        >
+          <div className="p-1 w-full flex-wrap flex">
+            <h4 className="w-full font-semibold dark:text-gray-600">
+              Criteria
+            </h4>
+            <label
+              htmlFor="filter-friends"
+              className="text-xs dark:text-gray-600 flex"
+            >
+              <input
+                id="filter-friends"
+                type="checkbox"
+                className="self-center mr-1"
+              />
+              Friends only
+            </label>
+          </div>
+        </animated.div>
       </div>
 
       {/* Online friends */}
@@ -94,15 +129,12 @@ const FriendsTab = () => {
         </>
       ) : (
         <div className="flex flex-col mt-2 relative">
-          <div className=" absolute top-0 right-0 h-full w-full flex justify-center">
-            <div
-              className="flex flex-col justify-center"
-              style={noFriendsStyles}
-            >
-              <span className="text-2xl font-semibold dark:text-gray-500 text-center">
+          <div className="absolute top-0 right-0 h-full w-full flex justify-center">
+            <div className="flex flex-col justify-center bg-gradient-b-gray-200 dark:bg-gradient-b-gray-900">
+              <span className="text-2xl font-semibold text-gray-600 dark:text-gray-500 text-center">
                 No friends!
               </span>
-              <span className="dark:text-gray-600 text-sm px-10 text-center">
+              <span className=" text-gray-600 text-sm px-10 text-center">
                 You have no friends in your friendlist. Enter the hotel to meet
                 new people!
               </span>
@@ -110,9 +142,9 @@ const FriendsTab = () => {
           </div>
           {[...Array(5)].map((_, idx) => (
             <div className="w-full p-1 flex rounded mb-1" key={idx}>
-              <div className="h-12 w-12 rounded bg-fadedblack-300 flex-shrink-0"></div>
+              <div className="h-12 w-12 rounded bg-fadedblack-100 dark:bg-fadedblack-300 flex-shrink-0"></div>
               <div className="w-full flex flex-col pl-2">
-                <div className="w-full rounded-sm h-full bg-fadedblack-300"></div>
+                <div className="w-full rounded-sm h-full bg-fadedblack-100 dark:bg-fadedblack-300"></div>
               </div>
             </div>
           ))}
