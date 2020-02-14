@@ -25,6 +25,10 @@ input:checked ~ .toggle__dot {
   transition: 1s;
 }
 
+.tab-indicator {
+  transition: left 200ms ease-in-out;
+}
+
 .sidebar-enter {
   @apply w-0;
 }
