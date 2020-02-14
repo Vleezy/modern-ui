@@ -21,9 +21,6 @@ input:checked ~ .toggle__line {
 input:checked ~ .toggle__dot {
   transform: translateX(100%);
 }
-.header {
-  transition: 1s;
-}
 
 .sidebar-enter {
   @apply w-0;
@@ -96,9 +93,6 @@ input:checked ~ .toggle__dot {
   transition: opacity 0.1s;
 }
 
-.bg-fade {
-  transition: 0.1s;
-}
 @tailwind utilities;
 
 @import "~@fortawesome/fontawesome-free/css/all.css";
