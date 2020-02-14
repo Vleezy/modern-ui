@@ -513,6 +513,7 @@ module.exports = {
   corePlugins: {},
   plugins: [
     require("tailwindcss-dark-mode")(),
-    require("tailwindcss-gradients")
+    require("tailwindcss-gradients"),
+    require("./theme.config")
   ]
 };
