@@ -147,7 +147,7 @@ const Header = (props: IHeaderProps) => {
             ))}
         </div>
         <div
-          className="w-full relative"
+          className="w-full relative lg:hidden"
           style={{
             height: "2px"
           }}
