@@ -3,6 +3,9 @@ module.exports = {
   important: false,
   separator: ":",
   theme: {
+    linearGradientColors: theme => theme("colors"),
+    radialGradientColors: theme => theme("colors"),
+    conicGradientColors: theme => theme("colors"),
     screens: {
       sm: "640px",
       md: "768px",
@@ -504,8 +507,12 @@ module.exports = {
     whitespace: ["responsive"],
     width: ["responsive"],
     wordBreak: ["responsive"],
-    zIndex: ["responsive"]
+    zIndex: ["responsive"],
+    linearGradients: ["responsive", "dark"]
   },
   corePlugins: {},
-  plugins: [require("tailwindcss-dark-mode")()]
+  plugins: [
+    require("tailwindcss-dark-mode")(),
+    require("tailwindcss-gradients")
+  ]
 };
