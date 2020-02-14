@@ -14,7 +14,11 @@
     "react-spring": "^8.0.27",
     "react-toast-notifications": "^2.4.0",
     "react-transition-group": "^4.3.0",
+<<<<<<< HEAD
     "tailwindcss-gradients": "^3.0.0"
+=======
+    "react-use-gesture": "^7.0.4"
+>>>>>>> 72a6dd38326b7d6b6d2f3f304f7f08f1d020fdbc
   },
   "scripts": {
     "start": "npm-run-all -p start:styles start:js",
