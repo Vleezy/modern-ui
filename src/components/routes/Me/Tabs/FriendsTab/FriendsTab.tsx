@@ -4,6 +4,7 @@ import React, { useState } from "react";
  */
 import { orderBy, filter } from "lodash";
 import { useSpring, animated } from "react-spring";
+import OnOutsiceClick from "react-outclick";
 
 /**
  * Components
@@ -72,43 +73,44 @@ const FriendsTab = () => {
   return (
     <div className="p-2">
       {/* Search friends */}
-      <div
-        style={searchBarAnim}
-        className="flex w-full flex-wrap bg-fadedblack-100 rounded text-sm dark:bg-gray-900"
-      >
-        <div>
-          <i className="fas fa-search text-gray-500 self-center p-2 text-sm dark:text-gray-600" />
-        </div>
-        <input
-          className="flex-1 py-1 px-1 pb-1 bg-transparent dark:text-gray-600 dark:placeholder-gray-600"
-          type="text"
-          placeholder="Search Habbos..."
-          onFocus={() => setSearchExpanded(true)}
-          onBlur={() => setSearchExpanded(false)}
-        />
-        <animated.div
-          style={searchExpandAnim}
-          className="flex w-full overflow-hidden"
+      <OnOutsiceClick onOutsideClick={(ev: Event) => setSearchExpanded(false)}>
+        <div
+          style={searchBarAnim}
+          className="flex w-full flex-wrap bg-fadedblack-100 rounded text-sm dark:bg-gray-900"
         >
-          <div className="p-1 w-full flex-wrap flex">
-            <h4 className="w-full font-semibold dark:text-gray-600">
-              Criteria
-            </h4>
-            <label
-              htmlFor="filter-friends"
-              className="text-xs dark:text-gray-600 flex"
-            >
-              <input
-                id="filter-friends"
-                type="checkbox"
-                className="self-center mr-1"
-              />
-              Friends only
-            </label>
+          <div>
+            <i className="fas fa-search text-gray-500 self-center p-2 text-sm dark:text-gray-600" />
           </div>
-        </animated.div>
-      </div>
-
+          <input
+            className="flex-1 py-1 px-1 pb-1 bg-transparent dark:text-gray-600 dark:placeholder-gray-600"
+            type="text"
+            placeholder="Search Habbos..."
+            onFocus={() => setSearchExpanded(true)}
+            // onBlur={() => setSearchExpanded(false)}
+          />
+          <animated.div
+            style={searchExpandAnim}
+            className="flex w-full overflow-hidden"
+          >
+            <div className="p-1 w-full flex-wrap flex">
+              <h4 className="w-full font-semibold dark:text-gray-600">
+                Criteria
+              </h4>
+              <label
+                htmlFor="filter-friends"
+                className="text-xs dark:text-gray-600 flex"
+              >
+                <input
+                  id="filter-friends"
+                  type="checkbox"
+                  className="self-center mr-1"
+                />
+                Friends only
+              </label>
+            </div>
+          </animated.div>
+        </div>
+      </OnOutsiceClick>
       {/* Online friends */}
       {friends.length ? (
         <>
