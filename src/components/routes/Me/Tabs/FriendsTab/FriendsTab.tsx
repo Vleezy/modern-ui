@@ -132,11 +132,11 @@ const FriendsTab = () => {
       ) : (
         <div className="flex flex-col mt-2 relative">
           <div className="absolute top-0 right-0 h-full w-full flex justify-center">
-            <div className="flex flex-col justify-center bg-gradient-b-gray-200 dark:bg-gradient-b-gray-900">
-              <span className="text-2xl font-semibold text-gray-600 dark:text-gray-500 text-center">
+            <div className="flex flex-col justify-center gradient-b-bg">
+              <span className="text-2xl font-semibold text-on-bg-primary text-center">
                 No friends!
               </span>
-              <span className=" text-gray-600 text-sm px-10 text-center">
+              <span className="text-on-bg-primary-muted text-sm px-10 text-center">
                 You have no friends in your friendlist. Enter the hotel to meet
                 new people!
               </span>

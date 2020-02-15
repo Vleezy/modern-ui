@@ -27,7 +27,7 @@ const lightTheme = new Theme()
     "bg-primary": "#edf2f7",
     "on-bg-primary": "#585851",
 
-    "bg-secondary": "#cbd5e0",
+    "bg-secondary": "#e2e8f0",
     "on-bg-secondary": "",
 
     "bg-ternary": "#718096",
@@ -53,18 +53,10 @@ const lightTheme = new Theme()
   .colorVariant("hover", "white", ["on-navigation"])
 
   // Material variants
-  .opacityVariant("high-emphasis", 0.87)
-  .opacityVariant("medium-emphasis", 0.6)
-  .opacityVariant("disabled", 0.38)
-  .opacityVariant("helper-emphasized", 0.87)
-  .opacityVariant("helper", 0.6)
-  .opacityVariant("inactive", 0.6)
+  .opacityVariant("100", 0.1)
+  .opacityVariant("500", 0.5)
+  .opacityVariant("800", 0.8);
 
-  // Arbitrary variants
-  .opacityVariant("quote-border", 0.5)
-  .opacityVariant("muted", 0.38)
-  .opacityVariant("kinda-visible", 0.1)
-  .opacityVariant("slightly-visible", 0.075);
 const darkTheme = new Theme()
   .name("dark")
   .colors({
