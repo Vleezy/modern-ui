@@ -15,7 +15,7 @@
 }
 
 input:checked ~ .toggle__line {
-  @apply bg-blue-500;
+  @apply bg-background;
 }
 
 input:checked ~ .toggle__dot {

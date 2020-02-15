@@ -24,9 +24,9 @@ const Me = () => {
   return (
     <MainLayout isHomepage={true}>
       <div className="hidden lg:flex">
-        <div className="bg-gray-100  rounded w-2/3 flex justify-between border border-gray-400 p-1 flex flex-col mr-2 self-start dark:bg-gray-800 dark:border-gray-700">
+        <div className="bg-background rounded w-2/3 flex justify-between border border-gray-400 p-1 flex flex-col mr-2 self-start dark:bg-gray-800 dark:border-gray-700">
           <div
-            className="bg-center w-full h-32 rounded-t flex justify-end"
+            className="bg-center w-full h-32 rounded-t flex justify-end bg-surface"
             style={{ backgroundImage: `url(/assets/images/view_ca_wide.png)` }}
           >
             <div className="h-full flex flex-col justify-center">

@@ -74,7 +74,4 @@ const darkTheme = new Theme()
 
   // Tailwind extension
   .variable("dynamic", "pointer", "cursor");
-module.exports = new ThemeBuilder()
-  .asClass()
-  .default(lightTheme)
-  .dark(darkTheme);
+module.exports = new ThemeBuilder().default(lightTheme).dark(darkTheme);
