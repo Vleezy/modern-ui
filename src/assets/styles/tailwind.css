@@ -97,13 +97,6 @@ input:checked ~ .toggle__dot {
   transition: opacity 0.1s;
 }
 
-<<<<<<< HEAD
-.bg-fade {
-  transition: 0.1s;
-}
-
-=======
->>>>>>> 204b46fd540e9768f8b605053cec7d42cc6a5e08
 @tailwind utilities;
 
 @import "~@fortawesome/fontawesome-free/css/all.css";
