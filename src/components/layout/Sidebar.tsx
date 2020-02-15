@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
     >
       <div className="z-50 h-screen fixed overflow-x-hidden lg:hidden">
         <div
-          className="h-full bg-white flex flex-col dark:bg-gray-800 bg-fade"
+          className="h-full bg-surface flex flex-col dark:bg-gray-800 bg-fade"
           id="sidebar__content"
         >
           <div

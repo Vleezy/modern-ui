@@ -15,7 +15,7 @@
 }
 
 input:checked ~ .toggle__line {
-  @apply bg-brand;
+  @apply bg-blue-500;
 }
 
 input:checked ~ .toggle__dot {
@@ -99,7 +99,6 @@ input:checked ~ .toggle__dot {
 .bg-fade {
   transition: 0.1s;
 }
-
 @tailwind utilities;
 
 @import "~@fortawesome/fontawesome-free/css/all.css";

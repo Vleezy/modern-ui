@@ -57,7 +57,7 @@ const Header = (props: IHeaderProps) => {
   return (
     <div className="w-full sticky top-0 z-10">
       <div
-        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none dark:border-gray-700"
+        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-border-primary shadow lg:shadow-none dark:border-gray-700"
         style={isDayTime() ? headerBackground.day : headerBackground.night}
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
@@ -128,7 +128,7 @@ const Header = (props: IHeaderProps) => {
         <div
           className={`${
             isCollapsed ? `mt-0` : `mt-8`
-          }  lg:hidden flex mb-0 justify-between text-white`}
+          }  lg:hidden flex mb-0 justify-between`}
         >
           {isHomepage &&
             homeTabs.map(page => (
@@ -145,18 +145,20 @@ const Header = (props: IHeaderProps) => {
       </div>
 
       {/* Subnav (:lg screens) */}
-      <div className="bg-white w-full rounded-b border-b border-r border-l border-gray-400 py-1 hidden lg:block dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full bg-surface-primary border-b border-border-primary py-1 hidden lg:block">
         <div className="max-w-4xl mx-auto">
           <nav className="w-full flex text-xs font-semibold text-gray-500">
-            <div className="flex flex-1">
+            <div className="flex flex-1 text-on-brand">
               {subPages.map(page => (
                 <NavLink
                   to={page.url}
                   key={page.name}
-                  activeClassName="text-blue-500"
+                  activeClassName="text-brand"
                   className="py-2 px-4 rounded hover:bg-gray-200 dark-hover:bg-gray-700"
                 >
-                  {page.icon && <i className={` ${page.icon} mr-2 `}></i>}
+                  {page.icon && (
+                    <i className={` ${page.icon} mr-2 text-brand`}></i>
+                  )}
                   {page.name}
                 </NavLink>
               ))}

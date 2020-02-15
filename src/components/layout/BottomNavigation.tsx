@@ -12,15 +12,12 @@ const BottomNavigation = () => {
   return (
     <Fragment>
       <div className="lg:hidden w-full z-30 fixed bottom-0 flex flex-col ">
-        {/* <div className="bg-red-600 text-white text-sm  m-1 flex rounded p-2  shadow justify-center">
-          Test alert!
-        </div> */}
-        <nav className="w-full flex justify-between text-lg text-gray-500 border-gray-400 bg-gray-100 border-t dark:bg-gray-800 dark:border-gray-700">
+        <nav className="w-full flex justify-between text-lg text-gray-500 border-gray-400 bg-surface border-t">
           {pages.map(page => (
             <NavLink
               key={page.url}
               to={page.url}
-              activeClassName="text-blue-500"
+              activeClassName="text-brand"
               className="flex-1 text-center py-2"
             >
               <i className={page.icon} />

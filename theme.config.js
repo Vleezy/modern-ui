@@ -13,10 +13,14 @@ const lightTheme = new Theme()
     "on-brand": "#ffffff",
 
     // Background colors, but not limited to `bg` utilities.
-    background: "#f4f4f4",
-    surface: "#ffffff",
+    background: "#edf2f7",
     "on-background": "#585851",
-    "on-surface": "#3c3c3c",
+
+    "surface-primary": "#ffffff",
+    "on-surface-primary": "#3c3c3c",
+
+    // Borders
+    "border-primary": "#cbd5e0",
 
     // Event colors.
     error: "#b00020",
@@ -46,14 +50,18 @@ const darkTheme = new Theme()
   .name("dark")
   .colors({
     // Brand colors
-    brand: "#2196f3",
+    brand: "#ed64a6",
     "on-brand": "#ffffff",
 
     // Background colors, but not limited to `bg` utilities.
     background: "#1f1f1f",
-    surface: "#282828",
     "on-background": "#ffffff",
-    "on-surface": "#ffffff",
+
+    "surface-primary": "#282828",
+    "on-surface-primary": "#ffffff",
+
+    navigation: "#2d3748",
+    "on-navigation": "#a0aec0",
 
     // Event colors.
     error: "#e67388",
@@ -74,4 +82,7 @@ const darkTheme = new Theme()
 
   // Tailwind extension
   .variable("dynamic", "pointer", "cursor");
-module.exports = new ThemeBuilder().default(lightTheme).dark(darkTheme);
+module.exports = new ThemeBuilder()
+  .default(lightTheme)
+  .dark(darkTheme)
+  .asAttribute();
