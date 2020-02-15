@@ -59,8 +59,8 @@
     "prop-types": "^15.7.2",
     "tailwindcss": "^1.2.0-canary.1",
     "tailwindcss-dark-mode": "^1.1.2",
-    "tailwindcss-gradients": "^3.0.0",
     "tailwindcss-theming": "^2.4.2",
+    "tailwindcss-gradients": "^3.0.0",
     "typescript": "^3.7.4"
   }
 }

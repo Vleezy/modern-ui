@@ -8,22 +8,22 @@ const lightTheme = new Theme()
     // A transparent color, which alpha value will be detected.
     transparent: "transparent",
 
+    // Navigation
+    "navigation-primary": "#3c4253",
+    "navigation-secondary": "#303030",
+    "on-navigation": "#9aa2b6",
+
     // Brand colors
     brand: "#2196f3",
+    "brand-variant": "#1565c0",
     "on-brand": "#ffffff",
+    "on-brand-variant": "#ffffff",
 
     // Background colors, but not limited to `bg` utilities.
-    "bg-primary": "#edf2f7",
-    "on-bg-primary": "#585851",
-
-    "bg-secondary": "",
-    "on-bg-secondary": "",
-
-    "surface-primary": "#ffffff",
-    "on-surface-primary": "#3c3c3c",
-
-    // Borders
-    "border-primary": "#cbd5e0",
+    background: "#f4f4f4",
+    surface: "#ffffff",
+    "on-background": "#585851",
+    "on-surface": "#3c3c3c",
 
     // Event colors.
     error: "#b00020",
@@ -36,35 +36,41 @@ const lightTheme = new Theme()
     "on-info": "#ffffff"
   })
 
+  // Color variants
+  .colorVariant("hover", "white", ["on-navigation"])
+
   // Material variants
   .opacityVariant("high-emphasis", 0.87)
   .opacityVariant("medium-emphasis", 0.6)
-  .opacityVariant("muted", 0.38)
+  .opacityVariant("disabled", 0.38)
+  .opacityVariant("helper-emphasized", 0.87)
+  .opacityVariant("helper", 0.6)
+  .opacityVariant("inactive", 0.6)
 
   // Arbitrary variants
-  .opacityVariant("slightly-visible", 0.075)
-
-  // Custom variable
-  .variable("decoration", "underline")
-
-  // Tailwind extension
-  .variable("dynamic", "not-allowed", "cursor");
+  .opacityVariant("quote-border", 0.5)
+  .opacityVariant("muted", 0.38)
+  .opacityVariant("kinda-visible", 0.1)
+  .opacityVariant("slightly-visible", 0.075);
 const darkTheme = new Theme()
   .name("dark")
   .colors({
+    // Navigation
+    "navigation-primary": "#282828",
+    "navigation-secondary": "#303030",
+    "on-navigation": "#9aa2b6",
+
     // Brand colors
-    brand: "#ed64a6",
+    brand: "#2196f3",
+    "brand-variant": "#1565c0",
     "on-brand": "#ffffff",
+    "on-brand-variant": "#ffffff",
 
     // Background colors, but not limited to `bg` utilities.
     background: "#1f1f1f",
+    surface: "#282828",
     "on-background": "#ffffff",
-
-    "surface-primary": "#282828",
-    "on-surface-primary": "#ffffff",
-
-    navigation: "#2d3748",
-    "on-navigation": "#a0aec0",
+    "on-surface": "#ffffff",
 
     // Event colors.
     error: "#e67388",
@@ -77,6 +83,7 @@ const darkTheme = new Theme()
     "on-info": "#ffffff"
   })
 
+<<<<<<< HEAD
   // Material variants
   .opacityVariant("slightly-visible", 0.04)
 
@@ -89,3 +96,13 @@ module.exports = new ThemeBuilder()
   .default(lightTheme)
   .dark(darkTheme)
   .asAttribute();
+=======
+  // Arbitrary variants
+  .opacityVariant("quote-border", 0.15)
+  .opacityVariant("kinda-visible", 0.038)
+  .opacityVariant("slightly-visible", 0.02);
+module.exports = new ThemeBuilder()
+  .asDataThemeAttribute()
+  .default(lightTheme)
+  .dark(darkTheme);
+>>>>>>> 204b46fd540e9768f8b605053cec7d42cc6a5e08
