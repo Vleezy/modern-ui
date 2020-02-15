@@ -5,6 +5,10 @@ const lightTheme = new Theme()
   .default()
   .assignable()
   .colors({
+    // Constants to be enherited.
+    white: "ffffff",
+    black: "000000",
+
     // A transparent color, which alpha value will be detected.
     transparent: "transparent",
 
@@ -18,9 +22,6 @@ const lightTheme = new Theme()
     "brand-variant": "#1565c0",
     "on-brand": "#ffffff",
     "on-brand-variant": "#ffffff",
-
-    white: "ffffff",
-    black: "000000",
 
     // Background colors, but not limited to `bg` utilities.
     "bg-primary": "#edf2f7",
@@ -100,6 +101,6 @@ const darkTheme = new Theme()
   .opacityVariant("kinda-visible", 0.038)
   .opacityVariant("slightly-visible", 0.02);
 module.exports = new ThemeBuilder()
-  .asClass()
+  .asAttribute()
   .default(lightTheme)
   .dark(darkTheme);
