@@ -19,11 +19,20 @@ const lightTheme = new Theme()
     "on-brand": "#ffffff",
     "on-brand-variant": "#ffffff",
 
+    white: "ffffff",
+
     // Background colors, but not limited to `bg` utilities.
-    background: "#f4f4f4",
-    surface: "#ffffff",
-    "on-background": "#585851",
-    "on-surface": "#3c3c3c",
+    "bg-primary": "#edf2f7",
+    "on-bg-primary": "#585851",
+
+    "bg-secondary": "",
+    "on-bg-secondary": "",
+
+    "surface-primary": "#f7fafc",
+    "on-surface-primary": "#a0aec0",
+
+    // Borders
+    "bd-primary": "#cbd5e0",
 
     // Event colors.
     error: "#b00020",
@@ -83,20 +92,6 @@ const darkTheme = new Theme()
     "on-info": "#ffffff"
   })
 
-<<<<<<< HEAD
-  // Material variants
-  .opacityVariant("slightly-visible", 0.04)
-
-  // Custom variable
-  .variable("decoration", "none")
-
-  // Tailwind extension
-  .variable("dynamic", "pointer", "cursor");
-module.exports = new ThemeBuilder()
-  .default(lightTheme)
-  .dark(darkTheme)
-  .asAttribute();
-=======
   // Arbitrary variants
   .opacityVariant("quote-border", 0.15)
   .opacityVariant("kinda-visible", 0.038)
@@ -105,4 +100,3 @@ module.exports = new ThemeBuilder()
   .asDataThemeAttribute()
   .default(lightTheme)
   .dark(darkTheme);
->>>>>>> 204b46fd540e9768f8b605053cec7d42cc6a5e08
