@@ -62,7 +62,7 @@ const Header = (props: IHeaderProps) => {
   return (
     <div className="w-full sticky top-0 z-10">
       <div
-        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-border-primary shadow lg:shadow-none dark:border-gray-700"
+        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-bd-primary shadow lg:shadow-none dark:border-gray-700"
         style={isDayTime() ? headerBackground.day : headerBackground.night}
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
@@ -140,7 +140,7 @@ const Header = (props: IHeaderProps) => {
               <button
                 key={page.key}
                 onClick={() => handleTabClick(page.key)}
-                className="font-semibold text-center flex-1 border-b-2 border-transparent focus:outline-none"
+                className="font-semibold text-white text-center flex-1 border-b-2 border-transparent focus:outline-none"
               >
                 {page.name}
               </button>
