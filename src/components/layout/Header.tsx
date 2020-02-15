@@ -135,7 +135,7 @@ const Header = (props: IHeaderProps) => {
               <button
                 key={page.key}
                 onClick={() => handleTabClick(page.key)}
-                className={`font-semibold text-center flex-1 border-b-2 border-transparent focus:outline-none ${currentHomeTab ===
+                className={`font-semibold text-center flex-1 border-b-2 focus:outline-none ${currentHomeTab ===
                   page.key && "border-white"}`}
               >
                 {page.name}
