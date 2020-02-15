@@ -13,8 +13,11 @@ const lightTheme = new Theme()
     "on-brand": "#ffffff",
 
     // Background colors, but not limited to `bg` utilities.
-    background: "#edf2f7",
-    "on-background": "#585851",
+    "bg-primary": "#edf2f7",
+    "on-bg-primary": "#585851",
+
+    "bg-secondary": "",
+    "on-bg-secondary": "",
 
     "surface-primary": "#ffffff",
     "on-surface-primary": "#3c3c3c",
