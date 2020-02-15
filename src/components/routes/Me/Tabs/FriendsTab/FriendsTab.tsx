@@ -144,9 +144,9 @@ const FriendsTab = () => {
           </div>
           {[...Array(5)].map((_, idx) => (
             <div className="w-full p-1 flex rounded mb-1" key={idx}>
-              <div className="h-12 w-12 rounded bg-fadedblack-100 dark:bg-fadedblack-300 flex-shrink-0"></div>
+              <div className="h-12 w-12 rounded bg-bg-secondary flex-shrink-0"></div>
               <div className="w-full flex flex-col pl-2">
-                <div className="w-full rounded-sm h-full bg-fadedblack-100 dark:bg-fadedblack-300"></div>
+                <div className="w-full rounded-sm h-full bg-bg-secondary"></div>
               </div>
             </div>
           ))}

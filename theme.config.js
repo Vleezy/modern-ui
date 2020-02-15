@@ -20,13 +20,16 @@ const lightTheme = new Theme()
     "on-brand-variant": "#ffffff",
 
     white: "ffffff",
+    black: "000000",
 
     // Background colors, but not limited to `bg` utilities.
     "bg-primary": "#edf2f7",
     "on-bg-primary": "#585851",
 
-    "bg-secondary": "",
+    "bg-secondary": "#cbd5e0",
     "on-bg-secondary": "",
+
+    "bg-ternary": "#718096",
 
     "surface-primary": "#f7fafc",
     "on-surface-primary": "#a0aec0",
@@ -97,6 +100,6 @@ const darkTheme = new Theme()
   .opacityVariant("kinda-visible", 0.038)
   .opacityVariant("slightly-visible", 0.02);
 module.exports = new ThemeBuilder()
-  .asDataThemeAttribute()
+  .asClass()
   .default(lightTheme)
   .dark(darkTheme);

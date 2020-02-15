@@ -15,7 +15,7 @@
 }
 
 input:checked ~ .toggle__line {
-  @apply bg-brand;
+  /* @apply bg-brand; */
 }
 
 input:checked ~ .toggle__dot {
