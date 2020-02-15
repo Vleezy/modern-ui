@@ -18,6 +18,9 @@ const lightTheme = new Theme()
     "bg-primary": "#edf2f7",
     "on-bg-primary": "#585851",
 
+    "bg-secondary": "",
+    "on-bg-secondary": "",
+
     "surface-primary": "#ffffff",
     "on-surface-primary": "#3c3c3c",
 
