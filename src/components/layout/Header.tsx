@@ -6,6 +6,7 @@ import isDayTime from "utils/isDayTime";
 import HeaderDropDown from "./HeaderDropDown";
 import { useAppState, useAppDispatch } from "context/app.context";
 import { setHomeTab } from "context/app.actions";
+import { findIndex } from "lodash";
 
 interface IHeaderProps {
   toggleSidebar: (visible: boolean) => void;
@@ -39,6 +40,10 @@ const Header = (props: IHeaderProps) => {
     { url: "/me/badges", name: "Badges", key: "BADGES" }
   ];
 
+  const getTabPosition = () => {
+    return findIndex(homeTabs, n => n.key === currentHomeTab);
+  };
+
   const subPages = [
     { url: "/me", name: "Home", icon: "fas fa-home" },
     {
@@ -57,7 +62,7 @@ const Header = (props: IHeaderProps) => {
   return (
     <div className="w-full sticky top-0 z-10">
       <div
-        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none dark:border-gray-700"
+        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-border-primary shadow lg:shadow-none dark:border-gray-700"
         style={isDayTime() ? headerBackground.day : headerBackground.night}
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
@@ -128,35 +133,52 @@ const Header = (props: IHeaderProps) => {
         <div
           className={`${
             isCollapsed ? `mt-0` : `mt-8`
-          }  lg:hidden flex mb-0 justify-between text-white`}
+          }  lg:hidden flex mb-0 justify-between`}
         >
           {isHomepage &&
             homeTabs.map(page => (
               <button
                 key={page.key}
                 onClick={() => handleTabClick(page.key)}
-                className={`font-semibold text-center flex-1 border-b-2 border-transparent focus:outline-none ${currentHomeTab ===
-                  page.key && "border-white"}`}
+                className="font-semibold text-center flex-1 border-b-2 border-transparent focus:outline-none"
               >
                 {page.name}
               </button>
             ))}
         </div>
+        {isHomepage && (
+          <div
+            className="w-full relative lg:hidden"
+            style={{
+              height: "2px"
+            }}
+          >
+            <div
+              className="absolute bg-white dark:bg-pink-500 h-full tab-indicator"
+              style={{
+                left: (100 / homeTabs.length) * getTabPosition() + "%",
+                width: 100 / homeTabs.length + "%"
+              }}
+            ></div>
+          </div>
+        )}
       </div>
 
       {/* Subnav (:lg screens) */}
-      <div className="bg-white w-full rounded-b border-b border-r border-l border-gray-400 py-1 hidden lg:block dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full bg-surface-primary border-b border-border-primary py-1 hidden lg:block">
         <div className="max-w-4xl mx-auto">
           <nav className="w-full flex text-xs font-semibold text-gray-500">
-            <div className="flex flex-1">
+            <div className="flex flex-1 text-on-brand">
               {subPages.map(page => (
                 <NavLink
                   to={page.url}
                   key={page.name}
-                  activeClassName="text-blue-500"
+                  activeClassName="text-brand"
                   className="py-2 px-4 rounded hover:bg-gray-200 dark-hover:bg-gray-700"
                 >
-                  {page.icon && <i className={` ${page.icon} mr-2 `}></i>}
+                  {page.icon && (
+                    <i className={` ${page.icon} mr-2 text-brand`}></i>
+                  )}
                   {page.name}
                 </NavLink>
               ))}

@@ -54,7 +54,7 @@ const HeaderDropDown = () => {
       </div>
       {visible && (
         <div className="absolute w-40 right-0">
-          <div className="mt-2 px-1 flex shadow-lg flex-col bg-white w-full rounded border border-gray-400 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-surface-primary mt-2 px-1 flex shadow-lg flex-col w-full rounded border border-border-primary dark:bg-gray-800 dark:border-gray-700">
             <div className="flex flex-col border-b border-gray-200 p-1">
               <span className="text-xs text-gray-500">Logged in as</span>
               <span className="text-xs font-semibold text-gray-700 dark:text-gray-200">

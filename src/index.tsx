@@ -19,7 +19,7 @@ import "./assets/styles/index.css";
 import Snackbar from "components/layout/Notifications/Snackbar";
 
 if (window.localStorage.getItem("dark-theme") === "true")
-  document.documentElement.classList.add("mode-dark");
+  document.body.setAttribute("dark", "");
 
 render(
   <AppProvider>
