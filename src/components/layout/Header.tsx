@@ -146,20 +146,22 @@ const Header = (props: IHeaderProps) => {
               </button>
             ))}
         </div>
-        <div
-          className="w-full relative lg:hidden"
-          style={{
-            height: "2px"
-          }}
-        >
+        {isHomepage && (
           <div
-            className="absolute bg-white dark:bg-pink-500 h-full tab-indicator"
+            className="w-full relative lg:hidden"
             style={{
-              left: (100 / homeTabs.length) * getTabPosition() + "%",
-              width: 100 / homeTabs.length + "%"
+              height: "2px"
             }}
-          ></div>
-        </div>
+          >
+            <div
+              className="absolute bg-white dark:bg-pink-500 h-full tab-indicator"
+              style={{
+                left: (100 / homeTabs.length) * getTabPosition() + "%",
+                width: 100 / homeTabs.length + "%"
+              }}
+            ></div>
+          </div>
+        )}
       </div>
 
       {/* Subnav (:lg screens) */}
