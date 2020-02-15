@@ -21,11 +21,11 @@ const lightTheme = new Theme()
     "bg-secondary": "",
     "on-bg-secondary": "",
 
-    "surface-primary": "#ffffff",
-    "on-surface-primary": "#3c3c3c",
+    "surface-primary": "#f7fafc",
+    "on-surface-primary": "#a0aec0",
 
     // Borders
-    "border-primary": "#cbd5e0",
+    "bd-primary": "#cbd5e0",
 
     // Event colors.
     error: "#b00020",
