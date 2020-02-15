@@ -6,6 +6,7 @@ import isDayTime from "utils/isDayTime";
 import HeaderDropDown from "./HeaderDropDown";
 import { useAppState, useAppDispatch } from "context/app.context";
 import { setHomeTab } from "context/app.actions";
+import { findIndex } from "lodash";
 
 interface IHeaderProps {
   toggleSidebar: (visible: boolean) => void;
@@ -38,6 +39,10 @@ const Header = (props: IHeaderProps) => {
     { url: "/me/friends", name: "Friends", key: "FRIENDS" },
     { url: "/me/badges", name: "Badges", key: "BADGES" }
   ];
+
+  const getTabPosition = () => {
+    return findIndex(homeTabs, n => n.key === currentHomeTab);
+  };
 
   const subPages = [
     { url: "/me", name: "Home", icon: "fas fa-home" },
@@ -135,13 +140,33 @@ const Header = (props: IHeaderProps) => {
               <button
                 key={page.key}
                 onClick={() => handleTabClick(page.key)}
+<<<<<<< HEAD
                 className={`font-semibold text-center flex-1 border-b-2 focus:outline-none ${currentHomeTab ===
                   page.key && "border-white"}`}
+=======
+                className="font-semibold text-center flex-1 border-b-2 border-transparent focus:outline-none"
+>>>>>>> dev
               >
                 {page.name}
               </button>
             ))}
         </div>
+        {isHomepage && (
+          <div
+            className="w-full relative lg:hidden"
+            style={{
+              height: "2px"
+            }}
+          >
+            <div
+              className="absolute bg-white dark:bg-pink-500 h-full tab-indicator"
+              style={{
+                left: (100 / homeTabs.length) * getTabPosition() + "%",
+                width: 100 / homeTabs.length + "%"
+              }}
+            ></div>
+          </div>
+        )}
       </div>
 
       {/* Subnav (:lg screens) */}
