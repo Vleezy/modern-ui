@@ -511,5 +511,8 @@ module.exports = {
     linearGradients: ["responsive"]
   },
   corePlugins: {},
-  plugins: [require("./theme.config"), require("tailwindcss-gradients")]
+  plugins: [
+    require("tailwindcss-dark-mode")(),
+    require("tailwindcss-gradients")
+  ]
 };
