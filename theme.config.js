@@ -5,25 +5,36 @@ const lightTheme = new Theme()
   .default()
   .assignable()
   .colors({
-    // Constants to be enherited.
+    /**
+     * Constants to be enherited
+     */
     white: "ffffff",
     black: "000000",
 
     // A transparent color, which alpha value will be detected.
     transparent: "transparent",
 
-    // Navigation
+    /**
+     * Navigation (bottom, top)
+     */
     "navigation-primary": "#3c4253",
     "navigation-secondary": "#303030",
     "on-navigation": "#9aa2b6",
 
-    // Brand colors
+    "bottom-nav": "#f7fafc",
+    "on-bottom-nav": "#a0aec0",
+
+    /**
+     * Brand colors
+     */
     brand: "#2196f3",
     "brand-variant": "#1565c0",
     "on-brand": "#ffffff",
     "on-brand-variant": "#ffffff",
 
-    // Background colors, but not limited to `bg` utilities.
+    /**
+     * Backgrounds
+     */
     "bg-primary": "#edf2f7",
     "on-bg-primary": "#718096",
 
@@ -32,8 +43,14 @@ const lightTheme = new Theme()
 
     "bg-ternary": "#718096",
 
-    "surface-primary": "#f7fafc",
-    "on-surface-primary": "#a0aec0",
+    /**
+     * Surfaces
+     */
+    "surface-primary": "#f7fafc", // gray-200
+    "on-surface-primary": "#718096", // gray-600
+
+    "surface-secondary": "#ffffff",
+    "on-surface-secondary": "#a0aec0",
 
     // Borders
     "bd-primary": "#cbd5e0",

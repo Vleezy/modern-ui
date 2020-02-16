@@ -15,7 +15,7 @@
 }
 
 input:checked ~ .toggle__line {
-  /* @apply bg-brand; */
+  @apply bg-brand;
 }
 
 input:checked ~ .toggle__dot {
@@ -38,7 +38,7 @@ input:checked ~ .toggle__dot {
 }
 .sidebar-enter-active {
   @apply w-2/3;
-  transition: width 200ms;
+  transition: width 200ms ease-in-out;
 }
 .sidebar-enter-done {
   @apply w-2/3;
@@ -48,7 +48,7 @@ input:checked ~ .toggle__dot {
 }
 .sidebar-exit-active {
   @apply w-0;
-  transition: width 200ms;
+  transition: width 200ms ease-in-out;
 }
 
 .transition-opacity-enter {
