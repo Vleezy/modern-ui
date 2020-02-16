@@ -6,13 +6,12 @@ import { useToasts } from "react-toast-notifications";
 import { useDarkMode } from "hooks/useDarkMode";
 import Switch from "components/shared/Switch";
 
-interface ISidebarProps {
+interface SidebarProps {
   toggleSidebar: (visible: boolean) => void;
   sidebarVisible: boolean;
 }
 
-const Sidebar = (props: ISidebarProps) => {
-  const { toggleSidebar, sidebarVisible } = props;
+const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
   const currencies = [
     {
       name: "Credits",
@@ -58,11 +57,11 @@ const Sidebar = (props: ISidebarProps) => {
     >
       <div className="z-50 h-screen fixed overflow-x-hidden lg:hidden">
         <div
-          className="h-full bg-surface-secondary flex flex-col"
+          className="h-full bg-white flex flex-col dark:bg-gray-800 bg-fade"
           id="sidebar__content"
         >
           <div
-            className="w-full flex shadow flex-col bg-bg-secondary relative p-2 border-r border-bd-primary-100"
+            className="w-full flex shadow flex-col bg-blue-800 relative p-2 border-r border-blue-700"
             style={isDayTime() ? headerBackgroundDay : headerBackgroundNight}
           >
             {/* Sidebar topbar */}
@@ -95,28 +94,28 @@ const Sidebar = (props: ISidebarProps) => {
                     className="w-6 h-6 bg-center bg-no-repeat mr-1"
                     style={{ backgroundImage: `url(${currency.icon})` }}
                   ></div>
-                  <span className="text-white self-center font-semibold text-xs">
+                  <span className="text-gray-200 self-center font-semibold text-xs">
                     {currency.amount}
                   </span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="h-full pb-auto border-r flex flex-col border-bd-primary dark:border-gray-700">
+          <div className="h-full pb-auto border-r flex flex-col border-gray-500 dark:border-gray-700">
             <Link
               to="#"
-              className="block w-full p-3 rounded text-on-surface-primary text-sm"
+              className="block w-full p-3 rounded text-gray-600 text-sm"
             >
-              <i className="fas fa-cog w-5 text-on-surface-primary-500" />
+              <i className="fas fa-cog w-5 text-gray-500" />
               <span className="ml-1">Account Settings</span>
             </Link>
 
             <Link
               to="#"
-              className="block w-full p-3 text-on-surface-primary text-sm flex"
+              className="block w-full p-3 text-gray-600 text-sm flex"
             >
               <div className="flex-1">
-                <i className="fas fa-inbox text-on-surface-primary-500 w-5 relative"></i>
+                <i className="fas fa-inbox text-gray-500 w-5 relative"></i>
                 <span className="ml-1">Minimail</span>
               </div>
               <div className="flex ">
@@ -126,14 +125,13 @@ const Sidebar = (props: ISidebarProps) => {
               </div>
             </Link>
 
-            <div className="h-px w-full bg-bd-primary-500 my-1 dark:bg-gray-700" />
-
+            <div className="h-px w-full bg-gray-300 my-1 dark:bg-gray-700" />
             <label
               htmlFor="toogleA"
               className="flex items-center cursor-pointer"
             >
-              <div className="w-full p-3 text-on-surface-primary text-sm">
-                <i className="fas fa-moon text-on-surface-primary-500 w-5" />
+              <div className="w-full p-3 text-gray-600 text-sm">
+                <i className="fas fa-moon text-gray-500 w-5" />
                 <span className="ml-1">Dark mode</span>
                 <Switch
                   onChange={() => setDarkTheme(!darkTheme)}
@@ -142,7 +140,7 @@ const Sidebar = (props: ISidebarProps) => {
               </div>
             </label>
 
-            <div className="h-px w-full bg-bd-primary-500 my-1 flex mt-auto" />
+            <div className="h-px w-full bg-gray-300 my-1 flex mt-auto dark:bg-gray-700" />
             <div className="flex p-2">
               <button
                 className="block p-2 text-red-500 flex-1 rounded bg-gray-100 text-sm dark:bg-gray-700"

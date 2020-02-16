@@ -11,14 +11,12 @@ import isDayTime from "utils/isDayTime";
 import { useAppState, useAppDispatch } from "context/app.context";
 import { setHomeTab } from "context/app.actions";
 import { findIndex } from "lodash";
-import { useSpring, animated } from "react-spring";
 
 /**
  * Components
  */
 import HeaderDropDown from "./HeaderDropDown";
 import ProfilePicture from "components/shared/ProfilePicture";
-import { CSSTransition } from "react-transition-group";
 
 interface IHeaderProps {
   toggleSidebar: (visible: boolean) => void;
@@ -71,14 +69,10 @@ const Header = (props: IHeaderProps) => {
 
   const isCollapsed = !isHomepage || isScrolled;
 
-  const headerCollapseAnim = useSpring({
-    maxHeight: isCollapsed ? "0" : "12rem"
-  });
-
   return (
     <div className={`w-full ${isCollapsed ? "fixed" : "block"} top-0 z-10`}>
       <div
-        className="w-full lg:h-24 bg-blue-200 bg-center overflow-hidden border-b border-bd-primary shadow lg:shadow-none"
+        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none dark:border-gray-700"
         // style={isDayTime() ? headerBackground.day : headerBackground.night}
         style={merge(
           isDayTime() ? headerBackground.day : headerBackground.night
