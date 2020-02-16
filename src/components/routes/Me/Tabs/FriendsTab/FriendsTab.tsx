@@ -132,11 +132,11 @@ const FriendsTab = () => {
       ) : (
         <div className="flex flex-col mt-2 relative">
           <div className="absolute top-0 right-0 h-full w-full flex justify-center">
-            <div className="flex flex-col justify-center gradient-b-bg">
-              <span className="text-2xl font-semibold text-on-bg-primary-800 text-center">
+            <div className="flex flex-col justify-center bg-gradient-b-gray-200 dark:bg-gradient-b-gray-900">
+              <span className="text-2xl font-semibold text-gray-500 dark:text-gray-600 text-center">
                 No friends!
               </span>
-              <span className="text-on-bg-primary-800 text-sm px-10 text-center">
+              <span className="text-gray-600 text-sm px-10 text-center">
                 You have no friends in your friendlist. Enter the hotel to meet
                 new people!
               </span>
@@ -144,9 +144,9 @@ const FriendsTab = () => {
           </div>
           {[...Array(5)].map((_, idx) => (
             <div className="w-full p-1 flex rounded mb-1" key={idx}>
-              <div className="h-12 w-12 rounded bg-bg-secondary flex-shrink-0"></div>
+              <div className="h-12 w-12 rounded bg-gray-300 dark:bg-gray-800 flex-shrink-0"></div>
               <div className="w-full flex flex-col pl-2">
-                <div className="w-full rounded-sm h-full bg-bg-secondary"></div>
+                <div className="w-full bg-gray-300 dark:bg-gray-800 rounded-sm h-full"></div>
               </div>
             </div>
           ))}

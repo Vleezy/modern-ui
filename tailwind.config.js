@@ -3,9 +3,9 @@ module.exports = {
   important: false,
   separator: ":",
   theme: {
-    // linearGradientColors: theme => theme("colors"),
-    // radialGradientColors: theme => theme("colors"),
-    // conicGradientColors: theme => theme("colors"),
+    linearGradientColors: theme => theme("colors"),
+    radialGradientColors: theme => theme("colors"),
+    conicGradientColors: theme => theme("colors"),
     screens: {
       sm: "640px",
       md: "768px",
@@ -448,12 +448,12 @@ module.exports = {
     alignSelf: ["responsive"],
     appearance: ["responsive"],
     backgroundAttachment: ["responsive"],
-    backgroundColor: ["responsive", "hover", "focus"],
+    backgroundColor: ["responsive", "hover", "focus", "dark", "dark-hover"],
     backgroundPosition: ["responsive"],
     backgroundRepeat: ["responsive"],
     backgroundSize: ["responsive"],
     borderCollapse: ["responsive"],
-    borderColor: ["responsive", "hover", "focus"],
+    borderColor: ["responsive", "hover", "focus", "dark", "dark-hover"],
     borderRadius: ["responsive"],
     borderStyle: ["responsive"],
     borderWidth: ["responsive"],
@@ -498,7 +498,7 @@ module.exports = {
     stroke: ["responsive"],
     tableLayout: ["responsive"],
     textAlign: ["responsive"],
-    textColor: ["responsive", "hover", "focus"],
+    textColor: ["responsive", "hover", "focus", "dark"],
     textDecoration: ["responsive", "hover", "focus"],
     textTransform: ["responsive"],
     userSelect: ["responsive"],
@@ -508,7 +508,7 @@ module.exports = {
     width: ["responsive"],
     wordBreak: ["responsive"],
     zIndex: ["responsive"],
-    linearGradients: ["responsive"]
+    linearGradients: ["responsive", "dark"]
   },
   corePlugins: {},
   plugins: [
