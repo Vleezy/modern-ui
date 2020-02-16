@@ -12,7 +12,7 @@ const MainLayoutContainer: React.FC<MainLayoutContainerProps> = ({
   headerVisible = true,
   isHomepage = false
 }) => {
-  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   return (
     <MainLayout
