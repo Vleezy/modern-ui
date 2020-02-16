@@ -51,6 +51,24 @@ input:checked ~ .toggle__dot {
   transition: width 200ms ease-in-out;
 }
 
+.header__content-enter {
+  max-height: 0;
+}
+.header__content-enter-active {
+  max-height: 6rem;
+  transition: max-height 400ms ease-in-out;
+}
+.header__content-enter-done {
+  max-height: 6rem;
+}
+.header__content-exit {
+  max-height: 6rem;
+}
+.header__content-exit-active {
+  max-height: 0;
+  transition: max-height 400ms ease-in-out;
+}
+
 .transition-opacity-enter {
   @apply opacity-0;
 }
