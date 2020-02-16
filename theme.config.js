@@ -25,7 +25,7 @@ const lightTheme = new Theme()
 
     // Background colors, but not limited to `bg` utilities.
     "bg-primary": "#edf2f7",
-    "on-bg-primary": "#585851",
+    "on-bg-primary": "#718096",
 
     "bg-secondary": "#e2e8f0",
     "on-bg-secondary": "",
