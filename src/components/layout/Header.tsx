@@ -54,6 +54,8 @@ const Header = (props: IHeaderProps) => {
     return findIndex(homeTabs, n => n.key === currentHomeTab);
   };
 
+  console.log(currentHomeTab);
+
   const subPages = [
     { url: "/me", name: "Home", icon: "fas fa-home" },
     {
@@ -70,7 +72,7 @@ const Header = (props: IHeaderProps) => {
   const isCollapsed = !isHomepage || isScrolled;
 
   return (
-    <div className={`w-full ${isCollapsed ? "fixed" : "block"} top-0 z-10`}>
+    <div className={`w-full sticky top-0 z-10`}>
       <div
         className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none dark:border-gray-700"
         // style={isDayTime() ? headerBackground.day : headerBackground.night}
