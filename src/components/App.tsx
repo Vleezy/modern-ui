@@ -21,6 +21,7 @@ import PageNotFound from "./routes/PageNotFound";
 import NewsArticle from "./routes/NewsArticle";
 import Modal from "./layout/Modal";
 import Profile from "./routes/Profile/Profile";
+import Settings from "./routes/Settings/Settings";
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ export const App: React.FC = () => {
         <Route path="/community/news/:id" component={NewsArticle} />
         <Route path="/login" component={Login} />
         <Route path="/profile/:user" component={Profile} />
+        <Route path="/settings" component={Settings} />
 
         <Route path="*" component={PageNotFound} />
       </Switch>
