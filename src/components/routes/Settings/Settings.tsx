@@ -32,7 +32,10 @@ const Settings = () => {
   ];
   return (
     <MainLayout>
-      <div className="flex-wrap flex mb-2 border-gray-400">
+      <h4 className="text-xs text-gray-500 font-semibold m-1">
+        Basic settings
+      </h4>
+      <div className="flex-wrap flex mb-2 border-gray-400 border-t">
         {sections.map((section, idx) => (
           <Link
             key={idx}
