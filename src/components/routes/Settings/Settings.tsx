@@ -1,27 +1,31 @@
 import React from "react";
-import MainLayout from "components/layout/MainLayout";
 import { Link } from "react-router-dom";
+import MainLayout from "components/layout/MainLayout";
 
 const Settings = () => {
   const sections = [
     {
       title: "Account Settings",
       subtitle: "Email address, password",
-      url: "/#"
+      icon: "fas fa-user",
+      url: "/settings/account"
     },
     {
       title: "Hotel Settings",
       subtitle: "Alerts, trading & friends",
+      icon: "fas fa-hotel",
       url: "/#"
     },
     {
       title: "Profile Settings",
       subtitle: "Visual preferences",
+      icon: "fas fa-sign-in-alt",
       url: "/#"
     },
     {
       title: "Login History",
       subtitle: "View previous login attempts",
+      icon: "fas fa-sign-in-alt",
       url: "/#",
       break: true
     }
@@ -38,13 +42,15 @@ const Settings = () => {
               "mt-2 border-t"}`}
           >
             <div className="flex justify-between">
-              <div className="flex flex-col leading-tight">
-                <h4 className="text-gray-800 dark:text-gray-500">
-                  {section.title}
-                </h4>
-                <span className="text-gray-500 text-xs dark:text-gray-600">
-                  {section.subtitle}
-                </span>
+              <div className="flex">
+                <div className="flex flex-col leading-tight">
+                  <h4 className="text-gray-600 dark:text-gray-500">
+                    {section.title}
+                  </h4>
+                  <span className="text-gray-500 text-xs dark:text-gray-600">
+                    {section.subtitle}
+                  </span>
+                </div>
               </div>
               <i className="fas fa-caret-right text-sm self-center text-gray-500" />
             </div>
