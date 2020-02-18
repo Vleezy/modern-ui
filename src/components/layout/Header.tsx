@@ -115,15 +115,16 @@ const Header = (props: IHeaderProps) => {
               </i>
             )}
           </button>
-          <h3 className="self-center text-white font-semibold">
+          <Link to="/me" className="self-center text-white font-semibold">
             {user?.username}
-          </h3>
-          <Link
+          </Link>
+          <NavLink
             to="/settings"
+            activeClassName="text-blue"
             className="text-lg text-white self-center w-8 h-8 p-2 flex justify-center"
           >
             <i className="fas fa-cog" />
-          </Link>
+          </NavLink>
         </div>
         {!isCollapsed && (
           <div className="mt-4 flex lg:hidden flex-wrap mx-3">
