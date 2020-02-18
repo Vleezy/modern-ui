@@ -120,7 +120,7 @@ const Header = (props: IHeaderProps) => {
           </Link>
           <NavLink
             to="/settings"
-            activeClassName="text-blue"
+            activeClassName="text-blue-500"
             className="text-lg text-white self-center w-8 h-8 p-2 flex justify-center"
           >
             <i className="fas fa-cog" />
