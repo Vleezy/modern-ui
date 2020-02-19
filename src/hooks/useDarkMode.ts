@@ -8,7 +8,7 @@ export const useDarkMode = () => {
   );
 
   // Attach 'mode-dark' class to HTML element
-  const applyTheme = (value: boolean) => {
+  const applyTheme = (value: boolean): void => {
     value
       ? document.documentElement.classList.add("mode-dark")
       : document.documentElement.classList.remove("mode-dark");
