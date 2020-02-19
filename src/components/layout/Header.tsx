@@ -54,8 +54,6 @@ const Header = (props: IHeaderProps) => {
     return findIndex(homeTabs, n => n.key === currentHomeTab);
   };
 
-  console.log(currentHomeTab);
-
   const subPages = [
     { url: "/me", name: "Home", icon: "fas fa-home" },
     {
