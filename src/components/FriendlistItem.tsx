@@ -27,7 +27,7 @@ const FriendlistItem = (props: IFriendListItemProps) => {
             to="#"
             className="text-blue-700 text-sm font-semibold self-center hover:text-blue-300"
           >
-            Friend
+            {user.username}
           </Link>
           <span className="ml-1 text-xs text-gray-500 self-center dark:text-gray-700">
             Online for 2 hours

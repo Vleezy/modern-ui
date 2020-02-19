@@ -13,24 +13,24 @@ import FriendlistItem from "components/FriendlistItem";
 import { IUser } from "models/user/IUser";
 
 const FriendsTab = () => {
-  // const friends: any[] = [];
+  const friends: any[] = [];
 
-  const friends = [
+  const friends2 = [
     {
       id: 1,
-      username: "Friend",
+      username: "Mike",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
       online: true
     },
     {
       id: 2,
-      username: "Friend",
+      username: "Reis",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
       online: true
     },
     {
       id: 3,
-      username: "Fried",
+      username: "Chuckie",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
       online: false
     },
@@ -42,19 +42,31 @@ const FriendsTab = () => {
     },
     {
       id: 5,
-      username: "Friend",
+      username: "SomeName",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
       online: false
     },
     {
       id: 6,
-      username: "Friend",
+      username: "User203",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
       online: false
     },
     {
       id: 7,
-      username: "Friend",
+      username: "Yoda",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: false
+    },
+    {
+      id: 8,
+      username: "Modern",
+      look: process.env.REACT_APP_HABBO_FIGURE || "",
+      online: false
+    },
+    {
+      id: 9,
+      username: "Mads",
       look: process.env.REACT_APP_HABBO_FIGURE || "",
       online: true
     }
@@ -75,9 +87,10 @@ const FriendsTab = () => {
 
   const renderContent = () => {
     if (searchInputValue) {
-      const searchedUsers = filter(friends, o =>
+      const searchedUsers = filter(friends2, o =>
         o.username.includes(searchInputValue)
       );
+
       return (
         <div>
           <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
