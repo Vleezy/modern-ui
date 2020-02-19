@@ -72,19 +72,34 @@ const FriendsTab = () => {
   });
 
   const [searchInputValue, setSearchInputValue] = useState("");
-  useEffect(() => console.log(searchInputValue), [searchInputValue]);
 
   const renderContent = () => {
     if (searchInputValue) {
-      const searchedUsers: IUser[] = filter(friends, o =>
+      const searchedUsers = filter(friends, o =>
         o.username.includes(searchInputValue)
       );
-      return searchedUsers.map(user => <div>{user?.username}</div>);
+      return (
+        <div>
+          <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
+            Found {searchedUsers.length} users!
+          </h4>
+          {searchedUsers.map((user, idx) => (
+            <div>
+              <FriendlistItem key={idx} user={user} />
+            </div>
+          ))}
+        </div>
+      );
     }
 
     if (friends.length)
       return (
         <>
+          <div
+            id="hovercraft-loading"
+            className="bg-no-repeat bg-center w-20 h-20"
+            style={{ backgroundImage: `url(/assets/images/hovercraft.png)` }}
+          ></div>
           <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
             Friends (
             {
