@@ -1,10 +1,12 @@
 import React from "react";
 import NewsPreviewItem from "components/NewsPreviewItem";
 import { Link } from "react-router-dom";
+import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 
 const NewsTab = () => {
   return (
     <div className="">
+      <HovercraftSpinner />
       <div className="flex p-2 justify-between pb-1">
         <h4 className="text-gray-500 self-center text-xs font-semibold self-center">
           Featured news
