@@ -95,11 +95,6 @@ const FriendsTab = () => {
     if (friends.length)
       return (
         <>
-          <div
-            id="hovercraft-loading"
-            className="bg-no-repeat bg-center w-20 h-20"
-            style={{ backgroundImage: `url(/assets/images/hovercraft.png)` }}
-          ></div>
           <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
             Friends (
             {
