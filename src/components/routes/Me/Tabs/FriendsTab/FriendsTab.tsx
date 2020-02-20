@@ -91,21 +91,30 @@ const FriendsTab = () => {
 
   const [userSearch, setUserSearch] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const debouncedUserSearch = useDebounce(userSearch, 500);
+  const debouncedUserSearch = useDebounce(userSearch, 200);
+
+  /**
+   * Fake API call returning an array of users.
+   */
 
   const searchUsers = (username: string): Promise<IUser[]> => {
     return new Promise<IUser[]>(resolve => {
       setTimeout(() => {
-        resolve(filter(friends2, o => o.username === username));
+        resolve(
+          filter(friends2, o =>
+            o.username.toLowerCase().includes(username.toLowerCase())
+          )
+        );
       }, 1000);
     });
   };
 
+  // Fetched data.
   const [fetchedUsers, setFetchedUsers] = useState(Array());
 
   useEffect(() => {
     /**
-     * Fetch API and update loading state if debouncedUserState is not null
+     * Fetch API and remove spinner afterwards.
      */
     if (debouncedUserSearch) {
       setIsSearching(true);
@@ -118,23 +127,26 @@ const FriendsTab = () => {
     }
   }, [debouncedUserSearch]);
 
-  useEffect(() => console.log(isSearching), [isSearching]);
   /**
    * Render tab content
    */
   const renderContent = () => {
-    if (fetchedUsers) {
+    if (userSearch) {
       return (
         <div>
           {isSearching && <HovercraftSpinner />}
-          <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
-            Found {fetchedUsers.length} users!
-          </h4>
-          {fetchedUsers.map((user, idx) => (
-            <div key={idx}>
-              <FriendlistItem user={user} />
+          {fetchedUsers.length > 0 && !isSearching && (
+            <div>
+              <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
+                Found {fetchedUsers.length} users!
+              </h4>
+              {fetchedUsers.map((user, idx) => (
+                <div key={idx}>
+                  <FriendlistItem user={user} />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       );
     }
