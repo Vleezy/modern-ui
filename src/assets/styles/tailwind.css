@@ -2,6 +2,25 @@
 
 @tailwind components;
 
+#hovercraft-loading {
+  -webkit-animation: hovercraft-loading 1s ease infinite;
+  -moz-animation: hovercraft-loading 1s ease infinite;
+  -o-animation: hovercraft-loading 1s ease infinite;
+  animation: hovercraft-loading 1s ease infinite;
+}
+
+@keyframes hovercraft-loading {
+  0% {
+    background-position-y: center;
+  }
+  50% {
+    background-position-y: 8px;
+  }
+  100% {
+    background-position-y: center;
+  }
+}
+
 .notification {
   &__snackbar {
     transition: 0.22s ease-in-out;
