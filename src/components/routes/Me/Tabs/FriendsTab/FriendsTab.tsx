@@ -5,12 +5,12 @@ import React, { useState, useEffect } from "react";
 import { orderBy, filter } from "lodash";
 import { useSpring, animated } from "react-spring";
 import OnOutsideClick from "react-outclick";
+import useDebounce from "hooks/useDebounce";
 
 /**
  * Components
  */
 import FriendlistItem from "components/FriendlistItem";
-import { IUser } from "models/user/IUser";
 
 const FriendsTab = () => {
   const friends: any[] = [];
@@ -83,12 +83,26 @@ const FriendsTab = () => {
     backgroundColor: searchExpanded ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0)"
   });
 
-  const [searchInputValue, setSearchInputValue] = useState("");
+  /**
+   * User search
+   */
+  const [isSearching, setIsSearching] = useState(false);
 
+  const [userSearchValue, setUserSearchValue] = useState("");
+
+  const debouncedUserSearchValue = useDebounce(userSearchValue, 500);
+
+  useEffect(() => {
+    if (debouncedUserSearchValue) console.log(debouncedUserSearchValue);
+  }, [debouncedUserSearchValue]);
+
+  /**
+   * Render tab content
+   */
   const renderContent = () => {
-    if (searchInputValue) {
+    if (userSearchValue) {
       const searchedUsers = filter(friends2, o =>
-        o.username.includes(searchInputValue)
+        o.username.includes(userSearchValue)
       );
 
       return (
@@ -161,7 +175,7 @@ const FriendsTab = () => {
           <div>
             <i
               className={`fas fa-search self-center p-2 text-sm ${
-                !searchInputValue
+                !userSearchValue
                   ? "text-gray-500 dark:text-gray-600"
                   : "text-blue-500"
               }`}
@@ -173,7 +187,7 @@ const FriendsTab = () => {
             type="text"
             placeholder="Search Habbos..."
             onFocus={() => setSearchExpanded(true)}
-            onChange={e => setSearchInputValue(e.target.value)}
+            onChange={e => setUserSearchValue(e.target.value)}
           />
           <animated.div
             style={searchExpandAnim}
