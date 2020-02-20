@@ -11,6 +11,8 @@ import useDebounce from "hooks/useDebounce";
  * Components
  */
 import FriendlistItem from "components/FriendlistItem";
+import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
+import { IUser } from "models/user/IUser";
 
 const FriendsTab = () => {
   const friends: any[] = [];
@@ -86,33 +88,51 @@ const FriendsTab = () => {
   /**
    * User search
    */
+
+  const [userSearch, setUserSearch] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const debouncedUserSearch = useDebounce(userSearch, 500);
 
-  const [userSearchValue, setUserSearchValue] = useState("");
+  const searchUsers = (username: string): Promise<IUser[]> => {
+    return new Promise<IUser[]>(resolve => {
+      setTimeout(() => {
+        resolve(filter(friends2, o => o.username === username));
+      }, 1000);
+    });
+  };
 
-  const debouncedUserSearchValue = useDebounce(userSearchValue, 500);
+  const [fetchedUsers, setFetchedUsers] = useState(Array());
 
   useEffect(() => {
-    if (debouncedUserSearchValue) console.log(debouncedUserSearchValue);
-  }, [debouncedUserSearchValue]);
+    /**
+     * Fetch API and update loading state if debouncedUserState is not null
+     */
+    if (debouncedUserSearch) {
+      setIsSearching(true);
+      searchUsers(debouncedUserSearch).then(results => {
+        setIsSearching(false);
+        setFetchedUsers(results);
+      });
+    } else {
+      setFetchedUsers([]);
+    }
+  }, [debouncedUserSearch]);
 
+  useEffect(() => console.log(isSearching), [isSearching]);
   /**
    * Render tab content
    */
   const renderContent = () => {
-    if (userSearchValue) {
-      const searchedUsers = filter(friends2, o =>
-        o.username.includes(userSearchValue)
-      );
-
+    if (fetchedUsers) {
       return (
         <div>
+          {isSearching && <HovercraftSpinner />}
           <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
-            Found {searchedUsers.length} users!
+            Found {fetchedUsers.length} users!
           </h4>
-          {searchedUsers.map((user, idx) => (
-            <div>
-              <FriendlistItem key={idx} user={user} />
+          {fetchedUsers.map((user, idx) => (
+            <div key={idx}>
+              <FriendlistItem user={user} />
             </div>
           ))}
         </div>
@@ -175,7 +195,7 @@ const FriendsTab = () => {
           <div>
             <i
               className={`fas fa-search self-center p-2 text-sm ${
-                !userSearchValue
+                !userSearch
                   ? "text-gray-500 dark:text-gray-600"
                   : "text-blue-500"
               }`}
@@ -187,7 +207,7 @@ const FriendsTab = () => {
             type="text"
             placeholder="Search Habbos..."
             onFocus={() => setSearchExpanded(true)}
-            onChange={e => setUserSearchValue(e.target.value)}
+            onChange={e => setUserSearch(e.target.value)}
           />
           <animated.div
             style={searchExpandAnim}
