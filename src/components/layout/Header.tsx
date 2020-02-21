@@ -162,7 +162,7 @@ const Header = (props: IHeaderProps) => {
         </div>
         {isHomepage && (
           <div
-            className="w-full relative lg:hidden"
+            className="w-full relative lg:hidden bg-fadedwhite-200"
             style={{
               height: "2px"
             }}
