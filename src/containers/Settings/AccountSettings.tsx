@@ -1,17 +1,59 @@
 import DefaultModal from "components/layout/Modal/DefaultModal";
 import { useAppState } from "context/app.context";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainLayout from "components/layout/MainLayout";
+import { useLocalStorage } from "hooks/useLocalStorage";
 
 const AccountSettings = () => {
-  const [colorModalVisible, setColorModalVisible] = useState(false);
+  const [colorModalVisible, setColorModalVisible] = useState(true);
   const { user } = useAppState();
+
+  const themeColors = [
+    "#a0aec0",
+    "#e53e3e",
+    "#ed8936",
+    "#ecc94b",
+    "#48bb78",
+    "#4fd1c5",
+    "#4299e1",
+    "#5a67d8",
+    "#6b46c1",
+    "#ed64a6"
+  ];
+
+  const [themeColor, setThemeColor] = useLocalStorage("themeColor", "#ed64a6");
+
+  const handleColorClick = (idx: number) => {
+    setThemeColor(themeColors[idx - 1]);
+    setColorModalVisible(false);
+  };
+
+  useEffect(() => console.log(themeColor), [themeColor]);
 
   return (
     <MainLayout>
       {colorModalVisible && (
         <DefaultModal closeModal={() => setColorModalVisible(false)}>
-          test
+          <div className="p-2">
+            <h4 className="text-xs text-gray-500 font-semibold">
+              Select theme color
+            </h4>
+            <div className="flex flex-wrap bg-gray-200 p-1 rounded">
+              {themeColors.map((color, idx) => (
+                <div
+                  className="p-px h-12 self-center w-12 m-1 rounded border border-gray-400"
+                  data-color-id={idx}
+                  key={idx}
+                  onClick={() => handleColorClick(idx)}
+                >
+                  <div
+                    className="w-full h-full rounded shadow self-center mr-4"
+                    style={{ backgroundColor: color }}
+                  ></div>
+                </div>
+              ))}
+            </div>
+          </div>
         </DefaultModal>
       )}
       <div className="p-2 w-full">
@@ -61,7 +103,7 @@ const AccountSettings = () => {
                 className="p-px h-8 self-center mr-4 w-8 rounded border border-gray-400"
                 onClick={() => setColorModalVisible(true)}
               >
-                <div className="w-full h-full rounded shadow bg-pink-500 self-center mr-4"></div>
+                <div className="w-full themeColor h-full rounded shadow self-center mr-4"></div>
               </div>
             </div>
           </div>

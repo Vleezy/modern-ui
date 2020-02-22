@@ -169,7 +169,7 @@ const Header = (props: IHeaderProps) => {
             }}
           >
             <div
-              className="absolute bg-white dark:bg-pink-500 h-full tab-indicator"
+              className="absolute themeColor h-full tab-indicator"
               style={{
                 left: (100 / homeTabs.length) * getTabPosition() + "%",
                 width: 100 / homeTabs.length + "%"

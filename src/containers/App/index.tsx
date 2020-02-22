@@ -15,7 +15,6 @@ import * as AppActions from "../../context/app.actions";
 /**
  * Components
  */
-import Modal from "components/layout/Modal";
 import Me from "containers/MePage/Loadable";
 import NewsArticle from "containers/NewsArticle";
 import Login from "containers/Login/Login copy";
@@ -33,7 +32,6 @@ export const App: React.FC = () => {
 
   return (
     <Router>
-      <Modal />
       <Switch>
         <Redirect exact path="/" to="/me" />
 
