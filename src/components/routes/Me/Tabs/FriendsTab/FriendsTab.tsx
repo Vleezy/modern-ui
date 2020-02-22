@@ -5,11 +5,13 @@ import React, { useState, useEffect } from "react";
 import { orderBy, filter } from "lodash";
 import { useSpring, animated } from "react-spring";
 import OnOutsideClick from "react-outclick";
+import useDebounce from "hooks/useDebounce";
 
 /**
  * Components
  */
 import FriendlistItem from "components/FriendlistItem";
+import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 import { IUser } from "models/user/IUser";
 
 const FriendsTab = () => {
@@ -83,24 +85,68 @@ const FriendsTab = () => {
     backgroundColor: searchExpanded ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0)"
   });
 
-  const [searchInputValue, setSearchInputValue] = useState("");
+  /**
+   * User search
+   */
 
+  const [userSearch, setUserSearch] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const debouncedUserSearch = useDebounce(userSearch, 200);
+
+  /**
+   * Fake API call returning an array of users.
+   */
+
+  const searchUsers = (username: string): Promise<IUser[]> => {
+    return new Promise<IUser[]>(resolve => {
+      setTimeout(() => {
+        resolve(
+          filter(friends2, o =>
+            o.username.toLowerCase().includes(username.toLowerCase())
+          )
+        );
+      }, 1000);
+    });
+  };
+
+  // Fetched data.
+  const [fetchedUsers, setFetchedUsers] = useState(Array());
+
+  useEffect(() => {
+    /**
+     * Fetch API and remove spinner afterwards.
+     */
+    if (debouncedUserSearch) {
+      setIsSearching(true);
+      searchUsers(debouncedUserSearch).then(results => {
+        setIsSearching(false);
+        setFetchedUsers(results);
+      });
+    } else {
+      setFetchedUsers([]);
+    }
+  }, [debouncedUserSearch]);
+
+  /**
+   * Render tab content
+   */
   const renderContent = () => {
-    if (searchInputValue) {
-      const searchedUsers = filter(friends2, o =>
-        o.username.includes(searchInputValue)
-      );
-
+    if (userSearch) {
       return (
         <div>
-          <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
-            Found {searchedUsers.length} users!
-          </h4>
-          {searchedUsers.map((user, idx) => (
+          {isSearching && <HovercraftSpinner />}
+          {fetchedUsers.length > 0 && !isSearching && (
             <div>
-              <FriendlistItem key={idx} user={user} />
+              <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
+                Found {fetchedUsers.length} users!
+              </h4>
+              {fetchedUsers.map((user, idx) => (
+                <div key={idx}>
+                  <FriendlistItem user={user} />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       );
     }
@@ -161,7 +207,7 @@ const FriendsTab = () => {
           <div>
             <i
               className={`fas fa-search self-center p-2 text-sm ${
-                !searchInputValue
+                !userSearch
                   ? "text-gray-500 dark:text-gray-600"
                   : "text-blue-500"
               }`}
@@ -173,7 +219,7 @@ const FriendsTab = () => {
             type="text"
             placeholder="Search Habbos..."
             onFocus={() => setSearchExpanded(true)}
-            onChange={e => setSearchInputValue(e.target.value)}
+            onChange={e => setUserSearch(e.target.value)}
           />
           <animated.div
             style={searchExpandAnim}
