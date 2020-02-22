@@ -21,7 +21,7 @@
     "start:js": "react-scripts start",
     "start:styles": "postcss -o src/assets/styles/index.css src/assets/styles/tailwind.css -w",
     "build": "react-scripts build",
-    "build:styles": "start:styles",
+    "build:styles": "postcss -o src/assets/styles/index.css src/assets/styles/tailwind.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
