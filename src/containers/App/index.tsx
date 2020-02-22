@@ -16,7 +16,7 @@ import * as AppActions from "../../context/app.actions";
  * Components
  */
 import Modal from "components/layout/Modal";
-import Me from "containers/MePage";
+import Me from "containers/MePage/Loadable";
 import NewsArticle from "containers/NewsArticle";
 import Login from "containers/Login/Login copy";
 import Profile from "containers/Profile";
