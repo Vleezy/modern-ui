@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import MainLayout from "components/layout/MainLayout/MainLayout";
-import { useAppState } from "context/app.context";
 import DefaultModal from "components/layout/Modal/DefaultModal";
+import { useAppState } from "context/app.context";
+import React, { useState } from "react";
+import MainLayout from "components/layout/MainLayout";
 
 const AccountSettings = () => {
   const [colorModalVisible, setColorModalVisible] = useState(false);

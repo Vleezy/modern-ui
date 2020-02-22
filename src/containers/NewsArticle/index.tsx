@@ -1,8 +1,8 @@
 import React from "react";
 import NewsComment from "components/NewsComment";
 import ProfilePicture from "components/shared/ProfilePicture";
-import MainLayout from "components/layout/MainLayout/MainLayout";
 import { useHistory } from "react-router-dom";
+import MainLayout from "components/layout/MainLayout";
 
 const NewsArticle = () => {
   const comments = [

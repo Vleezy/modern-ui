@@ -1,6 +1,6 @@
 import React from "react";
-import Backdrop from "../Backdrop";
 import OnOutsiceClick from "react-outclick";
+import Backdrop from "components/Backdrop";
 
 interface IDefaultModalProps {
   children: React.ReactNode;
