@@ -15,7 +15,7 @@ import { findIndex } from "lodash";
 /**
  * Components
  */
-import HeaderDropDown from "./HeaderDropDown";
+import HeaderDropDown from "../HeaderDropDown";
 import ProfilePicture from "components/shared/ProfilePicture";
 
 interface IHeaderProps {

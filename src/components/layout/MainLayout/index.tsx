@@ -1,24 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../Sidebar";
-import Backdrop from "../Backdrop";
-import Header from "../Header";
+import Backdrop from "../../Backdrop";
 import BottomNavigation from "components/layout/BottomNavigation";
+import Header from "components/layout/Header";
 
 interface MainLayoutProps {
-  sidebarVisible: boolean;
-  setSidebarVisible: (visible: boolean) => void;
-  headerVisible: boolean;
-  isHomepage: boolean;
+  headerVisible?: boolean;
+  isHomepage?: boolean;
   children?: React.ReactNode;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({
-  sidebarVisible,
-  setSidebarVisible,
-  headerVisible,
-  isHomepage,
-  children
-}) => {
+const MainLayout = (props: MainLayoutProps) => {
+  const { headerVisible = true, isHomepage = false, children } = props;
+
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
   return (
     <div id="main-layout">
       <Sidebar

@@ -8,7 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 /**
  * Components
  */
-import { App } from "./components/App";
+import { App } from "./containers/App";
 import { AppProvider } from "context/app.context";
 import { ToastProvider } from "react-toast-notifications";
 
