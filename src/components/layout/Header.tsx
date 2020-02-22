@@ -93,6 +93,7 @@ const Header = (props: IHeaderProps) => {
           </div>
         </div>
         <div className="lg:hidden p-2 w-full flex justify-between">
+          {/* <i className="fas fa-chevron-left text-sm text-white ml-2"></i> */}
           <button
             className=" text-lg text-white self-center flex justify-center active:bg-blue-400"
             onClick={() => toggleSidebar(true)}

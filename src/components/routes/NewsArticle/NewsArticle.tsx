@@ -1,10 +1,10 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import MainLayout from "components/layout/MainLayout";
 import NewsComment from "components/NewsComment";
 import ProfilePicture from "components/shared/ProfilePicture";
+import MainLayout from "components/layout/MainLayout/MainLayout";
+import { useHistory } from "react-router-dom";
 
-const NewsArticle = withRouter(({ history }) => {
+const NewsArticle = () => {
   const comments = [
     {
       id: 1,
@@ -59,8 +59,9 @@ const NewsArticle = withRouter(({ history }) => {
     }
   ];
 
+  const history = useHistory();
   return (
-    <MainLayout headerVisible={false}>
+    <MainLayout>
       <div
         className="w-full h-40 flex flex-col justify-between bg-center border-b-2 dark:border-gray-800 border-gray-400"
         style={{
@@ -166,6 +167,6 @@ const NewsArticle = withRouter(({ history }) => {
       </div>
     </MainLayout>
   );
-});
+};
 
 export default NewsArticle;

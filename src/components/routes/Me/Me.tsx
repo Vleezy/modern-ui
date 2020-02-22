@@ -1,10 +1,10 @@
 import React from "react";
-import MainLayout from "components/layout/MainLayout";
 import NewsTab from "./Tabs/NewsTab";
 
 import FriendsTab from "./Tabs/FriendsTab";
 import NewsPreviewContainer from "components/NewsPreviewContainer";
 import { useAppState } from "context/app.context";
+import MainLayout from "components/layout/MainLayout/MainLayout";
 
 const Me = () => {
   const { currentHomeTab } = useAppState();

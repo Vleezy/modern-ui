@@ -8,7 +8,8 @@ export const fetchUser = (): Action => {
   // You can write here a method to fetch the user details from the API
   const user: IUser = {
     username: "Chuckie",
-    look: process.env.REACT_APP_HABBO_FIGURE ?? ""
+    look: process.env.REACT_APP_HABBO_FIGURE ?? "",
+    motto: "this is my motto"
   };
 
   return {
