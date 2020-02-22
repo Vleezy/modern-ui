@@ -3,10 +3,22 @@
 @tailwind components;
 
 #hovercraft-loading {
-  -webkit-animation: hovercraft-loading 1s ease infinite;
-  -moz-animation: hovercraft-loading 1s ease infinite;
-  -o-animation: hovercraft-loading 1s ease infinite;
-  animation: hovercraft-loading 1s ease infinite;
+  -webkit-animation: hovercraft-loading 1s ease infinite,
+    hovercraft-fadein 400ms ease;
+  -moz-animation: hovercraft-loading 1s ease infinite,
+    hovercraft-fadein 400ms ease;
+  -o-animation: hovercraft-loading 1s ease infinite,
+    hovercraft-fadein 400ms ease;
+  animation: hovercraft-loading 1s ease infinite, hovercraft-fadein 400ms ease;
+}
+
+@keyframes hovercraft-fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes hovercraft-loading {

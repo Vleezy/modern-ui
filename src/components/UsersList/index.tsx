@@ -5,9 +5,11 @@ import FriendlistItem from "components/FriendlistItem";
 import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 
 const UsersList = (props: UsersListProps) => {
-  const { loading, users } = props;
+  const { loading = true, users } = props;
 
   if (loading) return <HovercraftSpinner />;
+
+  if (!users.length) return <>"No users found"</>;
 
   return (
     <>

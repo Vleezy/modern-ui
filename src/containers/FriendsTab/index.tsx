@@ -11,69 +11,12 @@ import useDebounce from "hooks/useDebounce";
  * Components
  */
 import FriendlistItem from "components/FriendlistItem";
-import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 import { IUser } from "models/user/IUser";
 import UsersList from "components/UsersList";
+import { getUsersByUsername } from "api/fakeApi";
 
 const FriendsTab = () => {
   const friends: any[] = [];
-
-  const friends2 = [
-    {
-      id: 1,
-      username: "Mike",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: true
-    },
-    {
-      id: 2,
-      username: "Reis",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: true
-    },
-    {
-      id: 3,
-      username: "Chuckie",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: false
-    },
-    {
-      id: 4,
-      username: "Friend",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: true
-    },
-    {
-      id: 5,
-      username: "SomeName",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: false
-    },
-    {
-      id: 6,
-      username: "User203",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: false
-    },
-    {
-      id: 7,
-      username: "Yoda",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: false
-    },
-    {
-      id: 8,
-      username: "Modern",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: false
-    },
-    {
-      id: 9,
-      username: "Mads",
-      look: process.env.REACT_APP_HABBO_FIGURE || "",
-      online: true
-    }
-  ];
 
   const [searchExpanded, setSearchExpanded] = useState(false);
 
@@ -89,43 +32,25 @@ const FriendsTab = () => {
   /**
    * User search
    */
-
   const [userSearch, setUserSearch] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const debouncedUserSearch = useDebounce(userSearch, 200);
+  const [isSearching, setIsSearching] = useState(true);
+  const debouncedUserSearch = useDebounce(userSearch, 300);
+
+  // Store fetched users.
+  const [fetchedUsers, setFetchedUsers] = useState(Array(0));
 
   /**
-   * Fake API call returning an array of users.
+   * Fetch users when debouncedUserSearch value changes and set isSearching value accordingly.
    */
-
-  const searchUsers = (username: string): Promise<IUser[]> => {
-    return new Promise<IUser[]>(resolve => {
-      setTimeout(() => {
-        resolve(
-          filter(friends2, o =>
-            o.username.toLowerCase().includes(username.toLowerCase())
-          )
-        );
-      }, 1000);
-    });
-  };
-
-  const EmptyUsersArray: IUser[] = [];
-  // Fetched data.
-  const [fetchedUsers, setFetchedUsers] = useState(EmptyUsersArray);
-
   useEffect(() => {
-    /**
-     * Fetch API and remove spinner afterwards.
-     */
     if (debouncedUserSearch) {
       setIsSearching(true);
-      searchUsers(debouncedUserSearch).then(results => {
-        setIsSearching(false);
-        setFetchedUsers(results);
-      });
-    } else {
       setFetchedUsers([]);
+
+      getUsersByUsername(debouncedUserSearch).then(users => {
+        setIsSearching(false);
+        setFetchedUsers(users);
+      });
     }
   }, [debouncedUserSearch]);
 
@@ -133,7 +58,7 @@ const FriendsTab = () => {
    * Render tab content
    */
   const renderContent = () => {
-    if (userSearch) {
+    if (debouncedUserSearch) {
       return (
         <div>
           <UsersList users={fetchedUsers} loading={isSearching} />
