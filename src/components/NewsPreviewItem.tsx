@@ -30,15 +30,13 @@ const NewsPreviewItem = () => {
           </div>
           <div className="p-1 flex">
             <div className="flex-1 flex">
-              <div className="flex px-2 rounded bg-gray-200 mr-1 dark:bg-gray-800">
+              <div className="bg-gray-200 rounded flex p-1">
                 <div className="justify-center self-center text-gray-500 text-xs">
                   <i className="fas fa-heart"></i>
                 </div>
-                <span className="text-xs ml-1 self-center text-gray-500">
+                <span className="text-xs ml-1 self-center text-gray-500 mr-2">
                   23
                 </span>
-              </div>
-              <div className="flex px-2 rounded bg-gray-200 dark:bg-gray-800">
                 <div className="justify-center self-center text-gray-500 text-xs">
                   <i className="fas fa-comment"></i>
                 </div>
