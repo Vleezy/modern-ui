@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Sidebar from "../Sidebar";
-import Backdrop from "../Backdrop";
-import Header from "../Header";
+import Backdrop from "../../Backdrop";
 import BottomNavigation from "components/layout/BottomNavigation";
+import Header from "components/layout/Header";
 
 interface IMainLayoutProps {
   headerVisible?: boolean;

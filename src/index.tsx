@@ -2,13 +2,13 @@
  * Dependencies
  */
 import * as React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
 /**
  * Components
  */
-import { App } from "./components/App";
+import { App } from "./containers/App";
 import { AppProvider } from "context/app.context";
 import { ToastProvider } from "react-toast-notifications";
 
@@ -18,16 +18,20 @@ import { ToastProvider } from "react-toast-notifications";
 import "./assets/styles/index.css";
 import Snackbar from "components/layout/Notifications/Snackbar";
 
-if (window.localStorage.getItem("dark-theme") === "true")
+if (window.localStorage.getItem("dark-theme") === "true") {
   document.documentElement.classList.add("mode-dark");
+}
 
-render(
-  <AppProvider>
-    <ToastProvider components={{ Toast: Snackbar }} placement="bottom-center">
+const TARGET_NODE = "root";
+
+const ROOT = document.getElementById(TARGET_NODE) as HTMLElement;
+
+createRoot(ROOT).render(
+  <ToastProvider>
+    <AppProvider>
       <App />
-    </ToastProvider>
-  </AppProvider>,
-  document.getElementById("root")
+    </AppProvider>
+  </ToastProvider>
 );
 
 serviceWorker.unregister();

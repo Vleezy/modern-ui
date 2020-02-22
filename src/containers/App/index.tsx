@@ -10,19 +10,19 @@ import {
   Redirect
 } from "react-router-dom";
 import { useAppDispatch } from "context/app.context";
-import * as AppActions from "../context/app.actions";
+import * as AppActions from "../../context/app.actions";
 
 /**
  * Components
  */
-import Login from "./routes/Login";
-import Me from "./routes/Me";
-import PageNotFound from "./routes/PageNotFound";
-import NewsArticle from "./routes/NewsArticle";
-import Modal from "./layout/Modal";
-import Profile from "./routes/Profile/Profile";
-import Settings from "./routes/Settings/Settings";
-import AccountSettings from "./routes/Settings/AccountSettings";
+import Modal from "components/layout/Modal";
+import Me from "containers/MePage/Loadable";
+import NewsArticle from "containers/NewsArticle";
+import Login from "containers/Login/Login copy";
+import Profile from "containers/Profile";
+import Settings from "containers/Settings/Settings";
+import AccountSettings from "containers/Settings/AccountSettings";
+import PageNotFound from "containers/PageNotFound";
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();

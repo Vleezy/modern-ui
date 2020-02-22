@@ -1,8 +1,10 @@
 import React from "react";
-import ProfilePicture from "./shared/ProfilePicture";
-import UserHovercard from "./shared/UserHovercard";
+
 import { Link } from "react-router-dom";
 import { IUser } from "models/user/IUser";
+
+import ProfilePicture from "../shared/ProfilePicture";
+import UserHovercard from "../shared/UserHovercard";
 
 interface IFriendListItemProps {
   user: IUser;

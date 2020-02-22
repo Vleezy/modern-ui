@@ -13,6 +13,7 @@ import useDebounce from "hooks/useDebounce";
 import FriendlistItem from "components/FriendlistItem";
 import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 import { IUser } from "models/user/IUser";
+import UsersList from "components/UsersList";
 
 const FriendsTab = () => {
   const friends: any[] = [];
@@ -109,8 +110,9 @@ const FriendsTab = () => {
     });
   };
 
+  const EmptyUsersArray: IUser[] = [];
   // Fetched data.
-  const [fetchedUsers, setFetchedUsers] = useState(Array());
+  const [fetchedUsers, setFetchedUsers] = useState(EmptyUsersArray);
 
   useEffect(() => {
     /**
@@ -134,19 +136,7 @@ const FriendsTab = () => {
     if (userSearch) {
       return (
         <div>
-          {isSearching && <HovercraftSpinner />}
-          {fetchedUsers.length > 0 && !isSearching && (
-            <div>
-              <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
-                Found {fetchedUsers.length} users!
-              </h4>
-              {fetchedUsers.map((user, idx) => (
-                <div key={idx}>
-                  <FriendlistItem user={user} />
-                </div>
-              ))}
-            </div>
-          )}
+          <UsersList users={fetchedUsers} loading={isSearching} />
         </div>
       );
     }
