@@ -19,11 +19,11 @@ const MainLayout = (props: IMainLayoutProps) => {
         sidebarVisible={sidebarVisible}
         toggleSidebar={setSidebarVisible}
       />
-      {sidebarVisible ? (
+      {sidebarVisible && (
         <>
           <Backdrop callback={() => setSidebarVisible(false)} />
         </>
-      ) : null}
+      )}
       {headerVisible && (
         <Header toggleSidebar={setSidebarVisible} isHomepage={isHomepage} />
       )}
