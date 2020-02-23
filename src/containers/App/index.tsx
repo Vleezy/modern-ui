@@ -32,21 +32,23 @@ export const App: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Router>
-      <Modal />
-      <Switch>
-        <Redirect exact path="/" to="/me" />
+    <React.StrictMode>
+      <Router>
+        <Modal />
+        <Switch>
+          <Redirect exact path="/" to="/me" />
 
-        <Route exact path="/me" component={Me} />
-        <Route path="/community/news/:id" component={NewsArticle} />
-        <Route path="/login" component={Login} />
-        <Route path="/profile/:user" component={Profile} />
+          <Route exact path="/me" component={Me} />
+          <Route path="/community/news/:id" component={NewsArticle} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile/:user" component={Profile} />
 
-        <Route path="/settings" exact component={Settings} />
-        <Route path="/settings/account" component={AccountSettings} />
+          <Route path="/settings" exact component={Settings} />
+          <Route path="/settings/account" component={AccountSettings} />
 
-        <Route path="*" component={PageNotFound} />
-      </Switch>
-    </Router>
+          <Route path="*" component={PageNotFound} />
+        </Switch>
+      </Router>
+    </React.StrictMode>
   );
 };
