@@ -2,38 +2,25 @@ import React, { useState, useEffect } from "react";
 /**
  * Dependencies
  */
-import { orderBy, filter } from "lodash";
-import { useSpring, animated } from "react-spring";
-import OnOutsideClick from "react-outclick";
+import { orderBy } from "lodash";
 import useDebounce from "hooks/useDebounce";
+import { getUsersByUsername } from "api/fakeApi";
 
 /**
  * Components
  */
 import FriendlistItem from "components/FriendlistItem";
-import { IUser } from "models/user/IUser";
 import UsersList from "components/UsersList";
-import { getUsersByUsername } from "api/fakeApi";
+import Searchbar from "containers/Searchbar";
 
 const FriendsTab = () => {
   const friends: any[] = [];
-
-  const [searchExpanded, setSearchExpanded] = useState(false);
-
-  const searchExpandAnim = useSpring({
-    maxHeight: searchExpanded ? "100px" : "0px",
-    opacity: searchExpanded ? 1 : 0
-  });
-
-  const searchBarAnim = useSpring({
-    backgroundColor: searchExpanded ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0)"
-  });
 
   /**
    * User search
    */
   const [userSearch, setUserSearch] = useState("");
-  const [isSearching, setIsSearching] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const debouncedUserSearch = useDebounce(userSearch, 300);
 
   // Store fetched users.
@@ -44,11 +31,11 @@ const FriendsTab = () => {
    */
   useEffect(() => {
     if (debouncedUserSearch) {
-      setIsSearching(true);
+      setIsLoading(true);
       setFetchedUsers([]);
 
       getUsersByUsername(debouncedUserSearch).then(users => {
-        setIsSearching(false);
+        setIsLoading(false);
         setFetchedUsers(users);
       });
     }
@@ -59,31 +46,16 @@ const FriendsTab = () => {
    */
   const renderContent = () => {
     if (debouncedUserSearch) {
-      return (
-        <div>
-          <UsersList users={fetchedUsers} loading={isSearching} />
-        </div>
-      );
+      return <UsersList users={fetchedUsers} loading={isLoading} />;
     }
 
     if (friends.length)
       return (
-        <>
-          <h4 className="text-gray-500 mb-1 self-center text-xs font-semibold self-center mt-1">
-            Friends (
-            {
-              filter(friends, o => {
-                if (o.online) return o;
-              }).length
-            }{" "}
-            online)
-          </h4>
-          <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700">
-            {orderBy(friends, ["online"], "desc").map((friend, idx) => (
-              <FriendlistItem key={idx} user={friend} />
-            ))}
-          </div>
-        </>
+        <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700">
+          {orderBy(friends, ["online"], "desc").map((friend, idx) => (
+            <FriendlistItem key={idx} user={friend} />
+          ))}
+        </div>
       );
 
     return (
@@ -114,51 +86,7 @@ const FriendsTab = () => {
   return (
     <div className="p-2">
       {/* Search friends */}
-      <OnOutsideClick onOutsideClick={(ev: Event) => setSearchExpanded(false)}>
-        <div
-          style={searchBarAnim}
-          className="flex w-full flex-wrap bg-gray-300 rounded text-sm dark:bg-gray-900"
-        >
-          <div>
-            <i
-              className={`fas fa-search self-center p-2 text-sm ${
-                !userSearch
-                  ? "text-gray-500 dark:text-gray-600"
-                  : "text-blue-500"
-              }`}
-              style={{ transition: "color 350ms" }}
-            />
-          </div>
-          <input
-            className="flex-1 py-1 px-1 pb-1 bg-transparent dark:text-gray-600 dark:placeholder-gray-600"
-            type="text"
-            placeholder="Search Habbos..."
-            onFocus={() => setSearchExpanded(true)}
-            onChange={e => setUserSearch(e.target.value)}
-          />
-          <animated.div
-            style={searchExpandAnim}
-            className="flex w-full overflow-hidden"
-          >
-            <div className="p-1 w-full flex-wrap flex">
-              <h4 className="w-full font-semibold dark:text-gray-600">
-                Filter
-              </h4>
-              <label
-                htmlFor="filter-friends"
-                className="text-xs dark:text-gray-600 flex"
-              >
-                <input
-                  id="filter-friends"
-                  type="checkbox"
-                  className="self-center mr-1"
-                />
-                Friends only
-              </label>
-            </div>
-          </animated.div>
-        </div>
-      </OnOutsideClick>
+      <Searchbar onChangeFunc={setUserSearch} />
 
       {renderContent()}
     </div>
