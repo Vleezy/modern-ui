@@ -24,3 +24,10 @@ export const setHomeTab = (tabKey: string): Action => {
     value: tabKey || "NEWS"
   };
 };
+
+export const setThemeColor = (color: string): Action => {
+  return {
+    type: "setThemeColor",
+    value: color || "FFFFFF" // Return color or white.
+  };
+};

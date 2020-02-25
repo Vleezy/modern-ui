@@ -18,6 +18,9 @@ import { ToastProvider } from "react-toast-notifications";
 import "./assets/styles/index.css";
 import Snackbar from "components/layout/Notifications/Snackbar";
 
+/**
+ * Set dark mode
+ */
 if (window.localStorage.getItem("dark-theme") === "true") {
   document.documentElement.classList.add("mode-dark");
 }
