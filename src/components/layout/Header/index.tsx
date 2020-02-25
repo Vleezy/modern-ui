@@ -72,7 +72,7 @@ const Header = (props: IHeaderProps) => {
   return (
     <div className={`w-full sticky top-0 z-10`}>
       <div
-        className="w-full lg:h-24 bg-blue-200 bg-center border-b border-gray-400 shadow lg:shadow-none dark:border-gray-700"
+        className="w-full lg:h-24 bg-blue-200 bg-center shadow lg:shadow-none dark:border-gray-700"
         // style={isDayTime() ? headerBackground.day : headerBackground.night}
         style={merge(
           isDayTime() ? headerBackground.day : headerBackground.night
@@ -163,7 +163,7 @@ const Header = (props: IHeaderProps) => {
         </div>
         {isHomepage && (
           <div
-            className="w-full relative lg:hidden bg-fadedwhite-200"
+            className="w-full relative lg:hidden bg-fadedwhite-200 dark:bg-fadedblack-300"
             style={{
               height: "2px"
             }}
