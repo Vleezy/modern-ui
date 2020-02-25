@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Searchbar /> should render and match the snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="flex w-full flex-wrap bg-gray-300 rounded text-sm dark:bg-gray-900"
+    >
+      <button
+        class=""
+      >
+        <i
+          class="fas fa-search self-center p-2 text-sm rounded-l text-gray-500"
+          style="transition: color 350ms;"
+        />
+      </button>
+      <input
+        class="flex-1 py-1 px-1 pb-1 bg-transparent dark:text-gray-600 dark:placeholder-gray-600"
+        placeholder="Search Habbos..."
+        type="text"
+      />
+      <div
+        class="flex w-full overflow-hidden"
+        style="max-height: 0px; opacity: 0;"
+      >
+        <div
+          class="p-1 w-full flex-wrap flex"
+        >
+          <h4
+            class="w-full font-semibold dark:text-gray-600"
+          >
+            Filter
+          </h4>
+          <label
+            class="text-xs dark:text-gray-600 flex"
+            for="filter-friends"
+          >
+            <input
+              class="self-center mr-1"
+              id="filter-friends"
+              type="checkbox"
+            />
+            Friends only
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
