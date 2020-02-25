@@ -26,7 +26,10 @@ interface IHeaderProps {
 const Header = (props: IHeaderProps) => {
   const { toggleSidebar, isHomepage } = props;
 
-  const { user, currentHomeTab } = useAppState();
+  /**
+   * Context state and dispatch function.
+   */
+  const { user, currentHomeTab, themeColor } = useAppState();
   const dispatch = useAppDispatch();
 
   const handleTabClick = (tabKey: string) => {
@@ -169,8 +172,9 @@ const Header = (props: IHeaderProps) => {
             }}
           >
             <div
-              className="absolute themeColor h-full tab-indicator"
+              className="absolute h-full tab-indicator"
               style={{
+                backgroundColor: themeColor,
                 left: (100 / homeTabs.length) * getTabPosition() + "%",
                 width: 100 / homeTabs.length + "%"
               }}

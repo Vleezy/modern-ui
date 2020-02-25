@@ -9,6 +9,15 @@ const BottomNavigation = () => {
     { url: `/profile/${user?.username || ""}`, icon: "fas fa-user" },
     { url: "/community", icon: "fas fa-users" }
   ];
+
+  /**
+   * Get current theme color and apply to active nav link.
+   */
+  const { themeColor } = useAppState();
+  const NavLinkActiveStyling = {
+    color: themeColor
+  };
+
   return (
     <Fragment>
       <div className="lg:hidden w-full z-30 fixed bottom-0 flex flex-col ">
@@ -17,7 +26,7 @@ const BottomNavigation = () => {
             <NavLink
               key={page.url}
               to={page.url}
-              activeClassName="text-blue-500"
+              activeStyle={NavLinkActiveStyling}
               className="flex-1 text-center py-2"
             >
               <i className={page.icon} />

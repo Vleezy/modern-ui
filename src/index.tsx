@@ -25,15 +25,6 @@ if (window.localStorage.getItem("dark-theme") === "true") {
   document.documentElement.classList.add("mode-dark");
 }
 
-/**
- * Set theme color
- */
-let themeColor = document.createElement("style");
-themeColor.innerHTML = `.themeColor{ background-color: ${JSON.parse(
-  localStorage.getItem("themeColor") || ""
-)}}`;
-document.head.appendChild(themeColor);
-
 const TARGET_NODE = "root";
 
 const ROOT = document.getElementById(TARGET_NODE) as HTMLElement;

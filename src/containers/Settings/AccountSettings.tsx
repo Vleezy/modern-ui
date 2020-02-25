@@ -1,12 +1,13 @@
 import DefaultModal from "components/layout/Modal/DefaultModal";
-import { useAppState } from "context/app.context";
-import React, { useState, useEffect } from "react";
+import { useAppState, useAppDispatch } from "context/app.context";
+import React, { useState } from "react";
 import MainLayout from "components/layout/MainLayout";
 import { useLocalStorage } from "hooks/useLocalStorage";
 
 const AccountSettings = () => {
   const [colorModalVisible, setColorModalVisible] = useState(true);
   const { user } = useAppState();
+  const dispatch = useAppDispatch();
 
   const themeColors = [
     "#a0aec0",
@@ -23,12 +24,21 @@ const AccountSettings = () => {
 
   const [themeColor, setThemeColor] = useLocalStorage("themeColor", "#ed64a6");
 
+  /**
+   * handleColorClick method handles clicking on colors in the colors modal by updating the theme color and closing the active modal.
+   */
   const handleColorClick = (idx: number) => {
-    setThemeColor(themeColors[idx - 1]);
+    const color = themeColors[idx];
+
+    // Update color in localStorage using setLocalStorage hook.
+    setThemeColor(color);
+
+    // Update current context themeColor using using dispatch.
+    dispatch({ type: "setThemeColor", value: color });
+
+    // Remove modal.
     setColorModalVisible(false);
   };
-
-  useEffect(() => console.log(themeColor), [themeColor]);
 
   return (
     <MainLayout>
@@ -103,7 +113,10 @@ const AccountSettings = () => {
                 className="p-px h-8 self-center mr-4 w-8 rounded border border-gray-400"
                 onClick={() => setColorModalVisible(true)}
               >
-                <div className="w-full themeColor h-full rounded shadow self-center mr-4"></div>
+                <div
+                  className="w-full h-full rounded shadow self-center mr-4"
+                  style={{ backgroundColor: themeColor }}
+                ></div>
               </div>
             </div>
           </div>
