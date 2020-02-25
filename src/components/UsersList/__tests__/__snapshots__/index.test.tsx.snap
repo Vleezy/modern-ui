@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UsersList /> should render the loading indicator if its loading 1`] = `
+<div
+  class="w-20 h-20 bg-center bg-no-repeat mx-auto"
+  id="hovercraft-loading"
+  style="background-image: url(/assets/images/hovercraft.png);"
+/>
+`;
+
+exports[`<UsersList /> should render the users if loading was successful 1`] = `
+<div>
+  <div
+    class="w-full border-b z-0 border-gray-200 flex p-1 dark:border-gray-700"
+  >
+    <div
+      class="relative inline-block"
+    >
+      <a
+        href="/"
+      >
+        <div
+          class="bg-gray-300 flex-none relative z-0 rounded self-center w-12 h-12 bg-no-repeat bg-center dark:bg-gray-700 rounded shadow-inner w-12 h-12 flex-shrink-0 relative"
+          id="profile-pic"
+          style="background-image: url(https://www.habbo.nl/habbo-imaging/avatarimage?figure=); background-position-y: -14px; background-position-x: -9px;"
+        >
+          <div
+            class="absolute h-3 w-3 bg-gray-500 rounded right-0 border-2 border-gray-100 -m-px dark:border-gray-800"
+          />
+        </div>
+      </a>
+    </div>
+    <div
+      class="flex-1 px-1"
+    >
+      <span
+        class="flex w-full justify-between"
+      >
+        <a
+          class="text-blue-700 text-sm font-semibold self-center hover:text-blue-300"
+          href="/"
+        >
+          Chuckie
+        </a>
+        <span
+          class="ml-1 text-xs text-gray-500 self-center dark:text-gray-700"
+        >
+          Online for 2 hours
+        </span>
+      </span>
+      <div
+        class="w-full flex"
+      >
+        <span
+          class="text-xs text-gray-600 leading-tight"
+        >
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, aliquam voluptatem?
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -4,8 +4,13 @@ import { IUser } from "models/user/IUser";
 import FriendlistItem from "components/FriendlistItem";
 import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 
+interface UsersListProps {
+  loading?: boolean;
+  users: IUser[];
+}
+
 const UsersList = (props: UsersListProps) => {
-  const { loading = true, users } = props;
+  const { loading, users } = props;
 
   if (loading) return <HovercraftSpinner />;
 
@@ -21,10 +26,5 @@ const UsersList = (props: UsersListProps) => {
     </>
   );
 };
-
-interface UsersListProps {
-  loading: boolean;
-  users: IUser[];
-}
 
 export default UsersList;
