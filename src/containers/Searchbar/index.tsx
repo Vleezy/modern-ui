@@ -39,6 +39,7 @@ const Searchbar = (props: ISearchbarProps) => {
         </button>
         <input
           type="text"
+          spellCheck="false"
           className="flex-1 py-1 px-1 pb-1 bg-transparent dark:text-gray-600 dark:placeholder-gray-600"
           placeholder="Search Habbos..."
           onFocus={() => {
