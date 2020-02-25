@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar";
 import Backdrop from "../../Backdrop";
 import BottomNavigation from "components/layout/BottomNavigation";
 import Header from "components/layout/Header";
+import Helmet from "react-helmet";
 
 interface IMainLayoutProps {
   headerVisible?: boolean;
@@ -14,28 +15,37 @@ const MainLayout = (props: IMainLayoutProps) => {
   const { headerVisible = true, isHomepage = false, children } = props;
   const [sidebarVisible, setSidebarVisible] = useState(false);
   return (
-    <div id="main-layout">
-      <Sidebar
-        sidebarVisible={sidebarVisible}
-        toggleSidebar={setSidebarVisible}
-      />
-      {sidebarVisible && (
-        <>
-          <Backdrop callback={() => setSidebarVisible(false)} />
-        </>
-      )}
-      {headerVisible && (
-        <Header toggleSidebar={setSidebarVisible} isHomepage={isHomepage} />
-      )}
-      <div className="max-w-4xl mx-auto">
-        <div className="hidden lg:flex w-full p-1 justify-between mt-2 lg:mt-0 rounded">
-          <div></div>
-          <div className="flex justify-end"></div>
+    <>
+      <Helmet>
+        <title>Modern UI</title>
+        <meta
+          name="description"
+          content="This is the description of the app."
+        ></meta>
+      </Helmet>
+      <div id="main-layout">
+        <Sidebar
+          sidebarVisible={sidebarVisible}
+          toggleSidebar={setSidebarVisible}
+        />
+        {sidebarVisible && (
+          <>
+            <Backdrop callback={() => setSidebarVisible(false)} />
+          </>
+        )}
+        {headerVisible && (
+          <Header toggleSidebar={setSidebarVisible} isHomepage={isHomepage} />
+        )}
+        <div className="max-w-4xl mx-auto">
+          <div className="hidden lg:flex w-full p-1 justify-between mt-2 lg:mt-0 rounded">
+            <div></div>
+            <div className="flex justify-end"></div>
+          </div>
+          {children}
         </div>
-        {children}
+        <BottomNavigation />
       </div>
-      <BottomNavigation />
-    </div>
+    </>
   );
 };
 

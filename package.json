@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/helmet": "^0.0.45",
+    "@types/react-helmet": "^5.0.15",
     "@types/react-outside-click-handler": "^1.3.0",
     "autoprefixer": "^9.7.4",
     "lodash": "^4.17.15",

@@ -12,6 +12,7 @@ import { getUsersByUsername } from "api/fakeApi";
 import FriendlistItem from "components/FriendlistItem";
 import UsersList from "components/UsersList";
 import Searchbar from "containers/Searchbar";
+import Helmet from "react-helmet";
 
 const FriendsTab = () => {
   const friends: any[] = [];
@@ -84,12 +85,14 @@ const FriendsTab = () => {
   };
 
   return (
-    <div className="p-2">
-      {/* Search friends */}
+    <article className="p-2">
+      <Helmet>
+        <title>Friends</title>
+      </Helmet>
       <Searchbar onChangeFunc={setUserSearch} />
 
       {renderContent()}
-    </div>
+    </article>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import NewsPreviewItem from "components/NewsPreviewItem";
 import { Link } from "react-router-dom";
+import Helmet from "react-helmet";
 
 const NewsTab = () => {
   const categories = [
@@ -9,7 +10,10 @@ const NewsTab = () => {
     { name: "ROTW", icon: "" }
   ];
   return (
-    <div>
+    <article>
+      <Helmet>
+        <title>News</title>
+      </Helmet>
       <div className="px-2 mt-2">
         <h4 className="text-gray-500 self-center text-xs font-semibold self-center">
           Articles by category
@@ -46,7 +50,7 @@ const NewsTab = () => {
           ))}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
