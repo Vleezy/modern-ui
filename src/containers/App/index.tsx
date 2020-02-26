@@ -37,7 +37,7 @@ export const App: React.FC = () => {
           <Redirect exact path="/" to="/me" />
 
           <Route exact path="/me" component={Me} />
-          <Route path="/community/news/:id" component={NewsArticle} />
+          <Route path="/community/news/:articleId" component={NewsArticle} />
           <Route path="/login" component={Login} />
           <Route path="/profile/:user" component={Profile} />
 
