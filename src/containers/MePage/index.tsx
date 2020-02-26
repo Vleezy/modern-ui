@@ -1,20 +1,29 @@
 import React from "react";
 
-import MainLayout from "components/layout/MainLayout";
-import NewsTab from "../NewsTab";
-
-import FriendsTab from "../FriendsTab";
-import NewsPreviewContainer from "components/NewsPreviewContainer";
 import { useAppState } from "context/app.context";
+import loadable from "utils/loadable";
+
+import MainLayout from "components/layout/MainLayout";
+import NewsPreviewContainer from "components/NewsPreviewContainer";
+import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 
 const Me = () => {
   const { currentHomeTab } = useAppState();
+
   const renderTab = (currentTab: string) => {
     switch (currentTab) {
       case "NEWS":
+        // Lazy load component.
+        const NewsTab = loadable(() => import("../NewsTab"), {
+          fallback: <HovercraftSpinner />
+        });
         return <NewsTab />;
 
       case "FRIENDS":
+        // Lazy load component.
+        const FriendsTab = loadable(() => import("../FriendsTab"), {
+          fallback: <HovercraftSpinner />
+        });
         return <FriendsTab />;
 
       default:
