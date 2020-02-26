@@ -28,7 +28,7 @@ const Searchbar = (props: ISearchbarProps) => {
         setFocused(false);
       }}
     >
-      <div className="flex w-full flex-wrap bg-gray-300 rounded text-sm dark:bg-gray-900">
+      <div className="flex w-full flex-wrap bg-gray-300 rounded text-sm dark:bg-gray-800">
         <button onClick={() => searchField.current.focus()} className="">
           <i
             className={`fas fa-search self-center p-2 text-sm rounded-l ${
