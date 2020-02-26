@@ -5,7 +5,7 @@ import MainLayout from "components/layout/MainLayout";
 import { useLocalStorage } from "hooks/useLocalStorage";
 
 const AccountSettings = () => {
-  const [colorModalVisible, setColorModalVisible] = useState(true);
+  const [colorModalVisible, setColorModalVisible] = useState(false);
   const { user } = useAppState();
   const dispatch = useAppDispatch();
 
@@ -40,6 +40,11 @@ const AccountSettings = () => {
     setColorModalVisible(false);
   };
 
+  /**
+   * Change motto.
+   */
+  const [motto, setMotto] = useState(user?.motto);
+
   return (
     <MainLayout>
       {colorModalVisible && (
@@ -66,38 +71,30 @@ const AccountSettings = () => {
           </div>
         </DefaultModal>
       )}
-      <div className="p-2 w-full">
+
+      <div className="w-full">
+        <div className="p-2">
+          <h1 className="text-xl font-bold text-gray-700">Account Settings</h1>
+          <p className="text-xs text-gray-600">
+            Manage email address and login credentials
+          </p>
+        </div>
+
         <div className="w-full">
-          <div className="bg-white rounded border border-gray-400 flex py-1">
-            <div className="flex mx-2">
-              <div className="h-6 w-6 self-center border border-gray-400 flex justify-center rounded">
-                {/* <i className="fas fa-check self-center text-blue-500 fa-xs"></i> */}
-                <i className="fas fa-times self-center text-red-500 fa-xs"></i>
-              </div>
-            </div>
-            <div className="flex flex-col p-1">
-              <span className="text-gray-500 text-xs">
-                You have not verified your account!
-              </span>
-            </div>
-          </div>
-          <h4 className="text-xs text-gray-500 font-semibold">
-            Account setting
-          </h4>
-          <div className="bg-white rounded border border-gray-400 p-2 mt-1">
-            <div className="relative mt-4">
-              <span
-                className="absolute text-xs text-gray-500"
-                style={{ bottom: "25px" }}
-              >
-                Motto
-              </span>
+          <div className="bg-gray-300 rounded-sm p-2">
+            <h2 className="text-sm text-gray-600 my-1">Motto</h2>
+            <div className="flex rounded bg-gray-100">
               <input
                 type="text"
-                className="bg-transparent border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none text-sm w-full"
+                value={motto}
+                onChange={e => setMotto(e.target.value)}
                 style={{ transition: `border 200ms ease-in-out` }}
-                value={user?.motto}
+                className="w-full rounded-l border border-gray-400 focus:border-blue-500 focus:outline-none p-2 text-xs"
+                placeholder="Write your motto here..."
               />
+              <button className="border-t border-r border-b border-gray-400 rounded-r flex justify-center py-2 px-3 text-gray-600 text-xs">
+                <i className="fas fa-save"></i>
+              </button>
             </div>
             <div className="w-full flex justify-between mt-4">
               <div className="flex flex-col leading-snug">
