@@ -33,19 +33,19 @@ const users = [
   },
   {
     id: 6,
-    username: "User203",
+    username: "frien4",
     look: "hd-205-3.ch-255-1193.lg-280-1208.hr-115-1054.sh-290-62",
     online: false
   },
   {
     id: 7,
-    username: "Yoda",
+    username: "frag",
     look: "hd-205-3.ch-255-1193.lg-280-1208.hr-115-1054.sh-290-62",
     online: false
   },
   {
     id: 8,
-    username: "Modern",
+    username: "Affress1",
     look: "hd-205-3.ch-255-1193.lg-280-1208.hr-115-1054.sh-290-62",
     online: false
   },

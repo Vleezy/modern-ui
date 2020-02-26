@@ -22,7 +22,7 @@ const NewsTab = () => {
           {categories.map((cat, idx) => (
             <div
               key={idx}
-              className={`flex flex-col w-1/3 rounded bg-gray-300 text-gray-500 py-4 text-center ${idx !==
+              className={`flex flex-col w-1/3 rounded bg-gray-300 dark:bg-gray-800 dark:text-gray-600 text-gray-500 py-4 text-center ${idx !==
                 2 && "mr-1"}`}
             >
               <span className="text-xs mb-1">{cat.name}</span>
