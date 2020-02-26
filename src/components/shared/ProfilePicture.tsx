@@ -27,7 +27,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({
     <div
       className={`absolute h-3 w-3 ${
         online ? "bg-green-500" : "bg-gray-500"
-      } rounded right-0 border-2 border-gray-100 -m-px dark:border-gray-800`}
+      } rounded right-0 border-2 border-gray-100 -m-px dark:border-gray-900`}
     />
   );
 

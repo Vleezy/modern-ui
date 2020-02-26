@@ -11,7 +11,6 @@ const Searchbar = (props: ISearchbarProps) => {
   const { onChangeFunc } = props;
 
   const [expanded, setExpanded] = useState(false);
-  const [focused, setFocused] = useState(false);
 
   // Animation styles for search bar using React Spring
   const searchExpandAnim = useSpring({
@@ -22,18 +21,11 @@ const Searchbar = (props: ISearchbarProps) => {
   const searchField = useRef() as MutableRefObject<HTMLInputElement>;
 
   return (
-    <OutsideClickHandler
-      onOutsideClick={() => {
-        setExpanded(false);
-        setFocused(false);
-      }}
-    >
-      <div className="flex w-full flex-wrap bg-gray-300 rounded text-sm dark:bg-gray-900">
-        <button onClick={() => searchField.current.focus()} className="">
+    <OutsideClickHandler onOutsideClick={() => setExpanded(false)}>
+      <div className="flex w-full flex-wrap bg-gray-300 rounded text-sm dark:bg-gray-800">
+        <button onClick={() => searchField.current.focus()}>
           <i
-            className={`fas fa-search self-center p-2 text-sm rounded-l ${
-              focused ? "text-blue-500" : "text-gray-500"
-            }`}
+            className="fas fa-search self-center p-2 text-sm rounded-l text-gray-500"
             style={{ transition: "color 350ms" }}
           />
         </button>
@@ -42,10 +34,7 @@ const Searchbar = (props: ISearchbarProps) => {
           spellCheck="false"
           className="flex-1 py-1 px-1 pb-1 bg-transparent dark:text-gray-600 dark:placeholder-gray-600"
           placeholder="Search Habbos..."
-          onFocus={() => {
-            setExpanded(true);
-            setFocused(true);
-          }}
+          onFocus={() => setExpanded(true)}
           onChange={e => onChangeFunc(e.target.value)}
           ref={searchField}
         />
