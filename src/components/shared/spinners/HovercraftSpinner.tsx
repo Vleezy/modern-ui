@@ -1,12 +1,23 @@
 import React from "react";
 
-const HovercraftSpinner = () => {
+interface IHovercraftSpinnerProps {
+  text?: string;
+}
+const HovercraftSpinner = (props: IHovercraftSpinnerProps) => {
+  const { text } = props;
+
   return (
     <div
-      className="w-20 h-20 bg-center bg-no-repeat mx-auto"
+      className="w-20 h-20 bg-center bg-no-repeat mx-auto flex justify-center"
       style={{ backgroundImage: `url(/assets/images/hovercraft.png)` }}
       id="hovercraft-loading"
-    ></div>
+    >
+      {text && (
+        <p className="bottom-0 mt-auto text-center whitespace-no-wrap text-gray-500 text-xs">
+          {text}
+        </p>
+      )}
+    </div>
   );
 };
 

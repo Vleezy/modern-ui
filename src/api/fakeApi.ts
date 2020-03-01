@@ -1,6 +1,7 @@
 import { IArticle } from "./../models/user/IArticle";
 import { IUser } from "models/user/IUser";
 import { IArticleComment } from "models/user/IArticleComment";
+import { rejects } from "assert";
 
 const users: IUser[] = [
   {
@@ -103,7 +104,7 @@ const newsComments: IArticleComment[] = [
     id: 1,
     article_id: 2,
     created_by: 2,
-    comment: "This article is great!!"
+    comment: "This @Chuckie article @Reis is great!!"
   },
   {
     id: 2,
@@ -116,13 +117,13 @@ const newsComments: IArticleComment[] = [
     id: 3,
     article_id: 2,
     created_by: 2,
-    comment: "This article is great!!"
+    comment: "@Chuckie check this out"
   },
   {
     id: 4,
     article_id: 2,
     created_by: 2,
-    comment: "This article is great!!"
+    comment: "This user does not exist - @Tuuutujeiur"
   },
   {
     id: 5,
@@ -140,11 +141,13 @@ const newsComments: IArticleComment[] = [
 
 export const getArticleComments = (articleId: number) => {
   return new Promise<IArticleComment[]>(resolve => {
+    console.log("fetching comments...");
     setTimeout(() => {
       resolve(newsComments.filter(comment => comment.article_id === articleId));
     }, 2000);
   });
 };
+
 /**
  *
  */
@@ -167,7 +170,7 @@ export const getUsersByUsername = (username: string) => {
           user.username.toLowerCase().includes(username.toLowerCase())
         )
       );
-    }, 2000);
+    }, 2);
   });
 };
 
@@ -178,6 +181,21 @@ export const getUserById = (id: number) => {
   return new Promise<IUser>(resolve => {
     setTimeout(() => {
       resolve(users.find(user => user.id === id));
+    }, 2000);
+  });
+};
+
+/**
+ * Returns a single user object from user username.
+ */
+export const getUserByUsername = (username: string) => {
+  return new Promise<IUser>((resolve, reject) => {
+    setTimeout(() => {
+      if (users.find(user => user.username === username)) {
+        resolve(users.find(user => user.username === username));
+      } else {
+        reject("user not found");
+      }
     }, 2000);
   });
 };

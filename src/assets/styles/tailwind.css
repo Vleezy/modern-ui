@@ -2,6 +2,24 @@
 
 @tailwind components;
 
+.comment-input {
+  &--multiLine {
+    @apply border border-gray-400 rounded bg-white p-1 text-xs text-gray-700 h-20;
+  }
+
+  &__input {
+    @apply p-1;
+  }
+
+  &__suggestions__item {
+    @apply p-1;
+  }
+
+  &__suggestions__list {
+    @apply bg-white border border-gray-400 rounded-sm shadow-lg;
+  }
+}
+
 #hovercraft-loading {
   -webkit-animation: hovercraft-loading 1s ease infinite,
     hovercraft-fadein 400ms ease;
@@ -16,6 +34,7 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -25,9 +44,11 @@
   0% {
     background-position-y: center;
   }
+
   50% {
     background-position-y: 8px;
   }
+
   100% {
     background-position-y: center;
   }
@@ -60,16 +81,20 @@ input:checked ~ .toggle__dot {
 .sidebar-enter {
   @apply w-0;
 }
+
 .sidebar-enter-active {
   @apply w-2/3;
   transition: width 200ms ease-in-out;
 }
+
 .sidebar-enter-done {
   @apply w-2/3;
 }
+
 .sidebar-exit {
   @apply w-2/3;
 }
+
 .sidebar-exit-active {
   @apply w-0;
   transition: width 200ms ease-in-out;
@@ -78,16 +103,20 @@ input:checked ~ .toggle__dot {
 .header__content-enter {
   max-height: 0;
 }
+
 .header__content-enter-active {
   max-height: 6rem;
   transition: max-height 400ms ease-in-out;
 }
+
 .header__content-enter-done {
   max-height: 6rem;
 }
+
 .header__content-exit {
   max-height: 6rem;
 }
+
 .header__content-exit-active {
   max-height: 0;
   transition: max-height 400ms ease-in-out;
@@ -135,6 +164,7 @@ input:checked ~ .toggle__dot {
   border-width: 6px;
   margin-left: -6px;
 }
+
 .user-hovercard:before {
   border-color: rgba(203, 213, 224, 0);
   border-top-color: #cbd5e0;

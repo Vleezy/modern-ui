@@ -2,22 +2,29 @@ import React, { useState, useEffect } from "react";
 
 import { IArticle } from "models/user/IArticle";
 import { useHistory, useParams } from "react-router-dom";
-import { getArticleById, getUserById } from "api/fakeApi";
+import {
+  getArticleById,
+  getUserById,
+  getArticleComments,
+  getUsersByUsername
+} from "api/fakeApi";
 import moment from "moment";
+import { IUser } from "models/user/IUser";
+import { IArticleComment } from "models/user/IArticleComment";
 
-import NewsComment from "components/NewsComment";
+import Comment from "components/Comment";
 import MainLayout from "components/layout/MainLayout";
 import ProfilePicture from "components/shared/ProfilePicture";
 import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
-import { IUser } from "models/user/IUser";
-import { IArticleComment } from "models/user/IArticleComment";
+
+import { MentionsInput, Mention } from "react-mentions";
 
 const NewsArticle = () => {
   const history = useHistory();
   const { articleId } = useParams();
 
   /**
-   * Control view (article/comments).
+   * Control views (article/comments).
    */
   type ViewKeys = "ARTICLE" | "COMMENTS";
   interface IViews {
@@ -30,7 +37,23 @@ const NewsArticle = () => {
     { name: "Comments", key: "COMMENTS" }
   ];
 
-  const [currentView, setCurrentView] = useState<ViewKeys>("ARTICLE");
+  const DEFAULT_VIEW: ViewKeys = "COMMENTS";
+  const [currentView, setCurrentView] = useState<ViewKeys>(DEFAULT_VIEW);
+
+  /**
+   * Comment input.
+   */
+
+  const [commentInput, setCommentInput] = useState("");
+
+  // Fetch users for react-mentions and make it compatible with its API.
+  const fetchUsers = (query: string, callback: any) => {
+    if (!query) return;
+
+    getUsersByUsername(query)
+      .then(res => res.map(user => ({ display: user.username, id: user.id })))
+      .then(callback);
+  };
 
   /**
    * Fetching and api stuff.
@@ -42,11 +65,12 @@ const NewsArticle = () => {
   const [author, setAuthor] = useState<IUser>();
 
   const [commentsLoading, setCommentsLoading] = useState(true);
-  const [comments, setComemnts] = useState<IArticleComment[]>();
+  const [comments, setComments] = useState<IArticleComment[]>([]);
 
   useEffect(() => {
     (async () => {
-      const fArticle = await getArticleById(parseInt(articleId || "0"));
+      const ARTICLE_ID: number = parseInt(articleId || "");
+      const fArticle = await getArticleById(ARTICLE_ID);
       setArticle(fArticle);
       setArticleLoading(false);
 
@@ -55,6 +79,10 @@ const NewsArticle = () => {
       const fAuthor = await getUserById(fArticle.created_by);
       setAuthor(fAuthor);
       setAuthorLoading(false);
+
+      const fComments = await getArticleComments(ARTICLE_ID);
+      setComments(fComments);
+      setCommentsLoading(false);
     })();
   }, [articleId]);
 
@@ -82,24 +110,23 @@ const NewsArticle = () => {
           </div>
           <div className="flex"></div>
         </div>
-        <div className="flex flex-col p-4">
+        <div className="flex flex-col px-4">
           <h1 className="text-white text-2xl font-semibold">{article.title}</h1>
           <span className="text-xs opacity-50 text-white">
             Events | {moment(article.created_at).calendar()}
           </span>
         </div>
-      </div>
-
-      <div className="flex justify-between rounded mx-2 my-1">
-        {views.map(view => (
-          <button
-            className={`px-4 py-1 text-sm text-gray-500 w-1/2 rounded ${view.key ===
-              currentView && "text-gray-500 bg-gray-400"}`}
-            onClick={() => setCurrentView(view.key)}
-          >
-            {view.name}
-          </button>
-        ))}
+        <div className="flex justify-between rounded">
+          {views.map(view => (
+            <button
+              className={`px-4 py-1 text-sm text-gray-500 w-1/2 rounded ${view.key ===
+                currentView && "text-gray-500"}`}
+              onClick={() => setCurrentView(view.key)}
+            >
+              {view.name}
+            </button>
+          ))}
+        </div>
       </div>
 
       {currentView === "ARTICLE" && (
@@ -151,7 +178,33 @@ const NewsArticle = () => {
           </div>
         </>
       )}
-      {currentView === "COMMENTS" && <div>Comments</div>}
+      {currentView === "COMMENTS" && (
+        <div className="p-2 flex flex-col">
+          <MentionsInput
+            className="comment-input"
+            value={commentInput}
+            onChange={e => setCommentInput(e.target.value)}
+            spellCheck={false}
+            placeholder="Your comment ..."
+          >
+            <Mention
+              trigger="@"
+              data={fetchUsers}
+              className="bg-blue-200 rounded-sm"
+            />
+          </MentionsInput>
+
+          {commentsLoading ? (
+            <HovercraftSpinner text="Fetching comments..." />
+          ) : (
+            <div className="bg-white border border-gray-400 rounded dark:bg-gray-800 dark:border-gray-700 mt-2">
+              {comments.map(comment => (
+                <Comment mentionable comment={comment} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </MainLayout>
   );
 };
