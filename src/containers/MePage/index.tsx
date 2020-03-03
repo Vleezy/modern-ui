@@ -26,6 +26,12 @@ const Me = () => {
         });
         return <FriendsTab />;
 
+      case "BADGES":
+        const BadgesTab = loadable(() => import("../BadgesTab"), {
+          fallback: <HovercraftSpinner />
+        });
+        return <BadgesTab />;
+
       default:
         break;
     }
