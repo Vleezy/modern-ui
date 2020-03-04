@@ -58,19 +58,6 @@ const Header = (props: IHeaderProps) => {
     return homeTabs.map(t => t.key).indexOf(currentHomeTab);
   };
 
-  React.useEffect(() => console.log(getTabPosition()), [currentHomeTab]);
-
-  const subPages = [
-    { url: "/me", name: "Home", icon: "fas fa-home" },
-    {
-      url: "/profile/" + user?.username || "",
-      name: "My Profile",
-      icon: "fas fa-user"
-    },
-    { url: "/community", name: "Community", icon: "fas fa-users" },
-    { url: "help", name: "Help", icon: "fas fa-question-circle" }
-  ];
-
   const isScrolled = useCollapseOnScroll();
 
   const isCollapsed = !isHomepage || isScrolled;
