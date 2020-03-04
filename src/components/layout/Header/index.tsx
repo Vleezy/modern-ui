@@ -16,6 +16,7 @@ import { setHomeTab } from "context/app.actions";
  */
 import HeaderDropDown from "../HeaderDropDown";
 import ProfilePicture from "components/shared/ProfilePicture";
+import Navbar from "../Navbar";
 
 interface IHeaderProps {
   toggleSidebar: (visible: boolean) => void;
@@ -78,10 +79,7 @@ const Header = (props: IHeaderProps) => {
     <div className={`w-full sticky top-0 z-10`}>
       <div
         className="w-full lg:h-24 bg-blue-200 bg-center shadow lg:shadow-none dark:border-gray-700"
-        // style={isDayTime() ? headerBackground.day : headerBackground.night}
-        style={merge(
-          isDayTime() ? headerBackground.day : headerBackground.night
-        )}
+        style={isDayTime() ? headerBackground.day : headerBackground.night}
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
           <div className="w-full flex justify-between">
@@ -185,44 +183,7 @@ const Header = (props: IHeaderProps) => {
         )}
       </div>
 
-      {/* Subnav (:lg screens) */}
-      <div className="w-full bg-surface-primary border-b border-border-primary py-1 hidden lg:block">
-        <div className="max-w-4xl mx-auto">
-          <nav className="w-full flex text-xs font-semibold text-gray-500">
-            <div className="flex flex-1 text-on-brand">
-              {subPages.map(page => (
-                <NavLink
-                  to={page.url}
-                  key={page.name}
-                  activeClassName="text-brand"
-                  className="py-2 px-4 rounded hover:bg-gray-200 dark-hover:bg-gray-700"
-                >
-                  {page.icon && (
-                    <i className={` ${page.icon} mr-2 text-brand`}></i>
-                  )}
-                  {page.name}
-                </NavLink>
-              ))}
-            </div>
-
-            {/* Show login button if guest */}
-            <div className="flex">
-              <NavLink
-                to="#"
-                className="py-2 px-4 rounded hover:bg-gray-100 bg-fade"
-              >
-                Sign up
-              </NavLink>
-              <NavLink
-                to="#"
-                className="py-2 px-4 text-white rounded hover:bg-blue-600 bg-blue-400 mr-1"
-              >
-                Login
-              </NavLink>
-            </div>
-          </nav>
-        </div>
-      </div>
+      <Navbar />
     </div>
   );
 };
