@@ -139,12 +139,14 @@ const newsComments: IArticleComment[] = [
   }
 ];
 
+const LOAD_TIME = 2000;
+
 export const getArticleComments = (articleId: number) => {
   return new Promise<IArticleComment[]>(resolve => {
     console.log("fetching comments...");
     setTimeout(() => {
       resolve(newsComments.filter(comment => comment.article_id === articleId));
-    }, 2000);
+    }, LOAD_TIME);
   });
 };
 
@@ -155,7 +157,7 @@ export const getArticleById = (id: number) => {
   return new Promise<IArticle>(resolve => {
     setTimeout(() => {
       resolve(articles.find(article => article.id === id));
-    }, 2);
+    }, LOAD_TIME);
   });
 };
 
@@ -170,7 +172,7 @@ export const getUsersByUsername = (username: string) => {
           user.username.toLowerCase().includes(username.toLowerCase())
         )
       );
-    }, 2);
+    }, LOAD_TIME);
   });
 };
 
@@ -181,7 +183,7 @@ export const getUserById = (id: number) => {
   return new Promise<IUser>(resolve => {
     setTimeout(() => {
       resolve(users.find(user => user.id === id));
-    }, 2000);
+    }, LOAD_TIME);
   });
 };
 
@@ -196,7 +198,7 @@ export const getUserByUsername = (username: string) => {
       } else {
         reject("user not found");
       }
-    }, 2000);
+    }, LOAD_TIME);
   });
 };
 
