@@ -6,7 +6,6 @@ import { Link, NavLink } from "react-router-dom";
  */
 
 import isDayTime from "utils/isDayTime";
-import { merge } from "lodash";
 import { useCollapseOnScroll } from "hooks/useCollapseOnScroll";
 import { useAppState, useAppDispatch } from "context/app.context";
 import { setHomeTab } from "context/app.actions";
