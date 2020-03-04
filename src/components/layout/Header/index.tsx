@@ -5,12 +5,11 @@ import { Link, NavLink } from "react-router-dom";
  * Dependencies
  */
 
+import isDayTime from "utils/isDayTime";
 import { merge } from "lodash";
 import { useCollapseOnScroll } from "hooks/useCollapseOnScroll";
-import isDayTime from "utils/isDayTime";
 import { useAppState, useAppDispatch } from "context/app.context";
 import { setHomeTab } from "context/app.actions";
-import { findIndex } from "lodash";
 
 /**
  * Components
@@ -26,12 +25,11 @@ interface IHeaderProps {
 const Header = (props: IHeaderProps) => {
   const { toggleSidebar, isHomepage } = props;
 
-  /**
-   * Context state and dispatch function.
-   */
+  // Context state and dispath function.
   const { user, currentHomeTab, themeColor } = useAppState();
   const dispatch = useAppDispatch();
 
+  // Set home tab in app context when changed.
   const handleTabClick = (tabKey: string) => {
     dispatch(setHomeTab(tabKey));
   };
@@ -53,9 +51,13 @@ const Header = (props: IHeaderProps) => {
     { url: "/me/badges", name: "Badges", key: "BADGES" }
   ];
 
-  const getTabPosition = () => {
-    return findIndex(homeTabs, n => n.key === currentHomeTab);
+  const getTabPosition = (): number => {
+    if (!currentHomeTab) return 0;
+
+    return homeTabs.map(t => t.key).indexOf(currentHomeTab);
   };
+
+  React.useEffect(() => console.log(getTabPosition()), [currentHomeTab]);
 
   const subPages = [
     { url: "/me", name: "Home", icon: "fas fa-home" },
