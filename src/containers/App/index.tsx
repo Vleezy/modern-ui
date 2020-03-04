@@ -17,7 +17,7 @@ import * as AppActions from "../../context/app.actions";
  */
 import Me from "containers/MePage/Loadable";
 import NewsArticle from "containers/NewsArticle";
-import Login from "containers/Login/Login copy";
+import Login from "containers/Login";
 import Profile from "containers/Profile";
 import Settings from "containers/Settings/Settings";
 import AccountSettings from "containers/Settings/AccountSettings";
