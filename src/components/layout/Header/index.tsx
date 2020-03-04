@@ -134,38 +134,39 @@ const Header = (props: IHeaderProps) => {
         )}
 
         {/* Tabs */}
-        <div
-          className={`${
-            isCollapsed ? `mt-0` : `mt-8`
-          }  lg:hidden flex mb-0 justify-between`}
-        >
-          {isHomepage &&
-            homeTabs.map(page => (
-              <button
-                key={page.key}
-                onClick={() => handleTabClick(page.key)}
-                className="font-semibold text-white text-center flex-1 border-b-2 border-transparent focus:outline-none"
-              >
-                {page.name}
-              </button>
-            ))}
-        </div>
         {isHomepage && (
-          <div
-            className="w-full relative lg:hidden bg-fadedwhite-200 dark:bg-fadedblack-300"
-            style={{
-              height: "2px"
-            }}
-          >
+          <>
             <div
-              className="absolute h-full tab-indicator"
+              className={`${
+                isCollapsed ? `mt-0` : `mt-8`
+              }  lg:hidden flex mb-0 justify-between`}
+            >
+              {homeTabs.map(page => (
+                <button
+                  key={page.key}
+                  onClick={() => handleTabClick(page.key)}
+                  className="font-semibold text-white text-center flex-1 border-b-2 border-transparent focus:outline-none"
+                >
+                  {page.name}
+                </button>
+              ))}
+            </div>
+            <div
+              className="w-full relative lg:hidden bg-fadedwhite-200 dark:bg-fadedblack-300"
               style={{
-                backgroundColor: themeColor,
-                left: (100 / homeTabs.length) * getTabPosition() + "%",
-                width: 100 / homeTabs.length + "%"
+                height: "2px"
               }}
-            ></div>
-          </div>
+            >
+              <div
+                className="absolute h-full tab-indicator"
+                style={{
+                  backgroundColor: themeColor,
+                  left: (100 / homeTabs.length) * getTabPosition() + "%",
+                  width: 100 / homeTabs.length + "%"
+                }}
+              />
+            </div>
+          </>
         )}
       </div>
 

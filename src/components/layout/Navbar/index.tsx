@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useAppState } from "context/app.context";
 
 const Navbar = () => {
-  // Get user from context.
-  const { user } = useAppState();
+  // Get user and theme color from context.
+  const { user, themeColor } = useAppState();
 
   // Subpages to be rendered as links in the navbar.
   const subPages = [
@@ -19,7 +19,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="w-full bg-gray-100 border-b border-gray-400 py-1 hidden lg:block">
+    <div className="w-full bg-gray-100 border-b dark:border-gray-700 border-gray-400 py-1 hidden lg:block dark:bg-gray-800">
       <div className="max-w-4xl mx-auto">
         <nav className="w-full flex text-xs font-semibold text-gray-500">
           <div className="flex flex-1 text-on-brand">
@@ -27,13 +27,18 @@ const Navbar = () => {
               <NavLink
                 to={page.url}
                 key={page.name}
-                activeClassName="text-brand"
-                className="py-2 px-4 rounded hover:bg-gray-200 dark-hover:bg-gray-700"
+                activeStyle={{ color: themeColor }}
+                className="py-2 px-4 rounded hover:bg-gray-200 dark-hover:bg-gray-700 flex"
               >
                 {page.icon && (
-                  <i className={` ${page.icon} mr-2 text-brand`}></i>
+                  <i
+                    className={` ${page.icon} mr-2 text-brand self-center`}
+                  ></i>
                 )}
-                {page.name}
+                <div className="flex flex-col self-center">
+                  {page.name}
+                  {/* {page.name === "Community" && <div>News</div>} */}
+                </div>
               </NavLink>
             ))}
           </div>

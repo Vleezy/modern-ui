@@ -139,7 +139,7 @@ const newsComments: IArticleComment[] = [
   }
 ];
 
-const LOAD_TIME = 2000;
+const LOAD_TIME = 200;
 
 export const getArticleComments = (articleId: number) => {
   return new Promise<IArticleComment[]>(resolve => {

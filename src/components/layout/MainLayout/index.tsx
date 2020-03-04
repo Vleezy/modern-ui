@@ -36,7 +36,7 @@ const MainLayout = (props: IMainLayoutProps) => {
         {headerVisible && (
           <Header toggleSidebar={setSidebarVisible} isHomepage={isHomepage} />
         )}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto flex flex-col">
           <div className="hidden lg:flex w-full p-1 justify-between mt-2 lg:mt-0 rounded">
             <div></div>
             <div className="flex justify-end"></div>
