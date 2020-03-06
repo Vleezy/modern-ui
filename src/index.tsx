@@ -17,9 +17,7 @@ import { ToastProvider } from "react-toast-notifications";
  */
 import "./assets/styles/index.css";
 
-/**
- * Set dark mode
- */
+// Apply 'dark-theme' class to the HTML document if dark mode is enabled.
 if (window.localStorage.getItem("dark-theme") === "true") {
   document.documentElement.classList.add("mode-dark");
 }
