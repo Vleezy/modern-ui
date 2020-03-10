@@ -66,11 +66,11 @@
   transition: all 0.2s ease-in-out;
 }
 
-input:checked ~ .toggle__line {
+input:checked~.toggle__line {
   @apply bg-blue-500;
 }
 
-input:checked ~ .toggle__dot {
+input:checked~.toggle__dot {
   transform: translateX(100%);
 }
 

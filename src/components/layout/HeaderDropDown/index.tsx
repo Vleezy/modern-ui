@@ -24,7 +24,7 @@ const HeaderDropDown = () => {
 
   return (
     <div
-      className="hover:bg-bg-primary-100  rounded relative inline-block w-32"
+      className="hover:bg-fadedwhite-100 rounded relative inline-block w-32"
       onMouseEnter={() => setVisible(!visible)}
       onMouseLeave={() => setVisible(!visible)}
     >
@@ -44,7 +44,7 @@ const HeaderDropDown = () => {
               style={{ transition: "100ms" }}
               className={`${
                 visible ? "h-2" : "h-0"
-              } overflow-hidden flex justify-center`}
+              } overflow-hidden flex justify-center text-white`}
             >
               <i
                 className={`fas fa-caret-down self-center text-xs text-white-500`}
@@ -55,10 +55,10 @@ const HeaderDropDown = () => {
       </div>
       {visible && (
         <div className="absolute w-40 right-0">
-          <div className="bg-surface-primary mt-2 px-1 flex shadow-lg flex-col w-full rounded border border-bd-primary dark:bg-gray-800 dark:border-gray-700">
-            <div className="flex flex-col text-xs border-b border-bd-primary-500 p-1">
-              <span className="text-on-bg-primary">Logged in as</span>
-              <span className="font-semibold text-on-bg-primary-800">
+          <div className="bg-white mt-2 px-1 flex shadow-lg flex-col w-full rounded border border-gray-400 dark:bg-gray-800 dark:border-gray-700">
+            <div className="flex flex-col text-xs border-b border-gray-400 p-1">
+              <span className="text-gray-500">Logged in as</span>
+              <span className="font-semibold text-gray-600">
                 {user?.username}
               </span>
             </div>

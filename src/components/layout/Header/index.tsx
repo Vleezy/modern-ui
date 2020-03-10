@@ -5,18 +5,17 @@ import { Link, NavLink } from "react-router-dom";
  * Dependencies
  */
 
-import { merge } from "lodash";
-import { useCollapseOnScroll } from "hooks/useCollapseOnScroll";
 import isDayTime from "utils/isDayTime";
+import { useCollapseOnScroll } from "hooks/useCollapseOnScroll";
 import { useAppState, useAppDispatch } from "context/app.context";
 import { setHomeTab } from "context/app.actions";
-import { findIndex } from "lodash";
 
 /**
  * Components
  */
 import HeaderDropDown from "../HeaderDropDown";
 import ProfilePicture from "components/shared/ProfilePicture";
+import Navbar from "../Navbar";
 
 interface IHeaderProps {
   toggleSidebar: (visible: boolean) => void;
@@ -26,12 +25,11 @@ interface IHeaderProps {
 const Header = (props: IHeaderProps) => {
   const { toggleSidebar, isHomepage } = props;
 
-  /**
-   * Context state and dispatch function.
-   */
+  // Context state and dispath function.
   const { user, currentHomeTab, themeColor } = useAppState();
   const dispatch = useAppDispatch();
 
+  // Set home tab in app context when changed.
   const handleTabClick = (tabKey: string) => {
     dispatch(setHomeTab(tabKey));
   };
@@ -53,20 +51,11 @@ const Header = (props: IHeaderProps) => {
     { url: "/me/badges", name: "Badges", key: "BADGES" }
   ];
 
-  const getTabPosition = () => {
-    return findIndex(homeTabs, n => n.key === currentHomeTab);
-  };
+  const getTabPosition = (): number => {
+    if (!currentHomeTab) return 0;
 
-  const subPages = [
-    { url: "/me", name: "Home", icon: "fas fa-home" },
-    {
-      url: "/profile/" + user?.username || "",
-      name: "My Profile",
-      icon: "fas fa-user"
-    },
-    { url: "/community", name: "Community", icon: "fas fa-users" },
-    { url: "help", name: "Help", icon: "fas fa-question-circle" }
-  ];
+    return homeTabs.map(t => t.key).indexOf(currentHomeTab);
+  };
 
   const isScrolled = useCollapseOnScroll();
 
@@ -76,10 +65,7 @@ const Header = (props: IHeaderProps) => {
     <div className={`w-full sticky top-0 z-10`}>
       <div
         className="w-full lg:h-24 bg-blue-200 bg-center shadow lg:shadow-none dark:border-gray-700"
-        // style={isDayTime() ? headerBackground.day : headerBackground.night}
-        style={merge(
-          isDayTime() ? headerBackground.day : headerBackground.night
-        )}
+        style={isDayTime() ? headerBackground.day : headerBackground.night}
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
           <div className="w-full flex justify-between">
@@ -148,79 +134,43 @@ const Header = (props: IHeaderProps) => {
         )}
 
         {/* Tabs */}
-        <div
-          className={`${
-            isCollapsed ? `mt-0` : `mt-8`
-          }  lg:hidden flex mb-0 justify-between`}
-        >
-          {isHomepage &&
-            homeTabs.map(page => (
-              <button
-                key={page.key}
-                onClick={() => handleTabClick(page.key)}
-                className="font-semibold text-white text-center flex-1 border-b-2 border-transparent focus:outline-none"
-              >
-                {page.name}
-              </button>
-            ))}
-        </div>
         {isHomepage && (
-          <div
-            className="w-full relative lg:hidden bg-fadedwhite-200 dark:bg-fadedblack-300"
-            style={{
-              height: "2px"
-            }}
-          >
+          <>
             <div
-              className="absolute h-full tab-indicator"
+              className={`${
+                isCollapsed ? `mt-0` : `mt-8`
+              }  lg:hidden flex mb-0 justify-between`}
+            >
+              {homeTabs.map(page => (
+                <button
+                  key={page.key}
+                  onClick={() => handleTabClick(page.key)}
+                  className="font-semibold text-white text-center flex-1 border-b-2 border-transparent focus:outline-none"
+                >
+                  {page.name}
+                </button>
+              ))}
+            </div>
+            <div
+              className="w-full relative lg:hidden bg-fadedwhite-200 dark:bg-fadedblack-300"
               style={{
-                backgroundColor: themeColor,
-                left: (100 / homeTabs.length) * getTabPosition() + "%",
-                width: 100 / homeTabs.length + "%"
+                height: "2px"
               }}
-            ></div>
-          </div>
+            >
+              <div
+                className="absolute h-full tab-indicator"
+                style={{
+                  backgroundColor: themeColor,
+                  left: (100 / homeTabs.length) * getTabPosition() + "%",
+                  width: 100 / homeTabs.length + "%"
+                }}
+              />
+            </div>
+          </>
         )}
       </div>
 
-      {/* Subnav (:lg screens) */}
-      <div className="w-full bg-surface-primary border-b border-border-primary py-1 hidden lg:block">
-        <div className="max-w-4xl mx-auto">
-          <nav className="w-full flex text-xs font-semibold text-gray-500">
-            <div className="flex flex-1 text-on-brand">
-              {subPages.map(page => (
-                <NavLink
-                  to={page.url}
-                  key={page.name}
-                  activeClassName="text-brand"
-                  className="py-2 px-4 rounded hover:bg-gray-200 dark-hover:bg-gray-700"
-                >
-                  {page.icon && (
-                    <i className={` ${page.icon} mr-2 text-brand`}></i>
-                  )}
-                  {page.name}
-                </NavLink>
-              ))}
-            </div>
-
-            {/* Show login button if guest */}
-            <div className="flex">
-              <NavLink
-                to="#"
-                className="py-2 px-4 rounded hover:bg-gray-100 bg-fade"
-              >
-                Sign up
-              </NavLink>
-              <NavLink
-                to="#"
-                className="py-2 px-4 text-white rounded hover:bg-blue-600 bg-blue-400 mr-1"
-              >
-                Login
-              </NavLink>
-            </div>
-          </nav>
-        </div>
-      </div>
+      <Navbar />
     </div>
   );
 };
