@@ -8,6 +8,7 @@ import {
   getArticleComments,
   getUsersByUsername
 } from "api/fakeApi";
+
 import moment from "moment";
 import { IUser } from "models/user/IUser";
 import { IArticleComment } from "models/user/IArticleComment";
@@ -87,6 +88,8 @@ const NewsArticle = () => {
     })();
   }, [articleId]);
 
+  const [articleListExpanded, setArticleListExpanded] = useState<boolean>(true);
+
   // Show spinner if article data is loading.
   if (articleLoading) {
     return <HovercraftSpinner />;
@@ -99,26 +102,45 @@ const NewsArticle = () => {
     <MainLayout>
       <div className="flex">
         {/* Article list */}
-        <div className="w-1/5 bg-blue-200 hidden lg:flex self-start mr-1">
+        <div className="hidden lg:flex flex-col self-start mr-1">
+          <div
+            className={`rounded bg-gray-300 flex justify-between p-1 ${articleListExpanded &&
+              "w-40"} `}
+          >
+            {articleListExpanded && (
+              <h4 className="text-gray-500 self-center text-center text-xs font-normal">
+                More articles
+              </h4>
+            )}
+            <button
+              className="flex justify-center rounded w-6 h-6 p-1 hover:bg-blue-200"
+              onClick={() => setArticleListExpanded(!articleListExpanded)}
+            >
+              <i
+                className={`self-center fas ${
+                  articleListExpanded ? "fa-chevron-left" : "fa-chevron-right"
+                } text-xs text-gray-500`}
+              />
+            </button>
+          </div>
           Test
         </div>
 
-        <div className="w-full lg:w-4/5">
+        <div className="w-full">
           <div
-            className="h-40 flex flex-col justify-between bg-center border-b-2 dark:border-gray-800 border-gray-400 w-full"
+            className="h-40 lg:h-24 flex flex-col justify-between bg-center border-b-2 dark:border-gray-800 border-gray-400 w-full lg:rounded"
             style={{
               backgroundImage: `url(/assets/images/news_images/${article.image})`
             }}
           >
-            <div className="flex justify-between text-white p-2">
+            <div className="flex lg:hidden text-white p-2">
               <div>
                 <button onClick={() => history.goBack()} className="h-8 w-8">
                   <i className="fas fa-chevron-left"></i>
                 </button>
               </div>
-              <div className="flex"></div>
             </div>
-            <div className="flex flex-col px-4">
+            <div className="flex flex-col px-4 lg:mt-4">
               <h1 className="text-white text-2xl font-semibold">
                 {article.title}
               </h1>
@@ -126,11 +148,11 @@ const NewsArticle = () => {
                 Events | {moment(article.created_at).calendar()}
               </span>
             </div>
-            <div className="flex justify-between rounded">
+            <div className="flex justify-between rounded lg:hidden mb-1 mx-1">
               {views.map(view => (
                 <button
-                  className={`px-4 py-1 text-sm text-gray-500 w-1/2 rounded ${view.key ===
-                    currentView && "text-gray-500"}`}
+                  className={`px-4 py-1 text-sm text-white w-1/2 rounded ${view.key ===
+                    currentView && "bg-fadedwhite-400"}`}
                   onClick={() => setCurrentView(view.key)}
                 >
                   {view.name}
@@ -138,42 +160,42 @@ const NewsArticle = () => {
               ))}
             </div>
           </div>
-          {currentView === "ARTICLE" && (
-            <>
-              <div className="px-2">
-                <div className=" my-2">
-                  <div className="w-full flex flex-wrap justify-between">
-                    <div className="flex">
-                      <ProfilePicture
-                        figure={author?.look}
-                        online={author?.online}
-                        styles="bg-gray-200"
-                      />
-                      <div className="flex flex-col leading-snug text-gray-700 px-2 self-center">
-                        <span className="text-blue-700 text-sm font-semibold flex">
-                          {author?.username}
-                        </span>
-                        <span className="text-gray-500 text-xs">
-                          Hotel Admin
-                        </span>
-                      </div>
+          <div
+            className={`${
+              currentView === "ARTICLE" ? "flex" : "hidden lg:flex"
+            }`}
+          >
+            <div className="px-2 lg:px-0">
+              <div className=" my-2">
+                <div className="w-full flex flex-wrap justify-between">
+                  <div className="flex">
+                    <ProfilePicture
+                      figure={author?.look}
+                      online={author?.online}
+                      styles="bg-gray-200"
+                    />
+                    <div className="flex flex-col leading-snug text-gray-700 px-2 self-center">
+                      <span className="text-blue-700 text-sm font-semibold flex">
+                        {author?.username}
+                      </span>
+                      <span className="text-gray-500 text-xs">Hotel Admin</span>
                     </div>
-                    <div className="flex self-center"></div>
                   </div>
-                </div>
-
-                <div className="text-gray-600 text-sm px-2 pt-2">
-                  {article.body}
+                  <div className="flex self-center"></div>
                 </div>
               </div>
 
-              <div className="mt-2">
-                <h4 className="text-gray-500 my-1 self-center text-xs font-semibold self-center">
-                  Other articles
-                </h4>
+              <div className="text-gray-600 text-sm px-2 pt-2">
+                {article.body}
               </div>
-            </>
-          )}
+            </div>
+
+            <div className="mt-2">
+              <h4 className="text-gray-500 my-1 self-center text-xs font-semibold self-center">
+                Other articles
+              </h4>
+            </div>
+          </div>
           <div
             className={`p-2 flex-col ${
               currentView === "COMMENTS" ? "flex" : "hidden lg:flex"

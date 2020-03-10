@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import isDayTime from "utils/isDayTime";
-import { useToasts } from "react-toast-notifications";
 import { useDarkMode } from "hooks/useDarkMode";
 import Switch from "components/shared/Switch";
 
@@ -41,12 +40,6 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
   };
 
   const [darkTheme, setDarkTheme] = useDarkMode();
-
-  const { addToast } = useToasts();
-
-  const submitToast = () => {
-    addToast("Error message!");
-  };
 
   return (
     <CSSTransition
@@ -142,10 +135,7 @@ const Sidebar: React.FC<SidebarProps> = ({ toggleSidebar, sidebarVisible }) => {
 
             <div className="h-px w-full bg-gray-300 my-1 flex mt-auto dark:bg-gray-700" />
             <div className="flex p-2">
-              <button
-                className="block p-2 text-red-500 flex-1 rounded bg-gray-100 text-sm dark:bg-gray-700"
-                onClick={() => submitToast()}
-              >
+              <button className="block p-2 text-red-500 flex-1 rounded bg-gray-100 text-sm dark:bg-gray-700">
                 <i className="fas fa-sign-out-alt w-5" />
                 <span>Log out</span>
               </button>

@@ -11,7 +11,7 @@ const DefaultModal = (props: IDefaultModalProps) => {
 
   return (
     <div className="absolute w-full flex">
-      <div className="w-full mx-2 mt-20 border border-gray-400 rounded bg-white dark:bg-gray-700 z-50">
+      <div className="w-full mx-2 mt-20 border border-gray-400 rounded bg-white dark:bg-gray-700 z-50 lg:mx-auto lg:w-1/4">
         {children}
       </div>
       <Backdrop callback={closeModal} />
