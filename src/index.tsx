@@ -10,6 +10,7 @@ import * as serviceWorker from "./serviceWorker";
  */
 import { App } from "./containers/App";
 import { AppProvider } from "context/app.context";
+import { ModalProvider } from "context/modal/modal.context";
 
 /**
  * Styles
@@ -29,7 +30,9 @@ const ROOT = document.getElementById(TARGET_NODE) as HTMLElement;
 
 createRoot(ROOT).render(
   <AppProvider>
-    <App />
+    <ModalProvider>
+      <App />
+    </ModalProvider>
   </AppProvider>
 );
 

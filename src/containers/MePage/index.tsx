@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useAppState } from "context/app.context";
 import loadable from "utils/loadable";
@@ -7,6 +7,8 @@ import MainLayout from "components/layout/MainLayout";
 import NewsPreviewContainer from "components/NewsPreviewContainer";
 import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 import DefaultModal from "components/layout/Modal/DefaultModal";
+import { useModal } from "context/modal/modal.context";
+import Modal from "components/Modal";
 
 const Me = () => {
   const { currentHomeTab } = useAppState();
@@ -33,6 +35,15 @@ const Me = () => {
   };
 
   const [badgesModalVisible, setBadgesModalVisible] = useState(true);
+
+  const { showModal, closeModal } = useModal();
+
+  const MyModal = () => (
+    <Modal>
+      My Modal!
+      <button onClick={() => closeModal()}>Close modal</button>
+    </Modal>
+  );
 
   return (
     <MainLayout isHomepage={true}>
@@ -65,6 +76,12 @@ const Me = () => {
             </div>
             <div className="ml-32"></div>
             <div className="bg-blue-400">Test</div>
+            <button
+              className="px-2 py-1 rounded bg-blue-200 text-xs font-semibold"
+              onClick={() => showModal(MyModal)}
+            >
+              (1) friendrequest
+            </button>
           </div>
         </div>
         <div className="bg-gray-100 border border-gray-400 rounded w-1/3 p-1 self-start dark:bg-gray-800 dark:border-gray-700">
