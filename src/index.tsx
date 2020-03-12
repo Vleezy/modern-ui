@@ -30,9 +30,7 @@ const ROOT = document.getElementById(TARGET_NODE) as HTMLElement;
 
 createRoot(ROOT).render(
   <AppProvider>
-    <ModalProvider>
-      <App />
-    </ModalProvider>
+    <App />
   </AppProvider>
 );
 

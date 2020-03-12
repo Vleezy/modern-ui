@@ -55,10 +55,10 @@ const Me = () => {
   ];
 
   const MyModal = () => (
-    <Modal className="w-1/4 border border-gray-400 bg-white rounded shadow-lg">
+    <div>
       <h4>Hey</h4>
       <div></div>
-    </Modal>
+    </div>
   );
 
   // useEffect(() => {

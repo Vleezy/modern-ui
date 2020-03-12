@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import Modal from "components/Modal";
 
 type State = {
   showModal: (any: any) => void;
@@ -32,7 +33,7 @@ export const ModalProvider = (props: IModalProviderProps) => {
 
   return (
     <ModalStateContext.Provider value={state}>
-      {modal}
+      {modal && <Modal>{modal}</Modal>}
       {children}
     </ModalStateContext.Provider>
   );

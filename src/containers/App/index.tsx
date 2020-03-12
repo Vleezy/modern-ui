@@ -22,6 +22,7 @@ import Profile from "containers/Profile";
 import Settings from "containers/Settings/Settings";
 import AccountSettings from "containers/Settings/AccountSettings";
 import PageNotFound from "containers/PageNotFound";
+import { ModalProvider } from "context/modal/modal.context";
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -33,19 +34,21 @@ export const App: React.FC = () => {
   return (
     <React.StrictMode>
       <Router>
-        <Switch>
-          <Redirect exact path="/" to="/me" />
+        <ModalProvider>
+          <Switch>
+            <Redirect exact path="/" to="/me" />
 
-          <Route exact path="/me" component={Me} />
-          <Route path="/community/news/:articleId" component={NewsArticle} />
-          <Route path="/login" component={Login} />
-          <Route path="/profile/:user" component={Profile} />
+            <Route exact path="/me" component={Me} />
+            <Route path="/community/news/:articleId" component={NewsArticle} />
+            <Route path="/login" component={Login} />
+            <Route path="/profile/:user" component={Profile} />
 
-          <Route path="/settings" exact component={Settings} />
-          <Route path="/settings/account" component={AccountSettings} />
+            <Route path="/settings" exact component={Settings} />
+            <Route path="/settings/account" component={AccountSettings} />
 
-          <Route path="*" component={PageNotFound} />
-        </Switch>
+            <Route path="*" component={PageNotFound} />
+          </Switch>
+        </ModalProvider>
       </Router>
     </React.StrictMode>
   );
