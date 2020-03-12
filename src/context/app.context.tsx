@@ -60,7 +60,7 @@ export const AppProvider = (props: IAppProviderProps) => {
   const [state, dispatch] = React.useReducer(appReducer, {
     user: undefined,
     currentHomeTab: process.env.REACT_APP_DEFAULT_TAB ?? "",
-    themeColor: localStorage.getItem("themeColor") || ""
+    themeColor: JSON.parse(localStorage.getItem("themeColor") || "")
   });
 
   return (

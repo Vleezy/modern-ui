@@ -13,8 +13,17 @@ import FriendlistItem from "components/FriendlistItem";
 import UsersList from "components/UsersList";
 import Searchbar from "containers/Searchbar";
 import Helmet from "react-helmet";
+import ProfilePictureSmall from "components/ProfilePictureSmall";
+import { Link } from "react-router-dom";
+import ProfilePicture from "components/ProfilePicture";
 
-const FriendsTab = () => {
+interface IFriendsTabProps {
+  friendrequests?: any[];
+}
+
+const FriendsTab = (props: IFriendsTabProps) => {
+  const { friendrequests } = props;
+
   const friends: any[] = [];
 
   /**
@@ -84,11 +93,51 @@ const FriendsTab = () => {
     );
   };
 
+  const [friendReqCollapsed, setFriendReqCollapsed] = useState(true);
+
   return (
     <article className="p-2">
       <Helmet>
         <title>Friends</title>
       </Helmet>
+      {friendrequests?.length && <div>test</div>}
+      <div className="bg-blue-200 text-blue-500 flex flex-col rounded mb-2">
+        <button
+          className="w-full flex justify-between p-2"
+          onClick={() => setFriendReqCollapsed(!friendReqCollapsed)}
+        >
+          <span className="text-center text-sm self-center">
+            You have 2 new friend requests!
+          </span>
+          <div className="h-6 w-6 text-xs text-blue-500">
+            <i className="fas fa-chevron-down"></i>
+          </div>
+        </button>
+        {friendReqCollapsed && (
+          <div className="flex p-1">
+            <div className="w-full flex justify-between">
+              <div className="flex">
+                <ProfilePictureSmall
+                  // figure={process.env.REACT_APP_HABBO_FIGURE}
+                  styles="bg-blue-500 self-center"
+                />
+                <div className="flex flex-col ml-2 self-center leading-snug">
+                  <Link to="#" className="font-semibold text-sm">
+                    Chuckie
+                  </Link>
+                  <p className="text-blue-400 text-xs">4 mutual friends</p>
+                </div>
+              </div>
+              <div className="flex">
+                <button className="px-2 flex rounded text-xs">Decline</button>
+                <button className="px-2 flex rounded text-xs bg-fadedwhite-400">
+                  Accept
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
       <Searchbar onChangeFunc={setUserSearch} />
 
       {renderContent()}

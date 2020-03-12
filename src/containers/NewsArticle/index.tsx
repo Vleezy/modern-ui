@@ -15,7 +15,7 @@ import { IArticleComment } from "models/user/IArticleComment";
 
 import Comment from "components/Comment";
 import MainLayout from "components/layout/MainLayout";
-import ProfilePicture from "components/shared/ProfilePicture";
+import ProfilePicture from "components/ProfilePicture";
 import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
 
 import { MentionsInput, Mention } from "react-mentions";

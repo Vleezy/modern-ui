@@ -14,11 +14,7 @@ const Modal = (props: IModalProps) => {
 
   return (
     <div className="absolute h-screen w-full flex flex-col justify-center">
-      <div
-        className={`w-full rounded bg-white dark:bg-gray-700 z-50 lg:mx-auto lg:w-1/4 ${className}`}
-      >
-        {children}
-      </div>
+      <div className={`z-50 mb-40 lg:mx-auto ${className}`}>{children}</div>
       <Backdrop callback={closeModal} />
     </div>
   );

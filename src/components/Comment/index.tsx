@@ -9,7 +9,7 @@ import { IUser } from "models/user/IUser";
  * Components
  */
 import UserHoverCard from "../shared/UserHovercard";
-import ProfilePicture from "../shared/ProfilePicture";
+import ProfilePicture from "../ProfilePicture";
 import Skeleton from "components/Skeleton";
 
 interface INewsCommentProp {

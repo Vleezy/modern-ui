@@ -17,6 +17,7 @@ const HeaderDropDown = () => {
 
   const tabs = [
     { name: "Inbox", icon: "fas fa-inbox" },
+    { name: "Settings", icon: "fas fa-cog" },
     { name: "Logout", icon: "fas fa-sign-out-alt" }
   ];
 
@@ -35,7 +36,7 @@ const HeaderDropDown = () => {
           <div
             className="h-8 w-8 bg-center flex-shrink-0 bg-no-repeat rounded bg-white-500"
             style={habboFigure}
-          ></div>
+          />
           <div className="flex flex-col w-full self-center">
             <span className="text-white text-center flex-grow self-center mx-1 font-semibold text-sm">
               {user?.username}

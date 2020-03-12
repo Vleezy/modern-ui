@@ -14,7 +14,7 @@ import { setHomeTab } from "context/app.actions";
  * Components
  */
 import HeaderDropDown from "../HeaderDropDown";
-import ProfilePicture from "components/shared/ProfilePicture";
+import ProfilePicture from "components/ProfilePicture";
 import Navbar from "../Navbar";
 
 interface IHeaderProps {

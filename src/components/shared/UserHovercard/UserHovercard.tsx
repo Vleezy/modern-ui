@@ -1,5 +1,5 @@
 import React from "react";
-import ProfilePicture from "./../ProfilePicture";
+import ProfilePicture from "../../ProfilePicture";
 
 const UserHovercard: React.FC = () => {
   return (
@@ -15,7 +15,10 @@ const UserHovercard: React.FC = () => {
       </div>
       <div className="flex justify-between">
         <div className="-mt-8 px-2 mr-px pb-1 flex">
-          <ProfilePicture figure={process.env.REACT_APP_HABBO_FIGURE} styles="bg-gray-200 " />
+          <ProfilePicture
+            figure={process.env.REACT_APP_HABBO_FIGURE}
+            styles="bg-gray-200 "
+          />
         </div>
         <div className="flex flex-1">
           <span className="text-gray-500 text-xs">
