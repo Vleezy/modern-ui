@@ -1,5 +1,5 @@
-import * as React from "react";
-import { IUser } from "models/user/IUser";
+import { IUser } from 'models/user/IUser';
+import * as React from 'react';
 
 /**
  * Types to be dispatched
@@ -60,7 +60,7 @@ export const AppProvider = (props: IAppProviderProps) => {
   const [state, dispatch] = React.useReducer(appReducer, {
     user: undefined,
     currentHomeTab: process.env.REACT_APP_DEFAULT_TAB ?? "",
-    themeColor: JSON.parse(localStorage.getItem("themeColor") || "")
+    themeColor: localStorage.getItem("themeColor") || ""
   });
 
   return (

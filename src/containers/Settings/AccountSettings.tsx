@@ -1,8 +1,8 @@
-import DefaultModal from "components/layout/Modal/DefaultModal";
-import { useAppState, useAppDispatch } from "context/app.context";
-import React, { useState } from "react";
-import MainLayout from "components/layout/MainLayout";
-import { useLocalStorage } from "hooks/useLocalStorage";
+import MainLayout from 'components/layout/MainLayout';
+import DefaultModal from 'components/layout/Modal/DefaultModal';
+import { useAppDispatch, useAppState } from 'context/app.context';
+import { useLocalStorage } from 'hooks/useLocalStorage';
+import React, { useState } from 'react';
 
 const AccountSettings = () => {
   const [colorModalVisible, setColorModalVisible] = useState(true);
@@ -28,7 +28,7 @@ const AccountSettings = () => {
    * handleColorClick method handles clicking on colors in the colors modal by updating the theme color and closing the active modal.
    */
   const handleColorClick = (idx: number) => {
-    const color = themeColors[idx];
+    const color: string = themeColors[idx];
 
     // Update color in localStorage using setLocalStorage hook.
     setThemeColor(color);
