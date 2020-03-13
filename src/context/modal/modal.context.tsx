@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import Modal from "components/Modal";
+import Modal from 'components/Modal';
+import React, { useContext, useState } from 'react';
 
 type State = {
   showModal: (any: any) => void;
@@ -15,7 +15,7 @@ interface IModalProviderProps {
 export const ModalProvider = (props: IModalProviderProps) => {
   const { children } = props;
 
-  const [modal, setModal] = useState<typeof React.Component | null>(null);
+  const [modal, setModal] = useState<any>(null);
 
   const showModal = (component: typeof React.Component) => {
     setModal(component);
@@ -26,7 +26,6 @@ export const ModalProvider = (props: IModalProviderProps) => {
   };
 
   const [state, setState] = useState({
-    component: null,
     showModal,
     closeModal
   });

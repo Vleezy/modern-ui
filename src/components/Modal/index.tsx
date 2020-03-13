@@ -1,6 +1,6 @@
 import Backdrop from 'components/Backdrop';
 import { useModal } from 'context/modal/modal.context';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 
 interface IModalProps {

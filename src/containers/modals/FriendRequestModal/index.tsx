@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ProfilePicture from "components/ProfilePicture";
+import ProfilePicture from 'components/ProfilePicture';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FriendRequestModal = () => {
   const illustration = {
@@ -49,8 +49,8 @@ const FriendRequestModal = () => {
         </div>
       </div>
       <div className="px-2 mb-4 max-h-64 overflow-y-scroll">
-        {requests.map(req => (
-          <div className="w-full flex justify-between mb-1">
+        {requests.map((req, idx) => (
+          <div key={idx} className="w-full flex justify-between mb-1">
             <div className="flex">
               <ProfilePicture
                 figure={process.env.REACT_APP_HABBO_FIGURE}
