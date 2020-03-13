@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
-/**
- * Dependencies
- */
-import { orderBy } from "lodash";
-import useDebounce from "hooks/useDebounce";
-import { getUsersByUsername } from "api/fakeApi";
-
+import { getUsersByUsername } from 'api/fakeApi';
 /**
  * Components
  */
-import FriendlistItem from "components/FriendlistItem";
-import UsersList from "components/UsersList";
-import Searchbar from "containers/Searchbar";
-import Helmet from "react-helmet";
-import { useModal } from "context/modal/modal.context";
-import FriendRequestModal from "containers/modals/FriendRequestModal";
+import FriendlistItem from 'components/FriendlistItem';
+import UsersList from 'components/UsersList';
+import FriendRequestModal from 'containers/modals/FriendRequestModal';
+import Searchbar from 'containers/Searchbar';
+import { useModal } from 'context/modal/modal.context';
+import useDebounce from 'hooks/useDebounce';
+/**
+ * Dependencies
+ */
+import { orderBy } from 'lodash';
+import React, { useEffect, useState } from 'react';
+import Helmet from 'react-helmet';
 
 interface IFriendsTabProps {
   friendrequests?: any[];
@@ -94,8 +93,6 @@ const FriendsTab = (props: IFriendsTabProps) => {
 
   const { showModal } = useModal();
 
-  useEffect(() => showModal(FriendRequestModal), []);
-
   return (
     <article className="p-2">
       <Helmet>
@@ -112,9 +109,6 @@ const FriendsTab = (props: IFriendsTabProps) => {
           <span className="text-center text-sm self-center">
             You have 2 new friend requests!
           </span>
-          {/* <div className="h-6 w-6 text-xs text-blue-500 flex flex-col justify-center">
-            <i className="fas fa-chevron-down"></i>
-          </div> */}
         </button>
       </div>
       <Searchbar onChangeFunc={setUserSearch} />

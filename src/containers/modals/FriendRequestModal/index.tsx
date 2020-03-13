@@ -33,6 +33,21 @@ const FriendRequestModal = () => {
         backgroundImage: `url('assets/images/illustrations/blobs.png')`
       }}
     >
+      <div className="flex justify-between mx-2 mb-2">
+        <h5 className="font-semibold text-xs text-blue-600 self-center">
+          Mass action
+        </h5>
+        <div className="flex text-gray-500">
+          <button className="text-xs px-2 py-1 rounded mr-1">
+            <i className="fas fa-times text-red-500 mr-1"></i>
+            Decline all
+          </button>
+          <button className="text-xs py-1 px-2 rounded bg-gray-200">
+            <i className="fas fa-check text-green-500 mr-1"></i>
+            Accept all
+          </button>
+        </div>
+      </div>
       <div className="px-2 mb-4 max-h-64 overflow-y-scroll">
         {requests.map(req => (
           <div className="w-full flex justify-between mb-1">
