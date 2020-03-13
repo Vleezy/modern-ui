@@ -93,15 +93,6 @@ const FriendsTab = (props: IFriendsTabProps) => {
 
   const { showModal } = useModal();
 
-  useEffect(() => {
-    setInterval(() => {
-      showModal(FriendRequestModal);
-    }, 2000);
-    setInterval(() => {
-      showModal(() => <div>Test</div>);
-    }, 3000);
-  }, [showModal]);
-
   return (
     <article className="p-2">
       <Helmet>
