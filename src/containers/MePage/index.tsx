@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
-
-import { useModal } from "context/modal/modal.context";
-import { useAppState } from "context/app.context";
-
-import loadable from "utils/loadable";
-
-import MainLayout from "components/layout/MainLayout";
-import NewsPreviewContainer from "components/NewsPreviewContainer";
-import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
-import Modal from "components/Modal";
+import MainLayout from 'components/layout/MainLayout';
+import NewsPreviewContainer from 'components/NewsPreviewContainer';
+import HovercraftSpinner from 'components/shared/spinners/HovercraftSpinner';
+import { useAppState } from 'context/app.context';
+import { useModal } from 'context/modal/modal.context';
+import React from 'react';
+import loadable from 'utils/loadable';
 
 const Me = () => {
   const { currentHomeTab } = useAppState();
@@ -34,7 +30,7 @@ const Me = () => {
     }
   };
 
-  const { showModal, closeModal } = useModal();
+  const { showModal } = useModal();
 
   const currencies = [
     {
@@ -60,10 +56,6 @@ const Me = () => {
       <div></div>
     </div>
   );
-
-  // useEffect(() => {
-  //   showModal(MyModal);
-  // }, []);
 
   const habboViewBg = {
     backgroundImage: `url(/assets/images/view_ca_wide.png)`
@@ -95,17 +87,6 @@ const Me = () => {
                     </span>
                   </div>
                 ))}
-                {/* {[...Array(4)].map(() => (
-                <div className="flex" key={currency.name}>
-                  <div
-                    className="w-6 h-6 bg-center bg-no-repeat mr-1"
-                    style={{ backgroundImage: `url(${currency.icon})` }}
-                  ></div>
-                  <span className="text-gray-200 self-center font-semibold text-xs">
-                    {currency.amount}
-                  </span>
-                </div>
-                ))} */}
               </div>
             </div>
           </div>
