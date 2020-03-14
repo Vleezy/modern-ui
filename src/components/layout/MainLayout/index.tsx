@@ -47,13 +47,7 @@ const MainLayout = (props: IMainLayoutProps) => {
             isHomepage={isHomepage}
           />
         )}
-        <div className="max-w-4xl mx-auto flex flex-col">
-          <div className="hidden lg:flex w-full p-1 justify-between mt-2 lg:mt-0 rounded">
-            <div>?</div>
-            <div className="flex justify-end"></div>
-          </div>
-          {children}
-        </div>
+        <div className="max-w-4xl mx-auto flex flex-col mt-2">{children}</div>
         <BottomNavigation />
       </div>
     </>
