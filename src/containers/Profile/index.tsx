@@ -1,3 +1,4 @@
+import Button from 'components/generic/Button';
 import MainLayout from 'components/layout/MainLayout';
 import ProfilePicture from 'components/ProfilePicture';
 import React from 'react';
@@ -38,7 +39,9 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="p-2"></div>
+        <div className="p-2">
+          <Button>Test</Button>
+        </div>
       </div>
     </MainLayout>
   );

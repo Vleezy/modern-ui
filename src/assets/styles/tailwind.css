@@ -2,6 +2,26 @@
 
 @tailwind components;
 
+
+
+.btn {
+  @apply px-2 py-1 text-sm border border-gray-400 rounded;
+
+  &--default {
+    @apply bg-white text-gray-600;
+  }
+
+  &--primary {
+    @apply bg-blue-500 text-white
+  }
+
+  &--disabled {
+    @apply bg-gray-300 text-gray-500;
+  }
+
+}
+
+
 .comment-input {
   &--multiLine {
     @apply border border-gray-400 rounded bg-white p-1 text-xs text-gray-700 h-20;
