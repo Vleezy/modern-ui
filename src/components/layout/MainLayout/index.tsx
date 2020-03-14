@@ -47,7 +47,9 @@ const MainLayout = (props: IMainLayoutProps) => {
             isHomepage={isHomepage}
           />
         )}
-        <div className="max-w-4xl mx-auto flex flex-col mt-2">{children}</div>
+        <div className="max-w-4xl mx-auto flex flex-col lg:mt-2">
+          {children}
+        </div>
         <BottomNavigation />
       </div>
     </>
