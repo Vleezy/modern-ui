@@ -1,29 +1,28 @@
-import * as React from "react";
-import { Link, NavLink } from "react-router-dom";
-
+import ProfilePicture from 'components/ProfilePicture';
+import { setHomeTab } from 'context/app.actions';
+import { useAppDispatch, useAppState } from 'context/app.context';
+import { useCollapseOnScroll } from 'hooks/useCollapseOnScroll';
+import * as React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 /**
  * Dependencies
  */
-
-import isDayTime from "utils/isDayTime";
-import { useCollapseOnScroll } from "hooks/useCollapseOnScroll";
-import { useAppState, useAppDispatch } from "context/app.context";
-import { setHomeTab } from "context/app.actions";
+import isDayTime from 'utils/isDayTime';
 
 /**
  * Components
  */
-import HeaderDropDown from "../HeaderDropDown";
-import ProfilePicture from "components/ProfilePicture";
-import Navbar from "../Navbar";
+import HeaderDropDown from '../HeaderDropDown';
+import Navbar from '../Navbar';
 
 interface IHeaderProps {
   toggleSidebar: (visible: boolean) => void;
+  headerTransparent: boolean;
   isHomepage: boolean;
 }
 
 const Header = (props: IHeaderProps) => {
-  const { toggleSidebar, isHomepage } = props;
+  const { toggleSidebar, isHomepage, headerTransparent } = props;
 
   // Context state and dispath function.
   const { user, currentHomeTab, themeColor } = useAppState();
@@ -64,8 +63,16 @@ const Header = (props: IHeaderProps) => {
   return (
     <div className={`w-full sticky top-0 z-10`}>
       <div
-        className="w-full lg:h-24 bg-blue-200 bg-center shadow lg:shadow-none dark:border-gray-700"
-        style={isDayTime() ? headerBackground.day : headerBackground.night}
+        className={`w-full lg:h-24 ${
+          headerTransparent ? "" : "bg-blue-200 shadow"
+        } bg-center lg:shadow-none dark:border-gray-700`}
+        style={
+          !headerTransparent
+            ? isDayTime()
+              ? headerBackground.day
+              : headerBackground.night
+            : {}
+        }
       >
         <div className="lg:flex hidden h-full max-w-4xl mx-auto">
           <div className="w-full flex justify-between">

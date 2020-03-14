@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-import Sidebar from "../Sidebar";
-import Backdrop from "../../Backdrop";
-import BottomNavigation from "components/layout/BottomNavigation";
-import Header from "components/layout/Header";
-import Helmet from "react-helmet";
+import BottomNavigation from 'components/layout/BottomNavigation';
+import Header from 'components/layout/Header';
+import React, { useState } from 'react';
+import Helmet from 'react-helmet';
+
+import Backdrop from '../../Backdrop';
+import Sidebar from '../Sidebar';
 
 interface IMainLayoutProps {
   headerVisible?: boolean;
+  headerTransparent?: boolean;
   isHomepage?: boolean;
   children?: React.ReactNode;
 }
 
 const MainLayout = (props: IMainLayoutProps) => {
-  const { headerVisible = true, isHomepage = false, children } = props;
+  const {
+    headerVisible = true,
+    isHomepage = false,
+    children,
+    headerTransparent = false
+  } = props;
   const [sidebarVisible, setSidebarVisible] = useState(false);
   return (
     <>
@@ -34,11 +41,15 @@ const MainLayout = (props: IMainLayoutProps) => {
           </>
         )}
         {headerVisible && (
-          <Header toggleSidebar={setSidebarVisible} isHomepage={isHomepage} />
+          <Header
+            headerTransparent={headerTransparent}
+            toggleSidebar={setSidebarVisible}
+            isHomepage={isHomepage}
+          />
         )}
         <div className="max-w-4xl mx-auto flex flex-col">
           <div className="hidden lg:flex w-full p-1 justify-between mt-2 lg:mt-0 rounded">
-            <div></div>
+            <div>?</div>
             <div className="flex justify-end"></div>
           </div>
           {children}
