@@ -29,7 +29,7 @@ const FriendsTab = (props: IFriendsTabProps) => {
    */
   const [userSearch, setUserSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const debouncedUserSearch = useDebounce(userSearch, 300);
+  const debouncedUserSearch = useDebounce("F", 300);
 
   // Store fetched users.
   const [fetchedUsers, setFetchedUsers] = useState(Array(0));
@@ -59,7 +59,7 @@ const FriendsTab = (props: IFriendsTabProps) => {
 
     if (friends.length)
       return (
-        <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full border border-gray-400 bg-gray-100 rounded dark:bg-gray-800 dark:border-gray-700 flex-wrap">
           {orderBy(friends, ["online"], "desc").map((friend, idx) => (
             <FriendlistItem key={idx} user={friend} />
           ))}

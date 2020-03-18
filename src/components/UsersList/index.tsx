@@ -1,8 +1,7 @@
-import React from "react";
-
-import { IUser } from "models/user/IUser";
-import FriendlistItem from "components/FriendlistItem";
-import HovercraftSpinner from "components/shared/spinners/HovercraftSpinner";
+import FriendlistItem from 'components/FriendlistItem';
+import HovercraftSpinner from 'components/shared/spinners/HovercraftSpinner';
+import { IUser } from 'models/user/IUser';
+import React from 'react';
 
 interface UsersListProps {
   loading?: boolean;
@@ -17,13 +16,11 @@ const UsersList = (props: UsersListProps) => {
   if (!users.length) return <>"No users found"</>;
 
   return (
-    <>
+    <div className="flex flex-wrap">
       {users.map((user, idx) => (
-        <div key={idx}>
-          <FriendlistItem user={user} />
-        </div>
+        <FriendlistItem key={idx} user={user} />
       ))}
-    </>
+    </div>
   );
 };
 
