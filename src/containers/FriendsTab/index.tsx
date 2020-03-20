@@ -27,9 +27,11 @@ const FriendsTab = (props: IFriendsTabProps) => {
   /**
    * User search
    */
+  const [grid, setGrid] = useState<boolean>(false);
+
   const [userSearch, setUserSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const debouncedUserSearch = useDebounce("F", 300);
+  const debouncedUserSearch = useDebounce(userSearch, 300);
 
   // Store fetched users.
   const [fetchedUsers, setFetchedUsers] = useState(Array(0));
@@ -54,7 +56,9 @@ const FriendsTab = (props: IFriendsTabProps) => {
    */
   const renderContent = () => {
     if (debouncedUserSearch) {
-      return <UsersList users={fetchedUsers} loading={isLoading} />;
+      return (
+        <UsersList users={fetchedUsers} loading={isLoading} gridView={grid} />
+      );
     }
 
     if (friends.length)
@@ -111,7 +115,9 @@ const FriendsTab = (props: IFriendsTabProps) => {
           </span>
         </button>
       </div>
-      <Searchbar onChangeFunc={setUserSearch} />
+      <div className="flex">
+        <Searchbar onChangeFunc={setUserSearch} setGrid={setGrid} grid={grid} />
+      </div>
 
       {renderContent()}
     </article>

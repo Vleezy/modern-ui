@@ -1,14 +1,17 @@
-import React, { useState, useRef, MutableRefObject } from "react";
-import { useSpring, animated } from "react-spring";
-
-import OutsideClickHandler from "react-outside-click-handler";
+import FilterCheckbox from 'components/FilterCheckbox';
+import Button from 'components/generic/Button';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
+import { animated, useSpring } from 'react-spring';
 
 interface ISearchbarProps {
   onChangeFunc: (value: string) => void;
+  setGrid: (value: boolean) => void;
+  grid: boolean;
 }
 
 const Searchbar = (props: ISearchbarProps) => {
-  const { onChangeFunc } = props;
+  const { onChangeFunc, setGrid, grid } = props;
 
   const [expanded, setExpanded] = useState(false);
 
@@ -19,6 +22,26 @@ const Searchbar = (props: ISearchbarProps) => {
   });
 
   const searchField = useRef() as MutableRefObject<HTMLInputElement>;
+
+  const ESCAPE_KEY = 27;
+
+  const handleEscKeyDown = (event: KeyboardEvent): void => {
+    // Listen for escape key press
+    if (event.keyCode !== ESCAPE_KEY) return;
+
+    if (!expanded) {
+      return;
+    }
+
+    setExpanded(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleEscKeyDown);
+    };
+  }, [handleEscKeyDown]);
 
   return (
     <OutsideClickHandler onOutsideClick={() => setExpanded(false)}>
@@ -38,23 +61,26 @@ const Searchbar = (props: ISearchbarProps) => {
           onChange={e => onChangeFunc(e.target.value)}
           ref={searchField}
         />
+        <button className="text-sm px-2" onClick={() => setGrid(!grid)}>
+          <i className={`fas fa-${grid ? "list" : "th"} text-gray-500`} />
+        </button>
         <animated.div
           style={searchExpandAnim}
           className="flex w-full overflow-hidden"
         >
           <div className="p-1 w-full flex-wrap flex">
-            <h4 className="w-full font-semibold dark:text-gray-600">Filter</h4>
-            <label
-              htmlFor="filter-friends"
-              className="text-xs dark:text-gray-600 flex"
-            >
-              <input
-                id="filter-friends"
-                type="checkbox"
-                className="self-center mr-1"
-              />
-              Friends only
-            </label>
+            <h4 className="w-full font-semibold dark:text-gray-600">
+              Filter by:
+            </h4>
+            <div className="mr-1">
+              <FilterCheckbox>Friends</FilterCheckbox>
+            </div>
+            <div className="mr-1">
+              <FilterCheckbox>Online</FilterCheckbox>
+            </div>
+            <div className="mr-1">
+              <FilterCheckbox>Friends</FilterCheckbox>
+            </div>
           </div>
         </animated.div>
       </div>

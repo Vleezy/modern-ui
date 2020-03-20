@@ -6,10 +6,11 @@ import React from 'react';
 interface UsersListProps {
   loading?: boolean;
   users: IUser[];
+  gridView?: boolean;
 }
 
 const UsersList = (props: UsersListProps) => {
-  const { loading, users } = props;
+  const { loading, users, gridView = false } = props;
 
   if (loading) return <HovercraftSpinner />;
 
@@ -18,7 +19,7 @@ const UsersList = (props: UsersListProps) => {
   return (
     <div className="flex flex-wrap">
       {users.map((user, idx) => (
-        <FriendlistItem key={idx} user={user} />
+        <FriendlistItem key={idx} user={user} gridView={gridView} />
       ))}
     </div>
   );
